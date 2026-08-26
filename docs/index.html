@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wiener Gate: public evidence corpus</title>
+<meta name="description" content="An evidence-bound investigation into a multi-brand online pet-purchase fraud network, documented as a criminal supply chain rather than a single suspect.">
+<style>
+  :root {
+    --ink: #1d2021; --muted: #5a6169; --rule: #dee2e6;
+    --scam: #c1121f; --victim: #2a9d8f; --evidence: #264653;
+    --money: #e9c46a; --sand: #f4f1de; --verified: #3ddc97;
+    --card: #ffffff; --page: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8eaed; --muted: #9aa3ab; --rule: #333a40;
+      --sand: #23282c; --card: #1b1f23; --page: #131619;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--ink); background: var(--page);
+    line-height: 1.6; margin: 0;
+    padding: 3rem 1.25rem 4rem; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 54rem; margin: 0 auto; }
+  .brand { text-align: center; margin-bottom: .5rem; }
+  .brand img { width: 260px; max-width: 70%; height: auto; }
+  .tagline { text-align: center; color: var(--muted); font-style: italic; margin: 0 0 2rem; }
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.2;
+    margin: 0 0 .3em; padding-bottom: .3em;
+    border-bottom: 3px solid var(--evidence); letter-spacing: -0.015em;
+  }
+  .lede { font-size: 1.08rem; color: var(--muted); margin: 0 0 2rem; }
+  .alert {
+    border-left: 4px solid var(--scam); background: var(--sand);
+    padding: 1rem 1.15rem; border-radius: 0 6px 6px 0; margin: 0 0 2.5rem;
+  }
+  .alert strong { color: var(--scam); }
+  h2 { font-size: 1.3rem; margin: 2.5rem 0 1rem; padding-bottom: .25em; border-bottom: 1px solid var(--rule); }
+  .cards { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .card {
+    border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.1rem;
+    background: var(--card); display: flex; flex-direction: column;
+  }
+  .card h3 { margin: 0 0 .35rem; font-size: 1.05rem; }
+  .card h3 a { color: var(--evidence); text-decoration: none; }
+  @media (prefers-color-scheme: dark) { .card h3 a { color: var(--verified); } }
+  .card h3 a:hover { text-decoration: underline; }
+  .card p { margin: 0 0 .9rem; color: var(--muted); font-size: .94rem; flex: 1; }
+  .actions a {
+    display: inline-block; font-size: .85rem; text-decoration: none;
+    border: 1px solid var(--rule); border-radius: 999px;
+    padding: .2rem .7rem; margin-right: .35rem; color: var(--ink);
+  }
+  .actions a:hover { border-color: var(--evidence); }
+  .master { grid-column: 1 / -1; border-color: var(--evidence); border-width: 2px; }
+  ul { padding-left: 1.15rem; }
+  li { margin: .35rem 0; }
+  a { color: var(--evidence); }
+  @media (prefers-color-scheme: dark) { a { color: var(--verified); } }
+  footer {
+    margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--rule);
+    color: var(--muted); font-size: .85rem; text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="brand">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/legioncodeinc/brands/main/legion-code-inc/logos/legion-logo-dark.svg">
+    <img src="https://raw.githubusercontent.com/legioncodeinc/brands/main/legion-code-inc/logos/legion-logo-light.svg" alt="Legion Code Inc.">
+  </picture>
+</div>
+<p class="tagline">The developer toolchain, for the time of AI.</p>
+
+<h1>Wiener Gate: public evidence corpus</h1>
+<p class="lede">An evidence-bound investigation into a multi-brand online pet-purchase fraud network, documented as a criminal supply chain rather than a single suspect.</p>
+
+<div class="alert">
+  <strong>Several people whose names and faces appear in this material are victims of identity and image theft, not participants.</strong>
+  Before you read anything else, read <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/who-is-not-a-suspect.md">Who is NOT a suspect</a>.
+  If you think you have identified a person in this material, do not act on it and do not publish it.
+</div>
+
+<h2>Read the brief written for you</h2>
+<div class="cards">
+  <div class="card">
+    <h3><a href="law-enforcement/">For law enforcement</a></h3>
+    <p>Who, what, when and where, with the infrastructure findings laid out for a referral.</p>
+    <div class="actions"><a href="law-enforcement/">Read online</a><a href="law-enforcement/BRIEF-01-law-enforcement.pdf">PDF</a></div>
+  </div>
+  <div class="card">
+    <h3><a href="victims/">If you have been targeted</a></h3>
+    <p>What to do now, how to file with IC3, and how to tell a fake listing from a real one.</p>
+    <div class="actions"><a href="victims/">Read online</a><a href="victims/BRIEF-02-victims.pdf">PDF</a></div>
+  </div>
+  <div class="card">
+    <h3><a href="technical-analysts/">For technical analysts</a></h3>
+    <p>Procedures, tooling and indicators, written so you can reproduce the findings yourself.</p>
+    <div class="actions"><a href="technical-analysts/">Read online</a><a href="technical-analysts/BRIEF-03-technical-analysts.pdf">PDF</a></div>
+  </div>
+  <div class="card">
+    <h3><a href="intelligence/">Analytic assessment</a></h3>
+    <p>Hypotheses with confidence levels, a devil's advocate pass, and what would disprove us.</p>
+    <div class="actions"><a href="intelligence/">Read online</a><a href="intelligence/BRIEF-04-intelligence.pdf">PDF</a></div>
+  </div>
+  <div class="card">
+    <h3><a href="media-public/">Why this matters</a></h3>
+    <p>Why a puppy scam is the wrong frame for this, in plain language.</p>
+    <div class="actions"><a href="media-public/">Read online</a><a href="media-public/BRIEF-05-media-public.pdf">PDF</a></div>
+  </div>
+  <div class="card">
+    <h3><a href="contributors/">How to help</a></h3>
+    <p>Passive observation, safe reconnaissance, and how to reach victims without harming them.</p>
+    <div class="actions"><a href="contributors/">Read online</a><a href="contributors/BRIEF-06-how-to-help.pdf">PDF</a></div>
+  </div>
+  <div class="card master">
+    <h3><a href="master/">The master brief</a></h3>
+    <p>Every brief and the full wiki reference layer compiled into one document.</p>
+    <div class="actions"><a href="master/">Read online</a><a href="master/MASTER-BRIEF.pdf">PDF</a></div>
+  </div>
+</div>
+
+<h2>The rest of the corpus</h2>
+<p>These are markdown, and live in the repository rather than on this site.</p>
+<ul>
+  <li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/index.md">The wiki</a>: network map, domain roster, indicators, methodology, glossary and changelog.</li>
+  <li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/verify-our-work.md">Verify our work</a>: what each hash manifest covers, and how to check an artifact against it.</li>
+  <li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/REDACTION_CONTRACT.md">The redaction contract</a>: the rules this corpus holds itself to, published so you can audit them.</li>
+  <li><a href="https://github.com/legioncodeinc/wiener-gate-public">The repository itself</a>, including every brief in markdown.</li>
+</ul>
+
+<h2>How to read this</h2>
+<ul>
+  <li><strong>This is an evolving situation.</strong> Findings marked <code>PROVISIONAL</code>, <code>UNVERIFIED</code> or <code>HYPOTHESIS</code> may change.</li>
+  <li><strong>Every load-bearing claim carries a pointer</strong> to the section of the private evidence log supporting it, in the form <code>(Z-7)</code>, <code>(U-4)</code>, <code>(R-1)</code>.</li>
+  <li><strong>The evidence tree does not ship.</strong> It holds victim identities, suspect-side financial detail, and images belonging to people who never consented. That exclusion is deliberate and the boundary is written down in the redaction contract.</li>
+  <li><strong>Found an error?</strong> That is the point. Corrections are recorded with the same care as findings.</li>
+</ul>
+
+<footer>
+  Compiled under <strong>Legion Code Inc.</strong> &middot; Built 2026-08-26<br>
+  Read <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/who-is-not-a-suspect.md">Who is NOT a suspect</a> before acting on anything here.
+</footer>
+
+</div>
+</body>
+</html>
