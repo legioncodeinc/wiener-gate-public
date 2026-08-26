@@ -135,7 +135,7 @@ Not speculation. These are specific, identified, and in most cases already in mo
 | What you found | Where it goes |
 |---|---|
 | A factual error, a broken link, a stale status | The repository's public issue tracker |
-| **A redaction miss**: an identity, a minor, an unconfirmed suspect, a credential, or any sensitive data that should not be public | **The private route in [`../../../../SECURITY.md`](../../../../SECURITY.md). Never a public issue** |
+| **A redaction miss**: an identity, a minor, an unconfirmed suspect, a credential, or any sensitive data that should not be public | **The private route in [`SECURITY.md`](../SECURITY.md). Never a public issue** |
 | A finding you believe is unsupported | Public issue, with the specific claim and what breaks it. See [`verify-our-work.md`](verify-our-work.md) section 7 for the known soft spots |
 | New infrastructure | See [`indicators.md`](indicators.md) section 11 and [`../briefs/BRIEF-06-how-to-help.md`](../briefs/BRIEF-06-how-to-help.md). **Report infrastructure, never a person** |
 
