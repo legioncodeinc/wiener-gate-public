@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BRIEF 01 law enforcement</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+@page {
+size: Letter;
+margin: 20mm 18mm 22mm 18mm;
+@bottom-center { content: counter(page); font-size: 9pt; color: #6c757d; }
+}
+:root {
+--ink: #1d2021;
+--muted: #5a6169;
+--rule: #dee2e6;
+--scam: #c1121f;
+--victim: #2a9d8f;
+--cleared: #6c757d;
+--evidence: #264653;
+--money: #e9c46a;
+--sand: #f4f1de;
+}
+html { font-size: 11pt; }
+body {
+font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+color: var(--ink);
+line-height: 1.55;
+max-width: 44rem;
+margin: 0 auto;
+padding: 2rem 1.25rem 4rem;
+background: #fff;
+-webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { line-height: 1.25; font-weight: 650; break-after: avoid; }
+h1 {
+font-size: 2.1rem; margin: 0 0 .4em;
+padding-bottom: .35em; border-bottom: 3px solid var(--evidence);
+letter-spacing: -0.015em;
+}
+h2 {
+font-size: 1.45rem; margin: 2.2em 0 .6em;
+padding-bottom: .25em; border-bottom: 1px solid var(--rule);
+break-before: auto;
+}
+h3 { font-size: 1.13rem; margin: 1.8em 0 .5em; color: var(--evidence); }
+h4 { font-size: 1rem; margin: 1.4em 0 .4em; color: var(--muted); }
+
+body > blockquote:first-of-type {
+font-size: .82rem; color: var(--muted); background: var(--sand);
+border-left: 4px solid var(--money); border-radius: 0 3px 3px 0;
+padding: .55em .9em; margin: 0 0 1.6em; break-after: avoid;
+}
+
+figure, .mermaid, p > img, img {
+break-inside: avoid;
+page-break-inside: avoid;
+max-width: 100%;
+height: auto;
+}
+figure {
+margin: 1.9em 0;
+padding: 1.1em;
+background: #fcfcfd;
+border: 1px solid var(--rule);
+border-radius: 6px;
+text-align: center;
+}
+figure img { display: block; margin: 0 auto; max-height: 8.6in; }
+figcaption {
+margin-top: .7em; font-size: .82rem; color: var(--muted);
+font-style: italic; text-align: center;
+}
+
+p:has(> img:only-child) {
+break-inside: avoid; page-break-inside: avoid;
+text-align: center; margin: 1.9em 0; padding: 1.1em;
+background: #fcfcfd; border: 1px solid var(--rule); border-radius: 6px;
+}
+
+table {
+border-collapse: collapse; width: 100%; margin: 1.5em 0;
+font-size: .88rem; break-inside: auto;
+}
+thead { display: table-header-group; }
+tr { break-inside: avoid; page-break-inside: avoid; }
+th {
+background: var(--evidence); color: #fff; text-align: left;
+padding: .55em .7em; font-weight: 600; font-size: .84rem;
+letter-spacing: .012em;
+}
+td { padding: .5em .7em; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tbody tr:nth-child(even) { background: #fafbfc; }
+
+code {
+font-family: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+font-size: .87em; background: #f1f3f5; padding: .13em .38em;
+border-radius: 3px; color: #922b21;
+}
+pre {
+background: #f8f9fa; border: 1px solid var(--rule); border-left: 4px solid var(--evidence);
+border-radius: 4px; padding: .9em 1.1em; overflow-x: auto;
+font-size: .82rem; line-height: 1.45; break-inside: avoid;
+}
+pre code { background: none; padding: 0; color: var(--ink); }
+
+blockquote {
+margin: 1.4em 0; padding: .8em 1.1em;
+background: #fff8e6; border-left: 4px solid var(--money);
+border-radius: 0 4px 4px 0; color: #4a4030; break-inside: avoid;
+}
+blockquote p:last-child { margin-bottom: 0; }
+strong { font-weight: 660; color: #0f1112; }
+a { color: var(--evidence); text-decoration-color: var(--rule); }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.4em 0; }
+ul, ol { padding-left: 1.35em; }
+li { margin: .32em 0; }
+
+
+.tok { font-weight: 700; font-size: .82em; letter-spacing: .04em;
+padding: .1em .45em; border-radius: 3px; white-space: nowrap; }
+.tok-unverified { background: #fdecea; color: #922b21; border: 1px solid #f5c6cb; }
+.tok-hypothesis { background: #fff3cd; color: #7a5c00; border: 1px solid #ffe69c; }
+.tok-provisional { background: #e7f1ff; color: #1c4f8a; border: 1px solid #b6d4fe; }
+.tok-assessed { background: #e6f4f1; color: #1d6f63; border: 1px solid #b8e0d8; }
+@media print {
+body { max-width: none; padding: 0; }
+a { color: var(--ink); text-decoration: none; }
+a[href^="http"]::after {
+content: " (" attr(href) ")"; font-size: .74em; color: var(--muted);
+word-break: break-all;
+}
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">BRIEF 01 law enforcement</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#brief-01-law-enforcement-brief" id="toc-brief-01-law-enforcement-brief">BRIEF-01: Law Enforcement
+Brief</a>
+<ul>
+<li><a href="#1-the-jurisdictional-hook-first-because-it-is-why-you-are-still-reading" id="toc-1-the-jurisdictional-hook-first-because-it-is-why-you-are-still-reading">1.
+The jurisdictional hook, first, because it is why you are still
+reading</a></li>
+<li><a href="#2-who-what-when-where-why" id="toc-2-who-what-when-where-why">2. Who, what, when, where,
+why</a></li>
+<li><a href="#3-what-is-established-and-what-is-not" id="toc-3-what-is-established-and-what-is-not">3. What is established,
+and what is not</a></li>
+<li><a href="#4-the-governing-model-a-supply-chain-not-a-suspect" id="toc-4-the-governing-model-a-supply-chain-not-a-suspect">4. The
+governing model: a supply chain, not a suspect</a></li>
+<li><a href="#5-the-solicitation-a-recycled-page-twelve-days-from-identity-to-money-ask" id="toc-5-the-solicitation-a-recycled-page-twelve-days-from-identity-to-money-ask">5.
+The solicitation: a recycled page, twelve days from identity to money
+ask</a></li>
+<li><a href="#6-the-eight-findings-that-survived-every-test" id="toc-6-the-eight-findings-that-survived-every-test">6. The eight
+findings that survived every test</a></li>
+<li><a href="#7-the-five-claims-that-were-tested-and-downgraded" id="toc-7-the-five-claims-that-were-tested-and-downgraded">7. The five
+claims that were tested and downgraded</a></li>
+<li><a href="#8-where-each-authority-has-a-hook" id="toc-8-where-each-authority-has-a-hook">8. Where each authority has a
+hook</a></li>
+<li><a href="#9-evidence-integrity-why-you-can-rely-on-this-file" id="toc-9-evidence-integrity-why-you-can-rely-on-this-file">9. Evidence
+integrity: why you can rely on this file</a></li>
+<li><a href="#10-contamination-controls-and-one-disclosure-we-would-rather-make-than-have-you-find" id="toc-10-contamination-controls-and-one-disclosure-we-would-rather-make-than-have-you-find">10.
+Contamination controls, and one disclosure we would rather make than
+have you find</a></li>
+<li><a href="#11-required-disclosure-the-investigator-is-not-a-neutral-third-party" id="toc-11-required-disclosure-the-investigator-is-not-a-neutral-third-party">11.
+Required disclosure: the investigator is not a neutral third
+party</a></li>
+<li><a href="#12-what-we-are-asking-you-to-do-ranked-time-critical-first" id="toc-12-what-we-are-asking-you-to-do-ranked-time-critical-first">12.
+What we are asking you to do, ranked, time-critical first</a></li>
+<li><a href="#13-how-to-disprove-this" id="toc-13-how-to-disprove-this">13. How to disprove this</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="brief-01-law-enforcement-brief">BRIEF-01: Law Enforcement
+Brief</h1>
+<blockquote>
+<p>Category: Public Brief | Version: 1.0 | Date: August 2026 | Status:
+Active</p>
+</blockquote>
+<p>For the detective, IC3 analyst, or federal agent deciding in ninety
+seconds whether this file is worth opening: it is, because a US
+chartered bank holds the account the operators asked us to wire money
+to.</p>
+<p><strong>Related:</strong></p>
+<ul>
+<li><a href="../REDACTION_CONTRACT.md"><code>../REDACTION_CONTRACT.md</code></a>,
+binding on this document</li>
+<li><a href="BRIEF-02-victims.md"><code>BRIEF-02-victims.md</code></a>,
+the same case for the people it happened to</li>
+<li><a href="BRIEF-03-technical-analysts.md"><code>BRIEF-03-technical-analysts.md</code></a></li>
+<li><a href="BRIEF-04-intelligence.md"><code>BRIEF-04-intelligence.md</code></a></li>
+<li><a href="BRIEF-05-media-public.md"><code>BRIEF-05-media-public.md</code></a></li>
+<li><a href="BRIEF-06-how-to-help.md"><code>BRIEF-06-how-to-help.md</code></a></li>
+</ul>
+<p>This brief carries no analysis or opinion marker because it asserts
+only what the record establishes. Per the redaction contract,
+<code>BRIEF-04</code> and <code>BRIEF-05</code> do.</p>
+<hr />
+<h2 id="1-the-jurisdictional-hook-first-because-it-is-why-you-are-still-reading">1.
+The jurisdictional hook, first, because it is why you are still
+reading</h2>
+<p>On 2026-08-25 the operators of this fraud network sent bank account
+details over Facebook Messenger and asked for a wire transfer. The
+account sits at a <strong>United States chartered institution</strong>
+(Z-1):</p>
+<table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bank</td>
+<td><strong>Lead Bank</strong></td>
+<td>Institution identified (Z-1)</td>
+</tr>
+<tr class="even">
+<td>Bank address</td>
+<td>1801 Main St., Kansas City, MO 64108</td>
+<td>Matches the address given to the recipient exactly (Z-2)</td>
+</tr>
+<tr class="odd">
+<td>Routing number</td>
+<td><strong>101019644</strong></td>
+<td><strong>VERIFIED</strong> against the routing directory (Z-2,
+Z-24)</td>
+</tr>
+<tr class="even">
+<td>Account number</td>
+<td>Withheld from this document</td>
+<td>Suspect-side detail, law enforcement and the bank only (Z-1,
+Z-26)</td>
+</tr>
+<tr class="odd">
+<td>Account holder</td>
+<td>Withheld from this document</td>
+<td><strong>UNDETERMINED</strong>, not named as a suspect (Z-4)</td>
+</tr>
+</tbody>
+</table>
+<p>That single fact is the difference between a case you can work and a
+case you cannot. Most fraud of this shape terminates in a referral to a
+jurisdiction nobody at your desk can reach, and the file dies in triage.
+This one has a domestic nexus: a chartered US bank carrying a BSA/AML
+obligation, a routing number that resolves against the routing
+directory, and a Kansas City street address that matches (Z-2, Z-3).
+<strong>Lead Bank can be served. Lead Bank can freeze. Lead Bank can
+file a SAR, and can tell you which of its programs holds the
+account</strong> (Z-3, Z-5). None of that requires you to reach
+Cameroon, Bangladesh, or Hamburg, all of which this case also touches
+(Q-1, B-15, A3h).</p>
+<p><strong>What we are not saying.</strong> It is <strong>not
+established</strong> that any victim ever sent money to that account
+(Z-12, Z-18). It was solicited <strong>from the investigator</strong>,
+which is a different evidentiary object from a completed victim payment.
+Read section 3 before you write anything down.</p>
+<p><strong>HYPOTHESIS, labelled as such.</strong> A Thai holder address
+paired with a Kansas City routing number is not a branch relationship,
+and Lead Bank is one of the larger banking-as-a-service sponsors in the
+United States, so the account is more likely a sponsored fintech
+program, which would mean remote onboarding and a partner holding the
+KYC file. <strong>No KYC or program record supports that yet</strong>
+(Z-3, Z-13). The BSA/AML point stands either way: Lead Bank is the
+chartered institution and the correct recipient of a report regardless
+of who holds the front end (Z-13).</p>
+<hr />
+<h2 id="2-who-what-when-where-why">2. Who, what, when, where, why</h2>
+<p><strong>Who.</strong> A multi-brand pet-sales fraud network running
+across Facebook, TikTok, WhatsApp, and at least five websites. The
+operator layer geolocates to <strong>Limbe, Southwest Region,
+Cameroon</strong> on account-registration artifacts across four
+independent platforms (Q-1, Q-8). A separate page-farm layer is
+platform-attested to <strong>Dhaka, Bangladesh</strong> (B-15). A
+payment leg runs through a <strong>Shopify checkout on a German
+domain</strong> behind a registered Hamburg entity (A3g, A3h). Three
+complainants have come forward, referred to here as <strong>Complainant
+A, Complainant B and Complainant C</strong> (Y-1).</p>
+<p><strong>What.</strong> Deposits taken for puppies that do not exist,
+then escalation into transport, crate, and insurance fees through fake
+shipping companies that are co-hosted on the same server (Q-6, T-1).
+Co-hosting alone does not establish common control; that shared IP
+carries 48 or more unrelated tenants, and the linkage rests on persona
+reuse at Q-5, not on the address (R-4, S-6). Two additional victim
+classes exist beyond puppy buyers: job applicants who uploaded resumes
+to a fake shipper&#39;s careers page, and purchasers in an unrelated peptide
+vertical run from a phone number this network also publishes (T-6,
+V-1).</p>
+<p><strong>When.</strong> Storefront domains registered April through
+August 2026 and replaced every four to ten weeks; three domains named in
+this file were already deregistered within a day of capture (R-1, R-2).
+The newest storefront was six days old when captured (R-1). The wire
+solicitation landed 2026-08-25 (Z-7).</p>
+<p><strong>Where.</strong> Victims in the United States and, on a
+separate German-language surface, in Europe (S-4). Infrastructure at
+Hostinger, Vercel, Shopify, and Realtime Register (R-1, Q-5, A3g).</p>
+<p><strong>Why it is actionable now.</strong> The network replaced one
+storefront and stood up a second shipping front during the four weeks
+this investigation ran, so the infrastructure is being rebuilt faster
+than reports can be filed against it (HANDOFF section 7). And the money
+leg now terminates at a US bank.</p>
+<hr />
+<h2 id="3-what-is-established-and-what-is-not">3. What is established,
+and what is not</h2>
+<p><strong>This section governs every other sentence in this
+brief.</strong> Z-18 is the controlling note in the underlying record,
+and it exists because an earlier draft of the evidence log overstated
+exactly this point.</p>
+<blockquote>
+<p><strong>ESTABLISHED:</strong> on 2026-08-25 the operators sent bank
+account details to the <strong>investigator</strong> and solicited a
+wire transfer. The bank and routing number verify against the routing
+directory.</p>
+<p><strong>NOT ESTABLISHED:</strong> that any victim ever sent money to
+that account; that the account received victim funds; that the named
+holder knowingly participated in anything. <strong>The account that
+received victim money remains unidentified.</strong></p>
+</blockquote>
+<p>Stated as a table, because this is the part that gets copied wrong
+(Z-24):</p>
+<table>
+<thead>
+<tr class="header">
+<th>Claim</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Routing 101019644 is Lead Bank, Kansas City MO</td>
+<td><strong>VERIFIED</strong> against the routing directory</td>
+</tr>
+<tr class="even">
+<td>The account number exists and is controlled by the named holder</td>
+<td><strong>UNVERIFIED.</strong> Requires the institution</td>
+</tr>
+<tr class="odd">
+<td>The named holder knowingly participated</td>
+<td><strong>UNDETERMINED</strong> (Z-4)</td>
+</tr>
+<tr class="even">
+<td>Any victim paid this account</td>
+<td><strong>NOT ESTABLISHED</strong> (Z-12, Z-18)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why the holder is not named.</strong> Three readings fit the
+evidence equally well (Z-4): a recruited money mule, an identity-theft
+victim, or an operator. Mules in fraud of this shape are commonly
+recruited through fake remote-job offers, and this case already
+documents a fake careers page at the shipper surface, which is exactly
+that recruitment channel (Z-4, T-6). Every identity this network has
+displayed so far has been stolen or fabricated (G, M-1, W-3), so a real
+name on a remotely-onboarded account is not evidence of consent to its
+use. Subscriber records and payment-rail process resolve this; nothing
+in open source will (Z-4).</p>
+<p><strong>One further firewall.</strong> The Facebook page that sent
+the solicitation displays a <strong>stolen photograph</strong> as its
+profile image. The person depicted is, on the existing record, an
+image-theft victim of this network and not a participant in it, never
+contacted and never consenting (Z-9). Their likeness appearing on a
+payment solicitation makes that distinction more important, not
+less.</p>
+<p><strong>Provisional findings, labelled.</strong> The solicitation
+screenshot is filed and hashed (Z-29). The Meta &quot;Download Your
+Information&quot; export is not yet in hand. Until it is, the conclusions in
+section 5 about operational tempo remain <strong>PROVISIONAL</strong>
+(Z-14, Z-29). A screenshot is a rendering produced by the investigator;
+it carries no message ID and no server-side timestamp, so it
+corroborates the report but does not corroborate itself (Z-29).</p>
+<h3 id="what-this-brief-does-not-claim">What this brief does not
+claim</h3>
+<p>Stated in its own section so a validator does not have to hunt for
+the edges.</p>
+<table>
+<thead>
+<tr class="header">
+<th>We do not claim</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>That any victim paid the account in section 1</td>
+<td>Not established. The account was solicited from the investigator
+(Z-12, Z-18)</td>
+</tr>
+<tr class="even">
+<td>Any aggregate dollar-loss figure</td>
+<td>The corpus does not support one. Scale is argued from productization
+and deployment count instead (Z-18)</td>
+</tr>
+<tr class="odd">
+<td>That the named account holder did anything</td>
+<td>UNDETERMINED, and three readings fit equally (Z-4)</td>
+</tr>
+<tr class="even">
+<td>That the page&#39;s operational role and the twelve-day cycle time are
+settled</td>
+<td><strong>PROVISIONAL</strong> until the Meta export lands (Z-8, Z-9,
+Z-14, Z-29)</td>
+</tr>
+<tr class="odd">
+<td>A total count of domains or countries</td>
+<td>The investigation has no attested count of its own, and no figure is
+asserted here</td>
+</tr>
+<tr class="even">
+<td>That shared infrastructure links these operators</td>
+<td>Tested and downgraded. See section 7 (R-4, S-6)</td>
+</tr>
+<tr class="odd">
+<td>Any identification of a person from an image</td>
+<td>Forbidden under standing rules. Identification comes from subscriber
+records and payment rails (HANDOFF section 2b)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-the-governing-model-a-supply-chain-not-a-suspect">4. The
+governing model: a supply chain, not a suspect</h2>
+<p><strong>Do not look for &quot;the guy.&quot; Look for the chokepoints</strong>
+(HANDOFF section 1).</p>
+<p>The evidence describes a market of rented services rather than a
+single organization: separate vendors sell separate components, and
+whoever runs a given storefront assembles them. This is not an inference
+drawn to sound sophisticated, it is visible in the shipped artifacts
+(W-6). The hardest single proof is that
+<code>safepup-delivery.com</code> publishes its <strong>template
+vendor&#39;s demonstration credentials</strong> in plain text on a public
+admin page, ships <code>(demo)</code> in the footer of every page in
+English and German, and serves the vendor&#39;s demo shipment record from a
+live tracking database (T-1). That is not an operator who built a site.
+That is an operator who bought a product and deployed it unmodified.</p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyBpZD0ibXktc3ZnIiB3aWR0aD0iMTAwJSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgc3R5bGU9Im1heC13aWR0aDogMTIzNy44cHg7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyIgdmlld0JveD0iLTggLTggMTIzNy43OTY4NzUgNDIzIiByb2xlPSJncmFwaGljcy1kb2N1bWVudCBkb2N1bWVudCIgYXJpYS1yb2xlZGVzY3JpcHRpb249ImZsb3djaGFydC12MiI+PHN0eWxlPiNteS1zdmd7Zm9udC1mYW1pbHk6SW50ZXIsU2Vnb2UgVUksSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjE1cHg7ZmlsbDojMWQyMDIxO30jbXktc3ZnIC5lcnJvci1pY29ue2ZpbGw6I2Y4ZjlmYTt9I215LXN2ZyAuZXJyb3ItdGV4dHtmaWxsOiMwNzA2MDU7c3Ryb2tlOiMwNzA2MDU7fSNteS1zdmcgLmVkZ2UtdGhpY2tuZXNzLW5vcm1hbHtzdHJva2Utd2lkdGg6MnB4O30jbXktc3ZnIC5lZGdlLXRoaWNrbmVzcy10aGlja3tzdHJva2Utd2lkdGg6My41cHg7fSNteS1zdmcgLmVkZ2UtcGF0dGVybi1zb2xpZHtzdHJva2UtZGFzaGFycmF5OjA7fSNteS1zdmcgLmVkZ2UtcGF0dGVybi1kYXNoZWR7c3Ryb2tlLWRhc2hhcnJheTozO30jbXktc3ZnIC5lZGdlLXBhdHRlcm4tZG90dGVke3N0cm9rZS1kYXNoYXJyYXk6Mjt9I215LXN2ZyAubWFya2Vye2ZpbGw6IzI2NDY1MztzdHJva2U6IzI2NDY1Mzt9I215LXN2ZyAubWFya2VyLmNyb3Nze3N0cm9rZTojMjY0NjUzO30jbXktc3ZnIHN2Z3tmb250LWZhbWlseTpJbnRlcixTZWdvZSBVSSxIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTVweDt9I215LXN2ZyAubGFiZWx7Zm9udC1mYW1pbHk6SW50ZXIsU2Vnb2UgVUksSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7Y29sb3I6IzFkMjAyMTt9I215LXN2ZyAuY2x1c3Rlci1sYWJlbCB0ZXh0e2ZpbGw6IzFkMjAyMTt9I215LXN2ZyAuY2x1c3Rlci1sYWJlbCBzcGFuLCNteS1zdmcgcHtjb2xvcjojMWQyMDIxO30jbXktc3ZnIC5sYWJlbCB0ZXh0LCNteS1zdmcgc3BhbiwjbXktc3ZnIHB7ZmlsbDojMWQyMDIxO2NvbG9yOiMxZDIwMjE7fSNteS1zdmcgLm5vZGUgcmVjdCwjbXktc3ZnIC5ub2RlIGNpcmNsZSwjbXktc3ZnIC5ub2RlIGVsbGlwc2UsI215LXN2ZyAubm9kZSBwb2x5Z29uLCNteS1zdmcgLm5vZGUgcGF0aHtmaWxsOiNmNGYxZGU7c3Ryb2tlOiMyNjQ2NTM7c3Ryb2tlLXdpZHRoOjFweDt9I215LXN2ZyAuZmxvd2NoYXJ0LWxhYmVsIHRleHR7dGV4dC1hbmNob3I6bWlkZGxlO30jbXktc3ZnIC5ub2RlIC5rYXRleCBwYXRoe2ZpbGw6IzAwMDtzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MXB4O30jbXktc3ZnIC5ub2RlIC5sYWJlbHt0ZXh0LWFsaWduOmNlbnRlcjt9I215LXN2ZyAubm9kZS5jbGlja2FibGV7Y3Vyc29yOnBvaW50ZXI7fSNteS1zdmcgLmFycm93aGVhZFBhdGh7ZmlsbDojMDAwMDAwO30jbXktc3ZnIC5lZGdlUGF0aCAucGF0aHtzdHJva2U6IzI2NDY1MztzdHJva2Utd2lkdGg6Mi4wcHg7fSNteS1zdmcgLmZsb3djaGFydC1saW5re3N0cm9rZTojMjY0NjUzO2ZpbGw6bm9uZTt9I215LXN2ZyAuZWRnZUxhYmVse2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjt0ZXh0LWFsaWduOmNlbnRlcjt9I215LXN2ZyAuZWRnZUxhYmVsIHJlY3R7b3BhY2l0eTowLjU7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmO2ZpbGw6I2ZmZmZmZjt9I215LXN2ZyAubGFiZWxCa2d7YmFja2dyb3VuZC1jb2xvcjpyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNSk7fSNteS1zdmcgLmNsdXN0ZXIgcmVjdHtmaWxsOiNmOGY5ZmE7c3Ryb2tlOiNhZGI1YmQ7c3Ryb2tlLXdpZHRoOjFweDt9I215LXN2ZyAuY2x1c3RlciB0ZXh0e2ZpbGw6IzFkMjAyMTt9I215LXN2ZyAuY2x1c3RlciBzcGFuLCNteS1zdmcgcHtjb2xvcjojMWQyMDIxO30jbXktc3ZnIGRpdi5tZXJtYWlkVG9vbHRpcHtwb3NpdGlvbjphYnNvbHV0ZTt0ZXh0LWFsaWduOmNlbnRlcjttYXgtd2lkdGg6MjAwcHg7cGFkZGluZzoycHg7Zm9udC1mYW1pbHk6SW50ZXIsU2Vnb2UgVUksSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEycHg7YmFja2dyb3VuZDojZjhmOWZhO2JvcmRlcjoxcHggc29saWQgaHNsKDIxMCwgMCUsIDg3LjY0NzA1ODgyMzUlKTtib3JkZXItcmFkaXVzOjJweDtwb2ludGVyLWV2ZW50czpub25lO3otaW5kZXg6MTAwO30jbXktc3ZnIC5mbG93Y2hhcnRUaXRsZVRleHR7dGV4dC1hbmNob3I6bWlkZGxlO2ZvbnQtc2l6ZToxOHB4O2ZpbGw6IzFkMjAyMTt9I215LXN2ZyA6cm9vdHstLW1lcm1haWQtZm9udC1mYW1pbHk6InRyZWJ1Y2hldCBtcyIsdmVyZGFuYSxhcmlhbCxzYW5zLXNlcmlmO30jbXktc3ZnIC5zY2FtSW5mcmEmZ3Q7KntmaWxsOnJnYigxOTMsIDE4LCAzMSkhaW1wb3J0YW50O3N0cm9rZTpyZ2IoMTIyLCAxMiwgMjApIWltcG9ydGFudDtjb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC5zY2FtSW5mcmEgc3BhbntmaWxsOnJnYigxOTMsIDE4LCAzMSkhaW1wb3J0YW50O3N0cm9rZTpyZ2IoMTIyLCAxMiwgMjApIWltcG9ydGFudDtjb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC5zY2FtSW5mcmEgdHNwYW57ZmlsbDpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC52aWN0aW1Ob2RlJmd0Oyp7ZmlsbDpyZ2IoNDIsIDE1NywgMTQzKSFpbXBvcnRhbnQ7c3Ryb2tlOnJnYigyOSwgMTExLCAxMDIpIWltcG9ydGFudDtjb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC52aWN0aW1Ob2RlIHNwYW57ZmlsbDpyZ2IoNDIsIDE1NywgMTQzKSFpbXBvcnRhbnQ7c3Ryb2tlOnJnYigyOSwgMTExLCAxMDIpIWltcG9ydGFudDtjb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC52aWN0aW1Ob2RlIHRzcGFue2ZpbGw6cmdiKDI1NSwgMjU1LCAyNTUpIWltcG9ydGFudDt9PC9zdHlsZT48Zz48bWFya2VyIGlkPSJteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kIiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI2IiByZWZZPSI1IiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG1hcmtlcldpZHRoPSIxMiIgbWFya2VySGVpZ2h0PSIxMiIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNIDAgMCBMIDEwIDUgTCAwIDEwIHoiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1wb2ludFN0YXJ0IiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI0LjUiIHJlZlk9IjUiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgbWFya2VyV2lkdGg9IjEyIiBtYXJrZXJIZWlnaHQ9IjEyIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0gMCA1IEwgMTAgMTAgTCAxMCAwIHoiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1jaXJjbGVFbmQiIGNsYXNzPSJtYXJrZXIgZmxvd2NoYXJ0IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjExIiByZWZZPSI1IiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG1hcmtlcldpZHRoPSIxMSIgbWFya2VySGVpZ2h0PSIxMSIgb3JpZW50PSJhdXRvIj48Y2lyY2xlIGN4PSI1IiBjeT0iNSIgcj0iNSIgY2xhc3M9ImFycm93TWFya2VyUGF0aCIgc3R5bGU9InN0cm9rZS13aWR0aDogMTsgc3Ryb2tlLWRhc2hhcnJheTogMSwgMDsiLz48L21hcmtlcj48bWFya2VyIGlkPSJteS1zdmdfZmxvd2NoYXJ0LWNpcmNsZVN0YXJ0IiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSItMSIgcmVmWT0iNSIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBtYXJrZXJXaWR0aD0iMTEiIG1hcmtlckhlaWdodD0iMTEiIG9yaWVudD0iYXV0byI+PGNpcmNsZSBjeD0iNSIgY3k9IjUiIHI9IjUiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1jcm9zc0VuZCIgY2xhc3M9Im1hcmtlciBjcm9zcyBmbG93Y2hhcnQiIHZpZXdCb3g9IjAgMCAxMSAxMSIgcmVmWD0iMTIiIHJlZlk9IjUuMiIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBtYXJrZXJXaWR0aD0iMTEiIG1hcmtlckhlaWdodD0iMTEiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTSAxLDEgbCA5LDkgTSAxMCwxIGwgLTksOSIgY2xhc3M9ImFycm93TWFya2VyUGF0aCIgc3R5bGU9InN0cm9rZS13aWR0aDogMjsgc3Ryb2tlLWRhc2hhcnJheTogMSwgMDsiLz48L21hcmtlcj48bWFya2VyIGlkPSJteS1zdmdfZmxvd2NoYXJ0LWNyb3NzU3RhcnQiIGNsYXNzPSJtYXJrZXIgY3Jvc3MgZmxvd2NoYXJ0IiB2aWV3Qm94PSIwIDAgMTEgMTEiIHJlZlg9Ii0xIiByZWZZPSI1LjIiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgbWFya2VyV2lkdGg9IjExIiBtYXJrZXJIZWlnaHQ9IjExIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0gMSwxIGwgOSw5IE0gMTAsMSBsIC05LDkiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDI7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PGcgY2xhc3M9InJvb3QiPjxnIGNsYXNzPSJjbHVzdGVycyIvPjxnIGNsYXNzPSJlZGdlUGF0aHMiPjxwYXRoIGQ9Ik0xMjUuNzI3LDYwLjVMMTI1LjcyNyw2Ni41QzEyNS43MjcsNzIuNSwxMjUuNzI3LDg0LjUsMTczLjI1NSw5Ni4wNDRDMjIwLjc4NCwxMDcuNTg3LDMxNS44NDIsMTE4LjY3NCwzNjMuMzcxLDEyNC4yMThMNDEwLjksMTI5Ljc2MSIgaWQ9Ikwta2l0VmVuZG9yLWFzc2VtYmxlci0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1raXRWZW5kb3IgTEUtYXNzZW1ibGVyIiBzdHlsZT0iZmlsbDpub25lOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjxwYXRoIGQ9Ik00MjcuMjExLDY5TDQyNy4yMTEsNzMuNTgzQzQyNy4yMTEsNzguMTY3LDQyNy4yMTEsODcuMzMzLDQzOS44NDMsOTYuMjE1QzQ1Mi40NzUsMTA1LjA5OCw0NzcuNzM5LDExMy42OTUsNDkwLjM3MSwxMTcuOTk0TDUwMy4wMDMsMTIyLjI5MyIgaWQ9IkwtcGFnZUZhcm0tYXNzZW1ibGVyLTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLXBhZ2VGYXJtIExFLWFzc2VtYmxlciIgc3R5bGU9ImZpbGw6bm9uZTsiIG1hcmtlci1lbmQ9InVybCgjbXktc3ZnX2Zsb3djaGFydC1wb2ludEVuZCkiLz48cGF0aCBkPSJNNzQxLjYzMyw2OUw3NDEuNjMzLDczLjU4M0M3NDEuNjMzLDc4LjE2Nyw3NDEuNjMzLDg3LjMzMyw3MjkuMDAxLDk2LjIxNUM3MTYuMzY5LDEwNS4wOTgsNjkxLjEwNSwxMTMuNjk1LDY3OC40NzMsMTE3Ljk5NEw2NjUuODQxLDEyMi4yOTMiIGlkPSJMLXBheW1lbnRGcm9udC1hc3NlbWJsZXItMCIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtcGF5bWVudEZyb250IExFLWFzc2VtYmxlciIgc3R5bGU9ImZpbGw6bm9uZTsiIG1hcmtlci1lbmQ9InVybCgjbXktc3ZnX2Zsb3djaGFydC1wb2ludEVuZCkiLz48cGF0aCBkPSJNMTA3My41NDcsNjAuNUwxMDczLjU0Nyw2Ni41QzEwNzMuNTQ3LDcyLjUsMTA3My41NDcsODQuNSwxMDIwLjk0Nyw5Ni4yNTNDOTY4LjM0NywxMDguMDA3LDg2My4xNDgsMTE5LjUxMyw4MTAuNTQ4LDEyNS4yNjdMNzU3Ljk0OCwxMzEuMDIiIGlkPSJMLWNvdXJpZXJLaXQtYXNzZW1ibGVyLTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLWNvdXJpZXJLaXQgTEUtYXNzZW1ibGVyIiBzdHlsZT0iZmlsbDpub25lOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjxwYXRoIGQ9Ik00NDguNzUxLDE3Nkw0MjQuODM1LDE4MC41ODNDNDAwLjkxOSwxODUuMTY3LDM1My4wODYsMTk0LjMzMywzMjkuMTcsMjAyLjYxN0MzMDUuMjU0LDIxMC45LDMwNS4yNTQsMjE4LjMsMzA1LjI1NCwyMjJMMzA1LjI1NCwyMjUuNyIgaWQ9IkwtYXNzZW1ibGVyLXN0b3JlZnJvbnQtMCIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtYXNzZW1ibGVyIExFLXN0b3JlZnJvbnQiIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTU3Ny4wMjgsMTc2TDU3NS43MjQsMTgwLjU4M0M1NzQuNDIxLDE4NS4xNjcsNTcxLjgxNCwxOTQuMzMzLDU3MC41MSwyMDIuNjE3QzU2OS4yMDcsMjEwLjksNTY5LjIwNywyMTguMyw1NjkuMjA3LDIyMkw1NjkuMjA3LDIyNS43IiBpZD0iTC1hc3NlbWJsZXItc2hpcHBlclNpdGUtMCIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtYXNzZW1ibGVyIExFLXNoaXBwZXJTaXRlIiBzdHlsZT0iZmlsbDpub25lOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjxwYXRoIGQ9Ik03MjAuMDkyLDE3Nkw3NDQuMDA5LDE4MC41ODNDNzY3LjkyNSwxODUuMTY3LDgxNS43NTcsMTk0LjMzMyw4MzkuNjc0LDIwMi42MTdDODYzLjU5LDIxMC45LDg2My41OSwyMTguMyw4NjMuNTksMjIyTDg2My41OSwyMjUuNyIgaWQ9IkwtYXNzZW1ibGVyLXBlcHRpZGVWaWN0aW0tMCIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtYXNzZW1ibGVyIExFLXBlcHRpZGVWaWN0aW0iIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTI2Ni4zNDQsMjgzTDI1Ny4zNjUsMjg5QzI0OC4zODYsMjk1LDIzMC40MjcsMzA3LDIyMi41MDQsMzE5LjU0NUMyMTQuNTgsMzMyLjA4OSwyMTYuNjkxLDM0NS4xNzgsMjE3Ljc0NywzNTEuNzIzTDIxOC44MDIsMzU4LjI2OCIgaWQ9Ikwtc3RvcmVmcm9udC1idXllclZpY3RpbS0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1zdG9yZWZyb250IExFLWJ1eWVyVmljdGltIiBzdHlsZT0iZmlsbDpub25lOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjxwYXRoIGQ9Ik00NzkuMTQ2LDI4M0w0NTguMzYyLDI4OUM0MzcuNTc5LDI5NSwzOTYuMDEyLDMwNywzNjAuMjQxLDMyMC4wNDFDMzI0LjQ2OSwzMzMuMDgyLDI5NC40OTMsMzQ3LjE2NCwyNzkuNTA1LDM1NC4yMDVMMjY0LjUxNywzNjEuMjQ2IiBpZD0iTC1zaGlwcGVyU2l0ZS1idXllclZpY3RpbS0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1zaGlwcGVyU2l0ZSBMRS1idXllclZpY3RpbSIgc3R5bGU9ImZpbGw6bm9uZTsiIG1hcmtlci1lbmQ9InVybCgjbXktc3ZnX2Zsb3djaGFydC1wb2ludEVuZCkiLz48cGF0aCBkPSJNNjQ2Ljc1NSwyODNMNjY0LjY1MSwyODlDNjgyLjU0NiwyOTUsNzE4LjMzOCwzMDcsNzM2LjIzMywzMTguMTE3Qzc1NC4xMjksMzI5LjIzMyw3NTQuMTI5LDMzOS40NjcsNzU0LjEyOSwzNDQuNTgzTDc1NC4xMjksMzQ5LjciIGlkPSJMLXNoaXBwZXJTaXRlLWpvYlZpY3RpbS0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1zaGlwcGVyU2l0ZSBMRS1qb2JWaWN0aW0iIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTM4NC41NTEsMjgzTDQwMi44NTEsMjg5QzQyMS4xNSwyOTUsNDU3Ljc0OSwzMDcsNDc2LjA0OCwzMTguMTE3QzQ5NC4zNDgsMzI5LjIzMyw0OTQuMzQ4LDMzOS40NjcsNDk0LjM0OCwzNDQuNTgzTDQ5NC4zNDgsMzQ5LjciIGlkPSJMLXN0b3JlZnJvbnQtaW1hZ2VWaWN0aW0tMCIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tZG90dGVkIGZsb3djaGFydC1saW5rIExTLXN0b3JlZnJvbnQgTEUtaW1hZ2VWaWN0aW0iIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlLXdpZHRoOjJweDtzdHJva2UtZGFzaGFycmF5OjM7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWxzIj48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIGNsYXNzPSJsYWJlbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIGNsYXNzPSJsYWJlbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIGNsYXNzPSJsYWJlbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ5NC4zNDc2NTYyNSwgMzE5KSI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjMuODA0Njg3NSwgLTguNSkiPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIxMjcuNjA5Mzc1IiBoZWlnaHQ9IjE3Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+c3RvbGVuIHBob3RvZ3JhcGhzPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZXMiPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgc2NhbUluZnJhIGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC1raXRWZW5kb3ItMCIgZGF0YS1ub2RlPSJ0cnVlIiBkYXRhLWlkPSJraXRWZW5kb3IiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyNS43MjY1NjI1LCAzNC41KSI+PHJlY3QgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIgc3R5bGU9IiIgcng9IjAiIHJ5PSIwIiB4PSItMTI1LjcyNjU2MjUiIHk9Ii0yNiIgd2lkdGg9IjI1MS40NTMxMjUiIGhlaWdodD0iNTIiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMTYuNzI2NTYyNSwgLTE3KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIyMzMuNDUzMTI1IiBoZWlnaHQ9IjM0Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+S2l0IHZlbmRvcjxiciAvPndlYnNpdGUgdGVtcGxhdGVzIHNvbGQgYXMgcHJvZHVjdHM8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCBzY2FtSW5mcmEgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LXBhZ2VGYXJtLTEiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0icGFnZUZhcm0iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQyNy4yMTA5Mzc1LCAzNC41KSI+PHJlY3QgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIgc3R5bGU9IiIgcng9IjAiIHJ5PSIwIiB4PSItMTMwLjc1NzgxMjUiIHk9Ii0zNC41IiB3aWR0aD0iMjYxLjUxNTYyNSIgaGVpZ2h0PSI2OSIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEyMS43NTc4MTI1LCAtMjUuNSkiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMjQzLjUxNTYyNSIgaGVpZ2h0PSI1MSI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPlBhZ2UgZmFybTxiciAvPmFnZWQgcGFnZXMgd2l0aCBpbmhlcml0ZWQgYXVkaWVuY2VzPGJyIC8+YXR0ZXN0ZWQgdG8gRGhha2EsIEJhbmdsYWRlc2g8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCBzY2FtSW5mcmEgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LXBheW1lbnRGcm9udC0yIiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9InBheW1lbnRGcm9udCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNzQxLjYzMjgxMjUsIDM0LjUpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii0xMzguNjY0MDYyNSIgeT0iLTM0LjUiIHdpZHRoPSIyNzcuMzI4MTI1IiBoZWlnaHQ9IjY5Ii8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTI5LjY2NDA2MjUsIC0yNS41KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIyNTkuMzI4MTI1IiBoZWlnaHQ9IjUxIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+UGF5bWVudCBmcm9udDxiciAvPlNob3BpZnkgY2hlY2tvdXQgb24gYSBHZXJtYW4gZG9tYWluPGJyIC8+c2hvcCBJRCA3NzUwOTk4NDQ4NDwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IHNjYW1JbmZyYSBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQtY291cmllcktpdC0zIiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9ImNvdXJpZXJLaXQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwNzMuNTQ2ODc1LCAzNC41KSI+PHJlY3QgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIgc3R5bGU9IiIgcng9IjAiIHJ5PSIwIiB4PSItMTQ4LjI1IiB5PSItMjYiIHdpZHRoPSIyOTYuNSIgaGVpZ2h0PSI1MiIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEzOS4yNSwgLTE3KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIyNzguNSIgaGVpZ2h0PSIzNCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPkZha2UgY291cmllciBraXQ8YnIgLz5mcmVpZ2h0IHRlbXBsYXRlIHJlcGFpbnRlZCBhcyBwZXQgdHJhbnNwb3J0PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgc2NhbUluZnJhIGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC1hc3NlbWJsZXItNCIgZGF0YS1ub2RlPSJ0cnVlIiBkYXRhLWlkPSJhc3NlbWJsZXIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU4NC40MjE4NzUsIDE1MCkiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTE2OC4yNTc4MTI1IiB5PSItMjYiIHdpZHRoPSIzMzYuNTE1NjI1IiBoZWlnaHQ9IjUyIi8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTU5LjI1NzgxMjUsIC0xNykiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMzE4LjUxNTYyNSIgaGVpZ2h0PSIzNCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPkFzc2VtYmxlciAvIG9wZXJhdG9yIGxheWVyPGJyIC8+YWNjb3VudCBhcnRpZmFjdHMgZ2VvbG9jYXRlIHRvIExpbWJlLCBDYW1lcm9vbjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IHNjYW1JbmZyYSBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQtc3RvcmVmcm9udC01IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9InN0b3JlZnJvbnQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwNS4yNTM5MDYyNSwgMjU3KSI+PHJlY3QgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIgc3R5bGU9IiIgcng9IjAiIHJ5PSIwIiB4PSItMTA2LjU2MjUiIHk9Ii0yNiIgd2lkdGg9IjIxMy4xMjUiIGhlaWdodD0iNTIiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05Ny41NjI1LCAtMTcpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjE5NS4xMjUiIGhlaWdodD0iMzQiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5MaXZlIHN0b3JlZnJvbnQ8YnIgLz5yZXBsYWNlZCBldmVyeSA0IHRvIDEwIHdlZWtzPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgc2NhbUluZnJhIGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC1zaGlwcGVyU2l0ZS02IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9InNoaXBwZXJTaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1NjkuMjA3MDMxMjUsIDI1NykiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTExMi4zOTA2MjUiIHk9Ii0yNiIgd2lkdGg9IjIyNC43ODEyNSIgaGVpZ2h0PSI1MiIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEwMy4zOTA2MjUsIC0xNykiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMjA2Ljc4MTI1IiBoZWlnaHQ9IjM0Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+RmFrZSBzaGlwcGluZyBjb21wYW55PGJyIC8+dHJhbnNwb3J0LCBjcmF0ZSwgaW5zdXJhbmNlIGZlZXM8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCB2aWN0aW1Ob2RlIGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC1idXllclZpY3RpbS03IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9ImJ1eWVyVmljdGltIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjIuNDY4NzUsIDM4MSkiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTU0Ljg2NzE4NzUiIHk9Ii0xNy41IiB3aWR0aD0iMTA5LjczNDM3NSIgaGVpZ2h0PSIzNSIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQ1Ljg2NzE4NzUsIC04LjUpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjkxLjczNDM3NSIgaGVpZ2h0PSIxNyI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPlB1cHB5IGJ1eWVyczwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IHZpY3RpbU5vZGUgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LWpvYlZpY3RpbS04IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9ImpvYlZpY3RpbSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNzU0LjEyODkwNjI1LCAzODEpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii0xMTQuNDc2NTYyNSIgeT0iLTI2IiB3aWR0aD0iMjI4Ljk1MzEyNSIgaGVpZ2h0PSI1MiIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEwNS40NzY1NjI1LCAtMTcpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjIxMC45NTMxMjUiIGhlaWdodD0iMzQiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5Kb2IgYXBwbGljYW50czxiciAvPnJlc3VtZXMgdG8gYSBmYWtlIGNhcmVlcnMgcGFnZTwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IHZpY3RpbU5vZGUgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LXBlcHRpZGVWaWN0aW0tOSIgZGF0YS1ub2RlPSJ0cnVlIiBkYXRhLWlkPSJwZXB0aWRlVmljdGltIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4NjMuNTg5ODQzNzUsIDI1NykiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTEzNi45OTIxODc1IiB5PSItMjYiIHdpZHRoPSIyNzMuOTg0Mzc1IiBoZWlnaHQ9IjUyIi8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTI3Ljk5MjE4NzUsIC0xNykiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMjU1Ljk4NDM3NSIgaGVpZ2h0PSIzNCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPlBlcHRpZGUgcHVyY2hhc2VyczxiciAvPnNlcGFyYXRlIHZlcnRpY2FsLCBzYW1lIHBob25lIG51bWJlcjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IHZpY3RpbU5vZGUgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LWltYWdlVmljdGltLTEwIiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9ImltYWdlVmljdGltIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0OTQuMzQ3NjU2MjUsIDM4MSkiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTk2LjEzMjgxMjUiIHk9Ii0yNiIgd2lkdGg9IjE5Mi4yNjU2MjUiIGhlaWdodD0iNTIiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC04Ny4xMzI4MTI1LCAtMTcpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjE3NC4yNjU2MjUiIGhlaWdodD0iMzQiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5JbWFnZS10aGVmdCB2aWN0aW1zPGJyIC8+cmVhbCBicmVlZGVycyBhbmQgcmVzY3Vlczwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48L2c+PC9nPjwvZz48L3N2Zz4=" alt="diagram" /></p>
+<p><strong>Why this matters operationally.</strong> Taking down one
+storefront removes an instance, not the supply (N-1). The durable
+targets are the shared components: the Shopify shop ID that can
+enumerate sibling stores (A3g), the page-farm inventory (B-15), and the
+template vendor whose published demo string can be searched across every
+vertical it was ever sold into (HANDOFF section 5, item 9). <strong>The
+general principle worth carrying into any charging decision:</strong>
+this case&#39;s durable linkages are at the <strong>content layer</strong>,
+meaning persona pools, stolen-image provenance, and template artifacts.
+<strong>Infrastructure linkages have failed every test</strong> (HANDOFF
+section 4b). Section 7 lists the failures.</p>
+<hr />
+<h2 id="5-the-solicitation-a-recycled-page-twelve-days-from-identity-to-money-ask">5.
+The solicitation: a recycled page, twelve days from identity to money
+ask</h2>
+<p>The page that solicited the wire was <strong>already in this
+file</strong> before it ever asked for money. It was documented on
+2026-08-24 as an example of automated page churn, with one follower and
+a rename history captured from Facebook&#39;s own Page Transparency panel
+(N-1). The next day it solicited a wire transfer (Z-7).</p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyBpZD0ibXktc3ZnIiB3aWR0aD0iMTAwJSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgc3R5bGU9Im1heC13aWR0aDogMTg2MS41M3B4OyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsiIHZpZXdCb3g9Ii04IC04IDE4NjEuNTMxMjUgMjE5IiByb2xlPSJncmFwaGljcy1kb2N1bWVudCBkb2N1bWVudCIgYXJpYS1yb2xlZGVzY3JpcHRpb249ImZsb3djaGFydC12MiI+PHN0eWxlPiNteS1zdmd7Zm9udC1mYW1pbHk6SW50ZXIsU2Vnb2UgVUksSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjE1cHg7ZmlsbDojMWQyMDIxO30jbXktc3ZnIC5lcnJvci1pY29ue2ZpbGw6I2Y4ZjlmYTt9I215LXN2ZyAuZXJyb3ItdGV4dHtmaWxsOiMwNzA2MDU7c3Ryb2tlOiMwNzA2MDU7fSNteS1zdmcgLmVkZ2UtdGhpY2tuZXNzLW5vcm1hbHtzdHJva2Utd2lkdGg6MnB4O30jbXktc3ZnIC5lZGdlLXRoaWNrbmVzcy10aGlja3tzdHJva2Utd2lkdGg6My41cHg7fSNteS1zdmcgLmVkZ2UtcGF0dGVybi1zb2xpZHtzdHJva2UtZGFzaGFycmF5OjA7fSNteS1zdmcgLmVkZ2UtcGF0dGVybi1kYXNoZWR7c3Ryb2tlLWRhc2hhcnJheTozO30jbXktc3ZnIC5lZGdlLXBhdHRlcm4tZG90dGVke3N0cm9rZS1kYXNoYXJyYXk6Mjt9I215LXN2ZyAubWFya2Vye2ZpbGw6IzI2NDY1MztzdHJva2U6IzI2NDY1Mzt9I215LXN2ZyAubWFya2VyLmNyb3Nze3N0cm9rZTojMjY0NjUzO30jbXktc3ZnIHN2Z3tmb250LWZhbWlseTpJbnRlcixTZWdvZSBVSSxIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTVweDt9I215LXN2ZyAubGFiZWx7Zm9udC1mYW1pbHk6SW50ZXIsU2Vnb2UgVUksSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7Y29sb3I6IzFkMjAyMTt9I215LXN2ZyAuY2x1c3Rlci1sYWJlbCB0ZXh0e2ZpbGw6IzFkMjAyMTt9I215LXN2ZyAuY2x1c3Rlci1sYWJlbCBzcGFuLCNteS1zdmcgcHtjb2xvcjojMWQyMDIxO30jbXktc3ZnIC5sYWJlbCB0ZXh0LCNteS1zdmcgc3BhbiwjbXktc3ZnIHB7ZmlsbDojMWQyMDIxO2NvbG9yOiMxZDIwMjE7fSNteS1zdmcgLm5vZGUgcmVjdCwjbXktc3ZnIC5ub2RlIGNpcmNsZSwjbXktc3ZnIC5ub2RlIGVsbGlwc2UsI215LXN2ZyAubm9kZSBwb2x5Z29uLCNteS1zdmcgLm5vZGUgcGF0aHtmaWxsOiNmNGYxZGU7c3Ryb2tlOiMyNjQ2NTM7c3Ryb2tlLXdpZHRoOjFweDt9I215LXN2ZyAuZmxvd2NoYXJ0LWxhYmVsIHRleHR7dGV4dC1hbmNob3I6bWlkZGxlO30jbXktc3ZnIC5ub2RlIC5rYXRleCBwYXRoe2ZpbGw6IzAwMDtzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MXB4O30jbXktc3ZnIC5ub2RlIC5sYWJlbHt0ZXh0LWFsaWduOmNlbnRlcjt9I215LXN2ZyAubm9kZS5jbGlja2FibGV7Y3Vyc29yOnBvaW50ZXI7fSNteS1zdmcgLmFycm93aGVhZFBhdGh7ZmlsbDojMDAwMDAwO30jbXktc3ZnIC5lZGdlUGF0aCAucGF0aHtzdHJva2U6IzI2NDY1MztzdHJva2Utd2lkdGg6Mi4wcHg7fSNteS1zdmcgLmZsb3djaGFydC1saW5re3N0cm9rZTojMjY0NjUzO2ZpbGw6bm9uZTt9I215LXN2ZyAuZWRnZUxhYmVse2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjt0ZXh0LWFsaWduOmNlbnRlcjt9I215LXN2ZyAuZWRnZUxhYmVsIHJlY3R7b3BhY2l0eTowLjU7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmO2ZpbGw6I2ZmZmZmZjt9I215LXN2ZyAubGFiZWxCa2d7YmFja2dyb3VuZC1jb2xvcjpyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNSk7fSNteS1zdmcgLmNsdXN0ZXIgcmVjdHtmaWxsOiNmOGY5ZmE7c3Ryb2tlOiNhZGI1YmQ7c3Ryb2tlLXdpZHRoOjFweDt9I215LXN2ZyAuY2x1c3RlciB0ZXh0e2ZpbGw6IzFkMjAyMTt9I215LXN2ZyAuY2x1c3RlciBzcGFuLCNteS1zdmcgcHtjb2xvcjojMWQyMDIxO30jbXktc3ZnIGRpdi5tZXJtYWlkVG9vbHRpcHtwb3NpdGlvbjphYnNvbHV0ZTt0ZXh0LWFsaWduOmNlbnRlcjttYXgtd2lkdGg6MjAwcHg7cGFkZGluZzoycHg7Zm9udC1mYW1pbHk6SW50ZXIsU2Vnb2UgVUksSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEycHg7YmFja2dyb3VuZDojZjhmOWZhO2JvcmRlcjoxcHggc29saWQgaHNsKDIxMCwgMCUsIDg3LjY0NzA1ODgyMzUlKTtib3JkZXItcmFkaXVzOjJweDtwb2ludGVyLWV2ZW50czpub25lO3otaW5kZXg6MTAwO30jbXktc3ZnIC5mbG93Y2hhcnRUaXRsZVRleHR7dGV4dC1hbmNob3I6bWlkZGxlO2ZvbnQtc2l6ZToxOHB4O2ZpbGw6IzFkMjAyMTt9I215LXN2ZyA6cm9vdHstLW1lcm1haWQtZm9udC1mYW1pbHk6InRyZWJ1Y2hldCBtcyIsdmVyZGFuYSxhcmlhbCxzYW5zLXNlcmlmO30jbXktc3ZnIC5zY2FtSW5mcmEmZ3Q7KntmaWxsOnJnYigxOTMsIDE4LCAzMSkhaW1wb3J0YW50O3N0cm9rZTpyZ2IoMTIyLCAxMiwgMjApIWltcG9ydGFudDtjb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC5zY2FtSW5mcmEgc3BhbntmaWxsOnJnYigxOTMsIDE4LCAzMSkhaW1wb3J0YW50O3N0cm9rZTpyZ2IoMTIyLCAxMiwgMjApIWltcG9ydGFudDtjb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC5zY2FtSW5mcmEgdHNwYW57ZmlsbDpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC5ldmlkZW5jZUFydCZndDsqe2ZpbGw6cmdiKDM4LCA3MCwgODMpIWltcG9ydGFudDtzdHJva2U6cmdiKDIxLCA0NSwgNTEpIWltcG9ydGFudDtjb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC5ldmlkZW5jZUFydCBzcGFue2ZpbGw6cmdiKDM4LCA3MCwgODMpIWltcG9ydGFudDtzdHJva2U6cmdiKDIxLCA0NSwgNTEpIWltcG9ydGFudDtjb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC5ldmlkZW5jZUFydCB0c3BhbntmaWxsOnJnYigyNTUsIDI1NSwgMjU1KSFpbXBvcnRhbnQ7fSNteS1zdmcgLm1vbmV5RmxvdyZndDsqe2ZpbGw6cmdiKDIzMywgMTk2LCAxMDYpIWltcG9ydGFudDtzdHJva2U6cmdiKDE3NiwgMTQzLCA2MCkhaW1wb3J0YW50O2NvbG9yOnJnYigwLCAwLCAwKSFpbXBvcnRhbnQ7fSNteS1zdmcgLm1vbmV5RmxvdyBzcGFue2ZpbGw6cmdiKDIzMywgMTk2LCAxMDYpIWltcG9ydGFudDtzdHJva2U6cmdiKDE3NiwgMTQzLCA2MCkhaW1wb3J0YW50O2NvbG9yOnJnYigwLCAwLCAwKSFpbXBvcnRhbnQ7fSNteS1zdmcgLm1vbmV5RmxvdyB0c3BhbntmaWxsOnJnYigwLCAwLCAwKSFpbXBvcnRhbnQ7fSNteS1zdmcgLmV4Y2x1ZGVkJmd0Oyp7ZmlsbDpyZ2IoMTA4LCAxMTcsIDEyNSkhaW1wb3J0YW50O3N0cm9rZTpyZ2IoNjUsIDcyLCA3NykhaW1wb3J0YW50O2NvbG9yOnJnYigyNTUsIDI1NSwgMjU1KSFpbXBvcnRhbnQ7fSNteS1zdmcgLmV4Y2x1ZGVkIHNwYW57ZmlsbDpyZ2IoMTA4LCAxMTcsIDEyNSkhaW1wb3J0YW50O3N0cm9rZTpyZ2IoNjUsIDcyLCA3NykhaW1wb3J0YW50O2NvbG9yOnJnYigyNTUsIDI1NSwgMjU1KSFpbXBvcnRhbnQ7fSNteS1zdmcgLmV4Y2x1ZGVkIHRzcGFue2ZpbGw6cmdiKDI1NSwgMjU1LCAyNTUpIWltcG9ydGFudDt9PC9zdHlsZT48Zz48bWFya2VyIGlkPSJteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kIiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI2IiByZWZZPSI1IiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG1hcmtlcldpZHRoPSIxMiIgbWFya2VySGVpZ2h0PSIxMiIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNIDAgMCBMIDEwIDUgTCAwIDEwIHoiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1wb2ludFN0YXJ0IiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI0LjUiIHJlZlk9IjUiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgbWFya2VyV2lkdGg9IjEyIiBtYXJrZXJIZWlnaHQ9IjEyIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0gMCA1IEwgMTAgMTAgTCAxMCAwIHoiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1jaXJjbGVFbmQiIGNsYXNzPSJtYXJrZXIgZmxvd2NoYXJ0IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjExIiByZWZZPSI1IiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG1hcmtlcldpZHRoPSIxMSIgbWFya2VySGVpZ2h0PSIxMSIgb3JpZW50PSJhdXRvIj48Y2lyY2xlIGN4PSI1IiBjeT0iNSIgcj0iNSIgY2xhc3M9ImFycm93TWFya2VyUGF0aCIgc3R5bGU9InN0cm9rZS13aWR0aDogMTsgc3Ryb2tlLWRhc2hhcnJheTogMSwgMDsiLz48L21hcmtlcj48bWFya2VyIGlkPSJteS1zdmdfZmxvd2NoYXJ0LWNpcmNsZVN0YXJ0IiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSItMSIgcmVmWT0iNSIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBtYXJrZXJXaWR0aD0iMTEiIG1hcmtlckhlaWdodD0iMTEiIG9yaWVudD0iYXV0byI+PGNpcmNsZSBjeD0iNSIgY3k9IjUiIHI9IjUiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1jcm9zc0VuZCIgY2xhc3M9Im1hcmtlciBjcm9zcyBmbG93Y2hhcnQiIHZpZXdCb3g9IjAgMCAxMSAxMSIgcmVmWD0iMTIiIHJlZlk9IjUuMiIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBtYXJrZXJXaWR0aD0iMTEiIG1hcmtlckhlaWdodD0iMTEiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTSAxLDEgbCA5LDkgTSAxMCwxIGwgLTksOSIgY2xhc3M9ImFycm93TWFya2VyUGF0aCIgc3R5bGU9InN0cm9rZS13aWR0aDogMjsgc3Ryb2tlLWRhc2hhcnJheTogMSwgMDsiLz48L21hcmtlcj48bWFya2VyIGlkPSJteS1zdmdfZmxvd2NoYXJ0LWNyb3NzU3RhcnQiIGNsYXNzPSJtYXJrZXIgY3Jvc3MgZmxvd2NoYXJ0IiB2aWV3Qm94PSIwIDAgMTEgMTEiIHJlZlg9Ii0xIiByZWZZPSI1LjIiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgbWFya2VyV2lkdGg9IjExIiBtYXJrZXJIZWlnaHQ9IjExIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0gMSwxIGwgOSw5IE0gMTAsMSBsIC05LDkiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDI7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PGcgY2xhc3M9InJvb3QiPjxnIGNsYXNzPSJjbHVzdGVycyIvPjxnIGNsYXNzPSJlZGdlUGF0aHMiPjxwYXRoIGQ9Ik0yNDIuMTA5LDQ4Ljc1TDI0Ni42OTMsNDguNzVDMjUxLjI3Niw0OC43NSwyNjAuNDQzLDQ4Ljc1LDI2OC43MjYsNDguNzVDMjc3LjAwOSw0OC43NSwyODQuNDA5LDQ4Ljc1LDI4OC4xMDksNDguNzVMMjkxLjgwOSw0OC43NSIgaWQ9IkwtY3JlYXRlZC1yZW5hbWVPbmUtMCIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtY3JlYXRlZCBMRS1yZW5hbWVPbmUiIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTQ5MC45MDYsNDguNzVMNDk1LjQ5LDQ4Ljc1QzUwMC4wNzMsNDguNzUsNTA5LjI0LDQ4Ljc1LDUxNy41MjMsNDguNzVDNTI1LjgwNiw0OC43NSw1MzMuMjA2LDQ4Ljc1LDUzNi45MDYsNDguNzVMNTQwLjYwNiw0OC43NSIgaWQ9IkwtcmVuYW1lT25lLXJlbmFtZVR3by0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1yZW5hbWVPbmUgTEUtcmVuYW1lVHdvIiBzdHlsZT0iZmlsbDpub25lOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjxwYXRoIGQ9Ik04MDEuNTYzLDQ4Ljc1TDgwNi4xNDYsNDguNzVDODEwLjcyOSw0OC43NSw4MTkuODk2LDQ4Ljc1LDgyOC4xNzksNDguNzVDODM2LjQ2Myw0OC43NSw4NDMuODYzLDQ4Ljc1LDg0Ny41NjMsNDguNzVMODUxLjI2Myw0OC43NSIgaWQ9IkwtcmVuYW1lVHdvLWNhcHR1cmVkLTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLXJlbmFtZVR3byBMRS1jYXB0dXJlZCIgc3R5bGU9ImZpbGw6bm9uZTsiIG1hcmtlci1lbmQ9InVybCgjbXktc3ZnX2Zsb3djaGFydC1wb2ludEVuZCkiLz48cGF0aCBkPSJNMTA5Ny4yMTksNDguNzVMMTEwMS44MDIsNDguNzVDMTEwNi4zODUsNDguNzUsMTExNS41NTIsNDguNzUsMTEyMy44MzUsNDguNzVDMTEzMi4xMTksNDguNzUsMTEzOS41MTksNDguNzUsMTE0My4yMTksNDguNzVMMTE0Ni45MTksNDguNzUiIGlkPSJMLWNhcHR1cmVkLXNvbGljaXQtMCIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtY2FwdHVyZWQgTEUtc29saWNpdCIgc3R5bGU9ImZpbGw6bm9uZTsiIG1hcmtlci1lbmQ9InVybCgjbXktc3ZnX2Zsb3djaGFydC1wb2ludEVuZCkiLz48cGF0aCBkPSJNMTQ1MC42NDEsMzkuODMyTDE0NjUuNTA5LDM4Ljk0M0MxNDgwLjM3OCwzOC4wNTUsMTUxMC4xMTUsMzYuMjc3LDE1MzkuMDM3LDM1LjM4OUMxNTY3Ljk2LDM0LjUsMTU5Ni4wNjgsMzQuNSwxNjEwLjEyMiwzNC41TDE2MjQuMTc3LDM0LjUiIGlkPSJMLXNvbGljaXQtc2hvdC0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1zb2xpY2l0IExFLXNob3QiIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTE0NDUuNzM4LDgzLjI1TDE0NjEuNDIzLDg3QzE0NzcuMTA5LDkwLjc1LDE1MDguNDgsOTguMjUsMTUzOC4xODEsMTA1Ljc0NEMxNTY3Ljg4MiwxMTMuMjM5LDE1OTUuOTEyLDEyMC43MjcsMTYwOS45MjcsMTI0LjQ3MkwxNjIzLjk0MiwxMjguMjE2IiBpZD0iTC1zb2xpY2l0LWxlYWRCYW5rLTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLXNvbGljaXQgTEUtbGVhZEJhbmsiIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTE0MzAuNDkyLDE3N0wxNDQ4LjcxOSwxNzdDMTQ2Ni45NDUsMTc3LDE1MDMuMzk4LDE3NywxNTM1LjYxNCwxNzUuNjg5QzE1NjcuODMsMTc0LjM3OSwxNTk1LjgwOCwxNzEuNzU3LDE2MDkuNzk3LDE3MC40NDZMMTYyMy43ODYsMTY5LjEzNiIgaWQ9IkwtdW5rbm93bkFjY3QtbGVhZEJhbmstMCIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tZG90dGVkIGZsb3djaGFydC1saW5rIExTLXVua25vd25BY2N0IExFLWxlYWRCYW5rIiBzdHlsZT0iZmlsbDpub25lO3N0cm9rZS13aWR0aDoycHg7c3Ryb2tlLWRhc2hhcnJheTozOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVscyI+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIGNsYXNzPSJsYWJlbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1MzkuODUxNTYyNSwgMTA1Ljc1KSI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTcuOTUzMTI1LCAtOC41KSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjExNS45MDYyNSIgaGVpZ2h0PSIxNyI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPnNvbGljaXRlZCwgbm90IHBhaWQ8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUzOS44NTE1NjI1LCAxNzcpIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02MS43MTA5Mzc1LCAtOC41KSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjEyMy40MjE4NzUiIGhlaWdodD0iMTciPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj5ubyBlc3RhYmxpc2hlZCBsaW5rPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZXMiPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgc2NhbUluZnJhIGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC1jcmVhdGVkLTAiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0iY3JlYXRlZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTIxLjA1NDY4NzUsIDQ4Ljc1KSI+PHJlY3QgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIgc3R5bGU9IiIgcng9IjAiIHJ5PSIwIiB4PSItMTIxLjA1NDY4NzUiIHk9Ii0zNC41IiB3aWR0aD0iMjQyLjEwOTM3NSIgaGVpZ2h0PSI2OSIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTExMi4wNTQ2ODc1LCAtMjUuNSkiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMjI0LjEwOTM3NSIgaGVpZ2h0PSI1MSI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPjcgSnVuIDIwMjY8YnIgLz5wYWdlIDExNzkyMzk1ODE5NDEwNDQgY3JlYXRlZDxiciAvPmFzICdHb2xmIGNhcnRzIGZvciBzYWxlJzwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IHNjYW1JbmZyYSBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQtcmVuYW1lT25lLTEiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0icmVuYW1lT25lIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzOTQuMDA3ODEyNSwgNDguNzUpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii05Ni44OTg0Mzc1IiB5PSItMjYiIHdpZHRoPSIxOTMuNzk2ODc1IiBoZWlnaHQ9IjUyIi8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtODcuODk4NDM3NSwgLTE3KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIxNzUuNzk2ODc1IiBoZWlnaHQ9IjM0Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+NyBKdW4gMjAyNiwgc2FtZSBkYXk8YnIgLz5yZW5hbWVkICdTTUFSVCBDQVJUUyc8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCBzY2FtSW5mcmEgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LXJlbmFtZVR3by0yIiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9InJlbmFtZVR3byIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjczLjczNDM3NSwgNDguNzUpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii0xMjcuODI4MTI1IiB5PSItMzQuNSIgd2lkdGg9IjI1NS42NTYyNSIgaGVpZ2h0PSI2OSIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTExOC44MjgxMjUsIC0yNS41KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIyMzcuNjU2MjUiIGhlaWdodD0iNTEiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj4xMyBBdWcgMjAyNjxiciAvPnJlbmFtZWQgdG8gYSBwZXJzb25hbCBuYW1lPGJyIC8+cHJvZmlsZSBpbWFnZSBpcyBhIHN0b2xlbiBwaG90b2dyYXBoPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgZXZpZGVuY2VBcnQgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LWNhcHR1cmVkLTMiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0iY2FwdHVyZWQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDk3Ni44OTA2MjUsIDQ4Ljc1KSI+PHJlY3QgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIgc3R5bGU9IiIgcng9IjAiIHJ5PSIwIiB4PSItMTIwLjMyODEyNSIgeT0iLTM0LjUiIHdpZHRoPSIyNDAuNjU2MjUiIGhlaWdodD0iNjkiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMTEuMzI4MTI1LCAtMjUuNSkiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMjIyLjY1NjI1IiBoZWlnaHQ9IjUxIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+MjQgQXVnIDIwMjY8YnIgLz5jYXB0dXJlZCBhcyBwYWdlLWNodXJuIGV2aWRlbmNlPGJyIC8+MSBmb2xsb3dlcjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IHNjYW1JbmZyYSBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQtc29saWNpdC00IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9InNvbGljaXQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEzMDEuNDI5Njg3NSwgNDguNzUpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii0xNDkuMjEwOTM3NSIgeT0iLTM0LjUiIHdpZHRoPSIyOTguNDIxODc1IiBoZWlnaHQ9IjY5Ii8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTQwLjIxMDkzNzUsIC0yNS41KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIyODAuNDIxODc1IiBoZWlnaHQ9IjUxIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+MjUgQXVnIDIwMjYsIDE1OjM3IGRpc3BsYXllZDxiciAvPnNlbmRzIGJhbmsgZGV0YWlscyB0byB0aGUgSU5WRVNUSUdBVE9SPGJyIC8+YW5kIHNvbGljaXRzIGEgd2lyZTwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IGV2aWRlbmNlQXJ0IGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC1zaG90LTUiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0ic2hvdCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTczNy4yOTY4NzUsIDM0LjUpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii0xMDcuODIwMzEyNSIgeT0iLTM0LjUiIHdpZHRoPSIyMTUuNjQwNjI1IiBoZWlnaHQ9IjY5Ii8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtOTguODIwMzEyNSwgLTI1LjUpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjE5Ny42NDA2MjUiIGhlaWdodD0iNTEiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj4yNSBBdWcgMjAyNiwgMTU6NTE6MTU8YnIgLz5zY3JlZW5zaG90IGNhcHR1cmVkLCBoYXNoZWQsPGJyIC8+dW5kZXIgQ0kgdmVyaWZpY2F0aW9uPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgbW9uZXlGbG93IGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC1sZWFkQmFuay02IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9ImxlYWRCYW5rIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzM3LjI5Njg3NSwgMTU4LjUpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii0xMDguMjM0Mzc1IiB5PSItMzQuNSIgd2lkdGg9IjIxNi40Njg3NSIgaGVpZ2h0PSI2OSIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTk5LjIzNDM3NSwgLTI1LjUpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjE5OC40Njg3NSIgaGVpZ2h0PSI1MSI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPkxlYWQgQmFuayBhY2NvdW50PGJyIC8+cm91dGluZyAxMDEwMTk2NDQgVkVSSUZJRUQ8YnIgLz5hY2NvdW50IGNvbnRyb2wgVU5WRVJJRklFRDwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IGV4Y2x1ZGVkIGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC11bmtub3duQWNjdC03IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9InVua25vd25BY2N0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMzAxLjQyOTY4NzUsIDE3NykiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTEyOS4wNjI1IiB5PSItMjYiIHdpZHRoPSIyNTguMTI1IiBoZWlnaHQ9IjUyIi8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTIwLjA2MjUsIC0xNykiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMjQwLjEyNSIgaGVpZ2h0PSIzNCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPkFjY291bnQgdGhhdCByZWNlaXZlZCBWSUNUSU0gZnVuZHM8YnIgLz5VTklERU5USUZJRUQ8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PC9nPjwvZz48L2c+PC9zdmc+" alt="diagram" /></p>
+<p><strong>Twelve days from identity assignment to payment
+solicitation.</strong> The page was renamed on 13 August and solicited a
+wire on 25 August (N-1, Z-7, Z-8). That is a concrete cycle time for
+this network, testable against the other recycled pages in the file, and
+<strong>it is PROVISIONAL</strong> because it is computed from a
+solicitation date that currently rests on a screenshot rather than on
+Meta&#39;s own record (Z-14, Z-29).</p>
+<p><strong>Three things this changes</strong> (Z-8). First, the page
+pool is not dormant inventory, it is the delivery mechanism: removing
+one page removes an instance and not the supply (N-1), and this shows
+what an instance does once activated. Second, operational tempo becomes
+measurable and testable against the rest of the pool. Third, the
+Facebook layer and the money layer now connect through a single
+artifact, where before the file had a persona layer, a website layer, a
+shipper layer, and no financial trail.</p>
+<p><strong>On the timestamps, and this matters for your
+timeline.</strong> The filename and filesystem mtime record
+<strong>15:51:15</strong> as the capture time, which is directly
+evidenced. The <strong>15:37</strong> value is what Messenger displayed
+inside the rendering, which is a picture of a clock and authoritative
+for nothing on its own (Z-29). There is also an unresolved one-hour
+ambiguity: in August, US Eastern observes daylight time, so 15:37 EDT is
+19:37 UTC, while a genuine EST reading would be 20:37 UTC (Z-10). The
+Meta export resolves it; a screenshot cannot resolve its own timezone
+(Z-29). That precision is not pedantry, because the file documents an
+operator activity window of 22:00 to 03:00 UTC with 91 percent
+clustering on one storefront and a completely different window on
+another, which is one of the few findings bearing on how many people are
+involved (U-5).</p>
+<hr />
+<h2 id="6-the-eight-findings-that-survived-every-test">6. The eight
+findings that survived every test</h2>
+<p>These are content-layer, already captured, hashed, and the operators
+cannot retract them (HANDOFF section 4).</p>
+<ol type="1">
+<li><p><strong>A fake courier publishes its template vendor&#39;s demo
+credentials.</strong> <code>safepup-delivery.com/admin/login.php</code>
+prints <code>admin / Admin@12345</code> in plain text beneath the login
+form, ships <code>(demo)</code> in every page footer in English and
+German, and serves the vendor&#39;s demo shipment record from a live
+tracking database. <strong>No login was attempted and none should
+be</strong>; the evidentiary value is entirely that the string is
+published, preserved in the captured file (T-1).</p></li>
+<li><p><strong>A storefront never renamed the photographs it
+stole.</strong> Upload paths on <code>usapetsforhome.com</code> retain
+source filenames verbatim, including a third-party marketplace&#39;s brand
+string and its <code>breed-listingID-imageNumber</code> convention. The
+filenames prove the images came from a listing site and were not
+photographed by the seller; <strong>which</strong> marketplace is not
+asserted until confirmed (U-3).</p></li>
+<li><p><strong>Millisecond upload timestamps give a minute-resolution
+build log.</strong> The 13-digit suffix on each upload decodes to a Unix
+millisecond timestamp. Eleven of twelve images were uploaded in a
+continuous 93-minute session <strong>finishing 34 minutes before the
+domain was registered</strong> (U-4), at a steady 3-to-16 minute
+cadence. Whether that cadence reflects a person collecting listings by
+hand rather than a script pacing its uploads is
+<strong>HYPOTHESIS</strong>: the timestamps establish timing and
+cadence, not who or what produced them.</p></li>
+<li><p><strong>82 timestamped uploads on a second storefront give a
+pattern of life.</strong> 91 percent fall in a 22:00 to 03:00 UTC
+window, <strong>incompatible with the first storefront&#39;s window</strong>
+(U-5). This is a behavioral indicator, not a geolocation: upload
+timestamps reflect the server clock, and an operator targeting US buyers
+may deliberately work US hours (U-5).</p></li>
+<li><p><strong>A shared persona pool links three domains across two
+hosting stacks.</strong> The fabricated testimonial name &quot;Priya&quot; appears
+four times across three domains, alongside &quot;James&quot; and &quot;Sarah M.&quot; On two
+sites they are bound as one couple with different assigned cities; on a
+third they are split into two individuals with new surnames (Q-5, S-3,
+T-3, U-7). <strong>This linkage never depended on hosting</strong>,
+which is why it survived when the infrastructure linkages did
+not.</p></li>
+<li><p><strong>Backdating, three separate instances.</strong> Blog posts
+and Terms of Service dated weeks before the domain existed
+(T-4).</p></li>
+<li><p><strong>No Impressum on a site claiming German establishment,
+German governing law, and Frankfurt jurisdiction.</strong> A standalone
+violation of German law requiring no proof of fraud whatsoever,
+reportable on its own (T-5).</p></li>
+<li><p><strong>A hard registry timeline.</strong> Continuous storefront
+replacement every four to ten weeks across five months,
+registry-attested via RDAP, with three domains already deregistered
+(R-1, R-2). One domain named in the corpus on 8/23 was unregistered by
+8/24, so <strong>anything still resolving must be archived on sight, not
+scheduled</strong> (R-2).</p></li>
+</ol>
+<hr />
+<h2 id="7-the-five-claims-that-were-tested-and-downgraded">7. The five
+claims that were tested and downgraded</h2>
+<p>A file that only ever grows in one direction is a file nobody should
+trust (HANDOFF section 2d). These were promising, they failed, and they
+stay in the record so that nobody rebuilds the case on them (HANDOFF
+section 4b).</p>
+<ol type="1">
+<li><p><strong>Shared IP does not prove common control.</strong> The
+address that appeared to bind three domains is a shared Hostinger FTP
+gateway with 48-plus tenants. Three domains web-serve from it, which is
+a narrower claim and is how it should be stated (R-4, S-6). Co-tenants
+surfaced by reverse IP are innocent bystanders, excluded from every
+network claim (S-6). One business initially flagged on this basis was
+<strong>cleared outright</strong>; publishing the co-tenancy would
+defame a working company (S-7).</p></li>
+<li><p><strong>Phone numbers are not clean operator
+identifiers.</strong> One number runs an unrelated peptide vertical on
+TikTok. Another returns a probably-uninvolved private individual, never
+contacted and treated as a third party, not a suspect (V-5,
+V-4).</p></li>
+<li><p><strong>A square 2048x2048 image is not by itself an AI
+indicator.</strong> A confirmed-real photograph in the corpus has
+exactly those dimensions, so the indicator is corroborative only
+(W-3).</p></li>
+<li><p><strong>Error Level Analysis is corroborative, not
+probative</strong> (M-2). An earlier draft overweighted it as an
+AI-generation signal and that was corrected.</p></li>
+<li><p><strong>The camera serial route does not exist.</strong> The
+camera model that produced the only file with intact EXIF writes no body
+serial number, so the identification path that appeared open is a dead
+end (W-5).</p></li>
+</ol>
+<p>Two further negative results worth your time: a perceptual-hash sweep
+across the full corpus returned <strong>zero image reuse</strong>
+between clusters (K-4), and a separately flagged business was cleared as
+a website-appropriation <strong>victim</strong> (A5c).</p>
+<p><strong>None of the eight findings in section 6 depends on any of
+these five.</strong></p>
+<hr />
+<h2 id="8-where-each-authority-has-a-hook">8. Where each authority has a
+hook</h2>
+<p>Nothing in this case requires one agency to carry all of it. Several
+of these hooks stand entirely on their own, without proving fraud at
+all.</p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyBpZD0ibXktc3ZnIiB3aWR0aD0iMTAwJSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgc3R5bGU9Im1heC13aWR0aDogMjQ2NS44MXB4OyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsiIHZpZXdCb3g9Ii04IC04IDI0NjUuODEyNSAxOTIiIHJvbGU9ImdyYXBoaWNzLWRvY3VtZW50IGRvY3VtZW50IiBhcmlhLXJvbGVkZXNjcmlwdGlvbj0iZmxvd2NoYXJ0LXYyIj48c3R5bGU+I215LXN2Z3tmb250LWZhbWlseTpJbnRlcixTZWdvZSBVSSxIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTVweDtmaWxsOiMxZDIwMjE7fSNteS1zdmcgLmVycm9yLWljb257ZmlsbDojZjhmOWZhO30jbXktc3ZnIC5lcnJvci10ZXh0e2ZpbGw6IzA3MDYwNTtzdHJva2U6IzA3MDYwNTt9I215LXN2ZyAuZWRnZS10aGlja25lc3Mtbm9ybWFse3N0cm9rZS13aWR0aDoycHg7fSNteS1zdmcgLmVkZ2UtdGhpY2tuZXNzLXRoaWNre3N0cm9rZS13aWR0aDozLjVweDt9I215LXN2ZyAuZWRnZS1wYXR0ZXJuLXNvbGlke3N0cm9rZS1kYXNoYXJyYXk6MDt9I215LXN2ZyAuZWRnZS1wYXR0ZXJuLWRhc2hlZHtzdHJva2UtZGFzaGFycmF5OjM7fSNteS1zdmcgLmVkZ2UtcGF0dGVybi1kb3R0ZWR7c3Ryb2tlLWRhc2hhcnJheToyO30jbXktc3ZnIC5tYXJrZXJ7ZmlsbDojMjY0NjUzO3N0cm9rZTojMjY0NjUzO30jbXktc3ZnIC5tYXJrZXIuY3Jvc3N7c3Ryb2tlOiMyNjQ2NTM7fSNteS1zdmcgc3Zne2ZvbnQtZmFtaWx5OkludGVyLFNlZ29lIFVJLEhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxNXB4O30jbXktc3ZnIC5sYWJlbHtmb250LWZhbWlseTpJbnRlcixTZWdvZSBVSSxIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZjtjb2xvcjojMWQyMDIxO30jbXktc3ZnIC5jbHVzdGVyLWxhYmVsIHRleHR7ZmlsbDojMWQyMDIxO30jbXktc3ZnIC5jbHVzdGVyLWxhYmVsIHNwYW4sI215LXN2ZyBwe2NvbG9yOiMxZDIwMjE7fSNteS1zdmcgLmxhYmVsIHRleHQsI215LXN2ZyBzcGFuLCNteS1zdmcgcHtmaWxsOiMxZDIwMjE7Y29sb3I6IzFkMjAyMTt9I215LXN2ZyAubm9kZSByZWN0LCNteS1zdmcgLm5vZGUgY2lyY2xlLCNteS1zdmcgLm5vZGUgZWxsaXBzZSwjbXktc3ZnIC5ub2RlIHBvbHlnb24sI215LXN2ZyAubm9kZSBwYXRoe2ZpbGw6I2Y0ZjFkZTtzdHJva2U6IzI2NDY1MztzdHJva2Utd2lkdGg6MXB4O30jbXktc3ZnIC5mbG93Y2hhcnQtbGFiZWwgdGV4dHt0ZXh0LWFuY2hvcjptaWRkbGU7fSNteS1zdmcgLm5vZGUgLmthdGV4IHBhdGh7ZmlsbDojMDAwO3N0cm9rZTojMDAwO3N0cm9rZS13aWR0aDoxcHg7fSNteS1zdmcgLm5vZGUgLmxhYmVse3RleHQtYWxpZ246Y2VudGVyO30jbXktc3ZnIC5ub2RlLmNsaWNrYWJsZXtjdXJzb3I6cG9pbnRlcjt9I215LXN2ZyAuYXJyb3doZWFkUGF0aHtmaWxsOiMwMDAwMDA7fSNteS1zdmcgLmVkZ2VQYXRoIC5wYXRoe3N0cm9rZTojMjY0NjUzO3N0cm9rZS13aWR0aDoyLjBweDt9I215LXN2ZyAuZmxvd2NoYXJ0LWxpbmt7c3Ryb2tlOiMyNjQ2NTM7ZmlsbDpub25lO30jbXktc3ZnIC5lZGdlTGFiZWx7YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmO3RleHQtYWxpZ246Y2VudGVyO30jbXktc3ZnIC5lZGdlTGFiZWwgcmVjdHtvcGFjaXR5OjAuNTtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7ZmlsbDojZmZmZmZmO30jbXktc3ZnIC5sYWJlbEJrZ3tiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMjU1LCAyNTUsIDI1NSwgMC41KTt9I215LXN2ZyAuY2x1c3RlciByZWN0e2ZpbGw6I2Y4ZjlmYTtzdHJva2U6I2FkYjViZDtzdHJva2Utd2lkdGg6MXB4O30jbXktc3ZnIC5jbHVzdGVyIHRleHR7ZmlsbDojMWQyMDIxO30jbXktc3ZnIC5jbHVzdGVyIHNwYW4sI215LXN2ZyBwe2NvbG9yOiMxZDIwMjE7fSNteS1zdmcgZGl2Lm1lcm1haWRUb29sdGlwe3Bvc2l0aW9uOmFic29sdXRlO3RleHQtYWxpZ246Y2VudGVyO21heC13aWR0aDoyMDBweDtwYWRkaW5nOjJweDtmb250LWZhbWlseTpJbnRlcixTZWdvZSBVSSxIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTJweDtiYWNrZ3JvdW5kOiNmOGY5ZmE7Ym9yZGVyOjFweCBzb2xpZCBoc2woMjEwLCAwJSwgODcuNjQ3MDU4ODIzNSUpO2JvcmRlci1yYWRpdXM6MnB4O3BvaW50ZXItZXZlbnRzOm5vbmU7ei1pbmRleDoxMDA7fSNteS1zdmcgLmZsb3djaGFydFRpdGxlVGV4dHt0ZXh0LWFuY2hvcjptaWRkbGU7Zm9udC1zaXplOjE4cHg7ZmlsbDojMWQyMDIxO30jbXktc3ZnIDpyb290ey0tbWVybWFpZC1mb250LWZhbWlseToidHJlYnVjaGV0IG1zIix2ZXJkYW5hLGFyaWFsLHNhbnMtc2VyaWY7fSNteS1zdmcgLmV2aWRlbmNlQXJ0Jmd0Oyp7ZmlsbDpyZ2IoMzgsIDcwLCA4MykhaW1wb3J0YW50O3N0cm9rZTpyZ2IoMjEsIDQ1LCA1MSkhaW1wb3J0YW50O2NvbG9yOnJnYigyNTUsIDI1NSwgMjU1KSFpbXBvcnRhbnQ7fSNteS1zdmcgLmV2aWRlbmNlQXJ0IHNwYW57ZmlsbDpyZ2IoMzgsIDcwLCA4MykhaW1wb3J0YW50O3N0cm9rZTpyZ2IoMjEsIDQ1LCA1MSkhaW1wb3J0YW50O2NvbG9yOnJnYigyNTUsIDI1NSwgMjU1KSFpbXBvcnRhbnQ7fSNteS1zdmcgLmV2aWRlbmNlQXJ0IHRzcGFue2ZpbGw6cmdiKDI1NSwgMjU1LCAyNTUpIWltcG9ydGFudDt9I215LXN2ZyAubW9uZXlGbG93Jmd0Oyp7ZmlsbDpyZ2IoMjMzLCAxOTYsIDEwNikhaW1wb3J0YW50O3N0cm9rZTpyZ2IoMTc2LCAxNDMsIDYwKSFpbXBvcnRhbnQ7Y29sb3I6cmdiKDAsIDAsIDApIWltcG9ydGFudDt9I215LXN2ZyAubW9uZXlGbG93IHNwYW57ZmlsbDpyZ2IoMjMzLCAxOTYsIDEwNikhaW1wb3J0YW50O3N0cm9rZTpyZ2IoMTc2LCAxNDMsIDYwKSFpbXBvcnRhbnQ7Y29sb3I6cmdiKDAsIDAsIDApIWltcG9ydGFudDt9I215LXN2ZyAubW9uZXlGbG93IHRzcGFue2ZpbGw6cmdiKDAsIDAsIDApIWltcG9ydGFudDt9I215LXN2ZyAuc2NhbUluZnJhJmd0Oyp7ZmlsbDpyZ2IoMTkzLCAxOCwgMzEpIWltcG9ydGFudDtzdHJva2U6cmdiKDEyMiwgMTIsIDIwKSFpbXBvcnRhbnQ7Y29sb3I6cmdiKDI1NSwgMjU1LCAyNTUpIWltcG9ydGFudDt9I215LXN2ZyAuc2NhbUluZnJhIHNwYW57ZmlsbDpyZ2IoMTkzLCAxOCwgMzEpIWltcG9ydGFudDtzdHJva2U6cmdiKDEyMiwgMTIsIDIwKSFpbXBvcnRhbnQ7Y29sb3I6cmdiKDI1NSwgMjU1LCAyNTUpIWltcG9ydGFudDt9I215LXN2ZyAuc2NhbUluZnJhIHRzcGFue2ZpbGw6cmdiKDI1NSwgMjU1LCAyNTUpIWltcG9ydGFudDt9PC9zdHlsZT48Zz48bWFya2VyIGlkPSJteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kIiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI2IiByZWZZPSI1IiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG1hcmtlcldpZHRoPSIxMiIgbWFya2VySGVpZ2h0PSIxMiIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNIDAgMCBMIDEwIDUgTCAwIDEwIHoiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1wb2ludFN0YXJ0IiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI0LjUiIHJlZlk9IjUiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgbWFya2VyV2lkdGg9IjEyIiBtYXJrZXJIZWlnaHQ9IjEyIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0gMCA1IEwgMTAgMTAgTCAxMCAwIHoiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1jaXJjbGVFbmQiIGNsYXNzPSJtYXJrZXIgZmxvd2NoYXJ0IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjExIiByZWZZPSI1IiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG1hcmtlcldpZHRoPSIxMSIgbWFya2VySGVpZ2h0PSIxMSIgb3JpZW50PSJhdXRvIj48Y2lyY2xlIGN4PSI1IiBjeT0iNSIgcj0iNSIgY2xhc3M9ImFycm93TWFya2VyUGF0aCIgc3R5bGU9InN0cm9rZS13aWR0aDogMTsgc3Ryb2tlLWRhc2hhcnJheTogMSwgMDsiLz48L21hcmtlcj48bWFya2VyIGlkPSJteS1zdmdfZmxvd2NoYXJ0LWNpcmNsZVN0YXJ0IiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSItMSIgcmVmWT0iNSIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBtYXJrZXJXaWR0aD0iMTEiIG1hcmtlckhlaWdodD0iMTEiIG9yaWVudD0iYXV0byI+PGNpcmNsZSBjeD0iNSIgY3k9IjUiIHI9IjUiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1jcm9zc0VuZCIgY2xhc3M9Im1hcmtlciBjcm9zcyBmbG93Y2hhcnQiIHZpZXdCb3g9IjAgMCAxMSAxMSIgcmVmWD0iMTIiIHJlZlk9IjUuMiIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBtYXJrZXJXaWR0aD0iMTEiIG1hcmtlckhlaWdodD0iMTEiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTSAxLDEgbCA5LDkgTSAxMCwxIGwgLTksOSIgY2xhc3M9ImFycm93TWFya2VyUGF0aCIgc3R5bGU9InN0cm9rZS13aWR0aDogMjsgc3Ryb2tlLWRhc2hhcnJheTogMSwgMDsiLz48L21hcmtlcj48bWFya2VyIGlkPSJteS1zdmdfZmxvd2NoYXJ0LWNyb3NzU3RhcnQiIGNsYXNzPSJtYXJrZXIgY3Jvc3MgZmxvd2NoYXJ0IiB2aWV3Qm94PSIwIDAgMTEgMTEiIHJlZlg9Ii0xIiByZWZZPSI1LjIiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgbWFya2VyV2lkdGg9IjExIiBtYXJrZXJIZWlnaHQ9IjExIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0gMSwxIGwgOSw5IE0gMTAsMSBsIC05LDkiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDI7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PGcgY2xhc3M9InJvb3QiPjxnIGNsYXNzPSJjbHVzdGVycyIvPjxnIGNsYXNzPSJlZGdlUGF0aHMiPjxwYXRoIGQ9Ik0xMjA0Ljg0NCwzMC43NTFMMTAxOS43OCwzOC44NzZDODM0LjcxNiw0Ny4wMDEsNDY0LjU4OSw2My4yNSwyNzkuNTI1LDc1LjA3NUM5NC40NjEsODYuOSw5NC40NjEsOTQuMyw5NC40NjEsOThMOTQuNDYxLDEwMS43IiBpZD0iTC1jYXNlRmlsZS1pYzMtMCIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtY2FzZUZpbGUgTEUtaWMzIiBzdHlsZT0iZmlsbDpub25lOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjxwYXRoIGQ9Ik0xMjA0Ljg0NCwzMi4wMzZMMTA2My4wMDcsMzkuOTQ2QzkyMS4xNjksNDcuODU3LDYzNy40OTUsNjMuNjc5LDQ5NS42NTgsNzUuMjg5QzM1My44Miw4Ni45LDM1My44Miw5NC4zLDM1My44Miw5OEwzNTMuODIsMTAxLjciIGlkPSJMLWNhc2VGaWxlLWxlYWRCYW5rQXV0aC0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1jYXNlRmlsZSBMRS1sZWFkQmFua0F1dGgiIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTEyMDQuODQ0LDM0LjQzNUwxMTA4LjQ4OCw0MS45NDZDMTAxMi4xMzMsNDkuNDU3LDgxOS40MjIsNjQuNDc4LDcyMy4wNjYsNzUuNjg5QzYyNi43MTEsODYuOSw2MjYuNzExLDk0LjMsNjI2LjcxMSw5OEw2MjYuNzExLDEwMS43IiBpZD0iTC1jYXNlRmlsZS1vcmlnaW5CYW5rLTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLWNhc2VGaWxlIExFLW9yaWdpbkJhbmsiIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTEyMDQuODQ0LDM5Ljc2N0wxMTUyLjc4OCw0Ni4zODlDMTEwMC43MzIsNTMuMDExLDk5Ni42Miw2Ni4yNTYsOTQ0LjU2NCw3Ny45OTRDODkyLjUwOCw4OS43MzMsODkyLjUwOCw5OS45NjcsODkyLjUwOCwxMDUuMDgzTDg5Mi41MDgsMTEwLjIiIGlkPSJMLWNhc2VGaWxlLWZ0Yy0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1jYXNlRmlsZSBMRS1mdGMiIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTEyNDcuMDk0LDUyTDEyMzUuNDY1LDU2LjU4M0MxMjIzLjgzNiw2MS4xNjcsMTIwMC41NzgsNzAuMzMzLDExODguOTQ5LDc4LjYxN0MxMTc3LjMyLDg2LjksMTE3Ny4zMiw5NC4zLDExNzcuMzIsOThMMTE3Ny4zMiwxMDEuNyIgaWQ9IkwtY2FzZUZpbGUtZmRhLTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLWNhc2VGaWxlIExFLWZkYSIgc3R5bGU9ImZpbGw6bm9uZTsiIG1hcmtlci1lbmQ9InVybCgjbXktc3ZnX2Zsb3djaGFydC1wb2ludEVuZCkiLz48cGF0aCBkPSJNMTM3OS4wMzEsNTJMMTM5MC42Niw1Ni41ODNDMTQwMi4yODksNjEuMTY3LDE0MjUuNTQ3LDcwLjMzMywxNDM3LjE3Niw3OC42MTdDMTQ0OC44MDUsODYuOSwxNDQ4LjgwNSw5NC4zLDE0NDguODA1LDk4TDE0NDguODA1LDEwMS43IiBpZD0iTC1jYXNlRmlsZS1tZXRhLTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLWNhc2VGaWxlIExFLW1ldGEiIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTE0MjEuMjgxLDQxLjk0OEwxNDYzLjc1LDQ4LjIwN0MxNTA2LjIxOSw1NC40NjUsMTU5MS4xNTYsNjYuOTgzLDE2MzMuNjI1LDc2Ljk0MUMxNjc2LjA5NCw4Ni45LDE2NzYuMDk0LDk0LjMsMTY3Ni4wOTQsOThMMTY3Ni4wOTQsMTAxLjciIGlkPSJMLWNhc2VGaWxlLXRpa3Rvay0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1jYXNlRmlsZSBMRS10aWt0b2siIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTE0MjEuMjgxLDM1Ljg5MkwxNTAwLjc5Niw0My4xNkMxNTgwLjMxLDUwLjQyOCwxNzM5LjMzOSw2NC45NjQsMTgxOC44NTMsNzUuOTMyQzE4OTguMzY3LDg2LjksMTg5OC4zNjcsOTQuMywxODk4LjM2Nyw5OEwxODk4LjM2NywxMDEuNyIgaWQ9IkwtY2FzZUZpbGUtc2hvcGlmeS0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1jYXNlRmlsZSBMRS1zaG9waWZ5IiBzdHlsZT0iZmlsbDpub25lOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjxwYXRoIGQ9Ik0xNDIxLjI4MSwzMy4yMUwxNTM3LjA3Myw0MC45MjVDMTY1Mi44NjUsNDguNjQsMTg4NC40NDgsNjQuMDcsMjAwMC4yNCw3NS40ODVDMjExNi4wMzEsODYuOSwyMTE2LjAzMSw5NC4zLDIxMTYuMDMxLDk4TDIxMTYuMDMxLDEwMS43IiBpZD0iTC1jYXNlRmlsZS1ob3N0aW5nZXItMCIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtY2FzZUZpbGUgTEUtaG9zdGluZ2VyIiBzdHlsZT0iZmlsbDpub25lOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjxwYXRoIGQ9Ik0xNDIxLjI4MSwzMS42MTNMMTU3NS4xNTUsMzkuNTk0QzE3MjkuMDI5LDQ3LjU3NSwyMDM2Ljc3Niw2My41MzgsMjE5MC42NSw3NS4yMTlDMjM0NC41MjMsODYuOSwyMzQ0LjUyMyw5NC4zLDIzNDQuNTIzLDk4TDIzNDQuNTIzLDEwMS43IiBpZD0iTC1jYXNlRmlsZS1nZXJtYW5BdXRoLTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLWNhc2VGaWxlIExFLWdlcm1hbkF1dGgiIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWxzIj48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIGNsYXNzPSJsYWJlbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIGNsYXNzPSJsYWJlbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIGNsYXNzPSJsYWJlbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZXMiPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgZXZpZGVuY2VBcnQgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LWNhc2VGaWxlLTAiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0iY2FzZUZpbGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEzMTMuMDYyNSwgMjYpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii0xMDguMjE4NzUiIHk9Ii0yNiIgd2lkdGg9IjIxNi40Mzc1IiBoZWlnaHQ9IjUyIi8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtOTkuMjE4NzUsIC0xNykiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMTk4LjQzNzUiIGhlaWdodD0iMzQiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5XaWVuZXItR2F0ZSBldmlkZW5jZSBjb3JwdXM8YnIgLz4zMDUgdmVyc2lvbi1jb250cm9sbGVkIGZpbGVzPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgbW9uZXlGbG93IGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC1pYzMtMSIgZGF0YS1ub2RlPSJ0cnVlIiBkYXRhLWlkPSJpYzMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDk0LjQ2MDkzNzUsIDE0MS41KSI+PHJlY3QgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIgc3R5bGU9IiIgcng9IjAiIHJ5PSIwIiB4PSItOTQuNDYwOTM3NSIgeT0iLTM0LjUiIHdpZHRoPSIxODguOTIxODc1IiBoZWlnaHQ9IjY5Ii8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtODUuNDYwOTM3NSwgLTI1LjUpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjE3MC45MjE4NzUiIGhlaWdodD0iNTEiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5GQkkgSUMzPGJyIC8+UmVjb3ZlcnkgQXNzZXQgVGVhbSw8YnIgLz5GaW5hbmNpYWwgRnJhdWQgS2lsbCBDaGFpbjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IG1vbmV5RmxvdyBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQtbGVhZEJhbmtBdXRoLTIiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0ibGVhZEJhbmtBdXRoIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNTMuODIwMzEyNSwgMTQxLjUpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii0xMTkuODk4NDM3NSIgeT0iLTM0LjUiIHdpZHRoPSIyMzkuNzk2ODc1IiBoZWlnaHQ9IjY5Ii8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTEwLjg5ODQzNzUsIC0yNS41KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIyMjEuNzk2ODc1IiBoZWlnaHQ9IjUxIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+TGVhZCBCYW5rPGJyIC8+QlNBL0FNTCwgU0FSLCBmcmVlemUsPGJyIC8+aWRlbnRpZmllcyB0aGUgc3BvbnNvcmluZyBwcm9ncmFtPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgbW9uZXlGbG93IGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC1vcmlnaW5CYW5rLTMiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0ib3JpZ2luQmFuayIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjI2LjcxMDkzNzUsIDE0MS41KSI+PHJlY3QgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIgc3R5bGU9IiIgcng9IjAiIHJ5PSIwIiB4PSItMTA3Ljk5MjE4NzUiIHk9Ii0zNC41IiB3aWR0aD0iMjE1Ljk4NDM3NSIgaGVpZ2h0PSI2OSIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTk4Ljk5MjE4NzUsIC0yNS41KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIxOTcuOTg0Mzc1IiBoZWlnaHQ9IjUxIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+RWFjaCBjb21wbGFpbmFudCdzIG93biBiYW5rPGJyIC8+b3IgcGF5bWVudCBwcm92aWRlcjxiciAvPnJlY2FsbCBhbmQgcmV2ZXJzYWw8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCBzY2FtSW5mcmEgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LWZ0Yy00IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9ImZ0YyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODkyLjUwNzgxMjUsIDE0MS41KSI+PHJlY3QgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIgc3R5bGU9IiIgcng9IjAiIHJ5PSIwIiB4PSItMTEyLjgwNDY4NzUiIHk9Ii0yNiIgd2lkdGg9IjIyNS42MDkzNzUiIGhlaWdodD0iNTIiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMDMuODA0Njg3NSwgLTE3KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIyMDcuNjA5Mzc1IiBoZWlnaHQ9IjM0Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+RlRDPGJyIC8+cGF0dGVybiwgc2NvcGUsIGNvbnN1bWVyIGhhcm08L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCBzY2FtSW5mcmEgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LWZkYS01IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9ImZkYSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTE3Ny4zMjAzMTI1LCAxNDEuNSkiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTEyNy4wMDc4MTI1IiB5PSItMzQuNSIgd2lkdGg9IjI1NC4wMTU2MjUiIGhlaWdodD0iNjkiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMTguMDA3ODEyNSwgLTI1LjUpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjIzNi4wMTU2MjUiIGhlaWdodD0iNTEiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5GREE8YnIgLz50aGUgcGVwdGlkZSB2ZXJ0aWNhbCw8YnIgLz5zdGFuZHMgaW5kZXBlbmRlbnQgb2YgdGhlIHBldCBmcmF1ZDwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IHNjYW1JbmZyYSBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQtbWV0YS02IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9Im1ldGEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE0NDguODA0Njg3NSwgMTQxLjUpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii05OS40NzY1NjI1IiB5PSItMzQuNSIgd2lkdGg9IjE5OC45NTMxMjUiIGhlaWdodD0iNjkiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05MC40NzY1NjI1LCAtMjUuNSkiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMTgwLjk1MzEyNSIgaGVpZ2h0PSI1MSI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPk1ldGE8YnIgLz5wYWdlLCBwcm9maWxlIGFuZCBncm91cCBJRHM8YnIgLz5wbHVzIHByZXNlcnZhdGlvbjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IHNjYW1JbmZyYSBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQtdGlrdG9rLTciIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0idGlrdG9rIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNjc2LjA5Mzc1LCAxNDEuNSkiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTgyLjgxMjUiIHk9Ii0zNC41IiB3aWR0aD0iMTY1LjYyNSIgaGVpZ2h0PSI2OSIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTczLjgxMjUsIC0yNS41KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIxNDcuNjI1IiBoZWlnaHQ9IjUxIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+VGlrVG9rPGJyIC8+dHdvIGhhbmRsZXMsPGJyIC8+YmFuLWV2YXNpb24gbGFuZ3VhZ2U8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCBzY2FtSW5mcmEgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LXNob3BpZnktOCIgZGF0YS1ub2RlPSJ0cnVlIiBkYXRhLWlkPSJzaG9waWZ5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxODk4LjM2NzE4NzUsIDE0MS41KSI+PHJlY3QgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIgc3R5bGU9IiIgcng9IjAiIHJ5PSIwIiB4PSItOTQuNDYwOTM3NSIgeT0iLTM0LjUiIHdpZHRoPSIxODguOTIxODc1IiBoZWlnaHQ9IjY5Ii8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtODUuNDYwOTM3NSwgLTI1LjUpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjE3MC45MjE4NzUiIGhlaWdodD0iNTEiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5TaG9waWZ5IFRydXN0IGFuZCBTYWZldHk8YnIgLz5zaG9wIElEIDc3NTA5OTg0NDg0PGJyIC8+ZW51bWVyYXRlcyBzaWJsaW5nIHN0b3Jlczwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IHNjYW1JbmZyYSBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQtaG9zdGluZ2VyLTkiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0iaG9zdGluZ2VyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMTE2LjAzMTI1LCAxNDEuNSkiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTc4LjIwMzEyNSIgeT0iLTM0LjUiIHdpZHRoPSIxNTYuNDA2MjUiIGhlaWdodD0iNjkiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02OS4yMDMxMjUsIC0yNS41KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIxMzguNDA2MjUiIGhlaWdodD0iNTEiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5Ib3N0aW5nZXI8YnIgLz5yZWdpc3RyYXIgYW5kIGhvc3Q8YnIgLz5mb3Igb25lIHdob2xlIGNsdXN0ZXI8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCBzY2FtSW5mcmEgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LWdlcm1hbkF1dGgtMTAiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0iZ2VybWFuQXV0aCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjM0NC41MjM0Mzc1LCAxNDEuNSkiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTEwNS4yODkwNjI1IiB5PSItMzQuNSIgd2lkdGg9IjIxMC41NzgxMjUiIGhlaWdodD0iNjkiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05Ni4yODkwNjI1LCAtMjUuNSkiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMTkyLjU3ODEyNSIgaGVpZ2h0PSI1MSI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPkdlcm1hbiBhdXRob3JpdGllczxiciAvPm1pc3NpbmcgSW1wcmVzc3VtLDxiciAvPmZhbHNlIEVVIGVzdGFibGlzaG1lbnQgY2xhaW08L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PC9nPjwvZz48L2c+PC9zdmc+" alt="diagram" /></p>
+<p>The escalation mechanism is where the repeat losses come from. A
+deposit is taken, then transport, crate, or insurance fees are demanded,
+and the victim is referred to a shipping company that is <strong>the
+same hosting provider on the same server</strong>. Both ends of that
+ladder were found on one IP address (Q-6).</p>
+<p>The ladder runs: contact via a recycled page or template storefront,
+deposit taken, referral to the &quot;shipping company&quot;, then transport,
+climate-controlled crate, and shipping insurance fees in sequence. A
+<code>PAW-########</code> tracking number arriving in a complainant&#39;s
+inbox proves the <strong>shipper stage</strong>, not merely the sale,
+and is a specific intake question worth asking every victim you
+interview (T-3, Y-3). The tracking system works, which is the point: it
+returns the vendor&#39;s demo shipment record from a live database (T-1,
+T-3).</p>
+<hr />
+<h2 id="9-evidence-integrity-why-you-can-rely-on-this-file">9. Evidence
+integrity: why you can rely on this file</h2>
+<p>This corpus was built to be attacked. Every claim above traces to a
+captured artifact with a recorded hash.</p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyBpZD0ibXktc3ZnIiB3aWR0aD0iMTAwJSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgc3R5bGU9Im1heC13aWR0aDogNzQ4LjU1NXB4OyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsiIHZpZXdCb3g9Ii04IC04IDc0OC41NTQ2ODc1IDYzNyIgcm9sZT0iZ3JhcGhpY3MtZG9jdW1lbnQgZG9jdW1lbnQiIGFyaWEtcm9sZWRlc2NyaXB0aW9uPSJmbG93Y2hhcnQtdjIiPjxzdHlsZT4jbXktc3Zne2ZvbnQtZmFtaWx5OkludGVyLFNlZ29lIFVJLEhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxNXB4O2ZpbGw6IzFkMjAyMTt9I215LXN2ZyAuZXJyb3ItaWNvbntmaWxsOiNmOGY5ZmE7fSNteS1zdmcgLmVycm9yLXRleHR7ZmlsbDojMDcwNjA1O3N0cm9rZTojMDcwNjA1O30jbXktc3ZnIC5lZGdlLXRoaWNrbmVzcy1ub3JtYWx7c3Ryb2tlLXdpZHRoOjJweDt9I215LXN2ZyAuZWRnZS10aGlja25lc3MtdGhpY2t7c3Ryb2tlLXdpZHRoOjMuNXB4O30jbXktc3ZnIC5lZGdlLXBhdHRlcm4tc29saWR7c3Ryb2tlLWRhc2hhcnJheTowO30jbXktc3ZnIC5lZGdlLXBhdHRlcm4tZGFzaGVke3N0cm9rZS1kYXNoYXJyYXk6Mzt9I215LXN2ZyAuZWRnZS1wYXR0ZXJuLWRvdHRlZHtzdHJva2UtZGFzaGFycmF5OjI7fSNteS1zdmcgLm1hcmtlcntmaWxsOiMyNjQ2NTM7c3Ryb2tlOiMyNjQ2NTM7fSNteS1zdmcgLm1hcmtlci5jcm9zc3tzdHJva2U6IzI2NDY1Mzt9I215LXN2ZyBzdmd7Zm9udC1mYW1pbHk6SW50ZXIsU2Vnb2UgVUksSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjE1cHg7fSNteS1zdmcgLmxhYmVse2ZvbnQtZmFtaWx5OkludGVyLFNlZ29lIFVJLEhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmO2NvbG9yOiMxZDIwMjE7fSNteS1zdmcgLmNsdXN0ZXItbGFiZWwgdGV4dHtmaWxsOiMxZDIwMjE7fSNteS1zdmcgLmNsdXN0ZXItbGFiZWwgc3BhbiwjbXktc3ZnIHB7Y29sb3I6IzFkMjAyMTt9I215LXN2ZyAubGFiZWwgdGV4dCwjbXktc3ZnIHNwYW4sI215LXN2ZyBwe2ZpbGw6IzFkMjAyMTtjb2xvcjojMWQyMDIxO30jbXktc3ZnIC5ub2RlIHJlY3QsI215LXN2ZyAubm9kZSBjaXJjbGUsI215LXN2ZyAubm9kZSBlbGxpcHNlLCNteS1zdmcgLm5vZGUgcG9seWdvbiwjbXktc3ZnIC5ub2RlIHBhdGh7ZmlsbDojZjRmMWRlO3N0cm9rZTojMjY0NjUzO3N0cm9rZS13aWR0aDoxcHg7fSNteS1zdmcgLmZsb3djaGFydC1sYWJlbCB0ZXh0e3RleHQtYW5jaG9yOm1pZGRsZTt9I215LXN2ZyAubm9kZSAua2F0ZXggcGF0aHtmaWxsOiMwMDA7c3Ryb2tlOiMwMDA7c3Ryb2tlLXdpZHRoOjFweDt9I215LXN2ZyAubm9kZSAubGFiZWx7dGV4dC1hbGlnbjpjZW50ZXI7fSNteS1zdmcgLm5vZGUuY2xpY2thYmxle2N1cnNvcjpwb2ludGVyO30jbXktc3ZnIC5hcnJvd2hlYWRQYXRoe2ZpbGw6IzAwMDAwMDt9I215LXN2ZyAuZWRnZVBhdGggLnBhdGh7c3Ryb2tlOiMyNjQ2NTM7c3Ryb2tlLXdpZHRoOjIuMHB4O30jbXktc3ZnIC5mbG93Y2hhcnQtbGlua3tzdHJva2U6IzI2NDY1MztmaWxsOm5vbmU7fSNteS1zdmcgLmVkZ2VMYWJlbHtiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7dGV4dC1hbGlnbjpjZW50ZXI7fSNteS1zdmcgLmVkZ2VMYWJlbCByZWN0e29wYWNpdHk6MC41O2JhY2tncm91bmQtY29sb3I6I2ZmZmZmZjtmaWxsOiNmZmZmZmY7fSNteS1zdmcgLmxhYmVsQmtne2JhY2tncm91bmQtY29sb3I6cmdiYSgyNTUsIDI1NSwgMjU1LCAwLjUpO30jbXktc3ZnIC5jbHVzdGVyIHJlY3R7ZmlsbDojZjhmOWZhO3N0cm9rZTojYWRiNWJkO3N0cm9rZS13aWR0aDoxcHg7fSNteS1zdmcgLmNsdXN0ZXIgdGV4dHtmaWxsOiMxZDIwMjE7fSNteS1zdmcgLmNsdXN0ZXIgc3BhbiwjbXktc3ZnIHB7Y29sb3I6IzFkMjAyMTt9I215LXN2ZyBkaXYubWVybWFpZFRvb2x0aXB7cG9zaXRpb246YWJzb2x1dGU7dGV4dC1hbGlnbjpjZW50ZXI7bWF4LXdpZHRoOjIwMHB4O3BhZGRpbmc6MnB4O2ZvbnQtZmFtaWx5OkludGVyLFNlZ29lIFVJLEhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMnB4O2JhY2tncm91bmQ6I2Y4ZjlmYTtib3JkZXI6MXB4IHNvbGlkIGhzbCgyMTAsIDAlLCA4Ny42NDcwNTg4MjM1JSk7Ym9yZGVyLXJhZGl1czoycHg7cG9pbnRlci1ldmVudHM6bm9uZTt6LWluZGV4OjEwMDt9I215LXN2ZyAuZmxvd2NoYXJ0VGl0bGVUZXh0e3RleHQtYW5jaG9yOm1pZGRsZTtmb250LXNpemU6MThweDtmaWxsOiMxZDIwMjE7fSNteS1zdmcgOnJvb3R7LS1tZXJtYWlkLWZvbnQtZmFtaWx5OiJ0cmVidWNoZXQgbXMiLHZlcmRhbmEsYXJpYWwsc2Fucy1zZXJpZjt9I215LXN2ZyAuZXZpZGVuY2VBcnQmZ3Q7KntmaWxsOnJnYigzOCwgNzAsIDgzKSFpbXBvcnRhbnQ7c3Ryb2tlOnJnYigyMSwgNDUsIDUxKSFpbXBvcnRhbnQ7Y29sb3I6cmdiKDI1NSwgMjU1LCAyNTUpIWltcG9ydGFudDt9I215LXN2ZyAuZXZpZGVuY2VBcnQgc3BhbntmaWxsOnJnYigzOCwgNzAsIDgzKSFpbXBvcnRhbnQ7c3Ryb2tlOnJnYigyMSwgNDUsIDUxKSFpbXBvcnRhbnQ7Y29sb3I6cmdiKDI1NSwgMjU1LCAyNTUpIWltcG9ydGFudDt9I215LXN2ZyAuZXZpZGVuY2VBcnQgdHNwYW57ZmlsbDpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC5leGNsdWRlZCZndDsqe2ZpbGw6cmdiKDEwOCwgMTE3LCAxMjUpIWltcG9ydGFudDtzdHJva2U6cmdiKDY1LCA3MiwgNzcpIWltcG9ydGFudDtjb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC5leGNsdWRlZCBzcGFue2ZpbGw6cmdiKDEwOCwgMTE3LCAxMjUpIWltcG9ydGFudDtzdHJva2U6cmdiKDY1LCA3MiwgNzcpIWltcG9ydGFudDtjb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSkhaW1wb3J0YW50O30jbXktc3ZnIC5leGNsdWRlZCB0c3BhbntmaWxsOnJnYigyNTUsIDI1NSwgMjU1KSFpbXBvcnRhbnQ7fTwvc3R5bGU+PGc+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1wb2ludEVuZCIgY2xhc3M9Im1hcmtlciBmbG93Y2hhcnQiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iNiIgcmVmWT0iNSIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBtYXJrZXJXaWR0aD0iMTIiIG1hcmtlckhlaWdodD0iMTIiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBjbGFzcz0iYXJyb3dNYXJrZXJQYXRoIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAxOyBzdHJva2UtZGFzaGFycmF5OiAxLCAwOyIvPjwvbWFya2VyPjxtYXJrZXIgaWQ9Im15LXN2Z19mbG93Y2hhcnQtcG9pbnRTdGFydCIgY2xhc3M9Im1hcmtlciBmbG93Y2hhcnQiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iNC41IiByZWZZPSI1IiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG1hcmtlcldpZHRoPSIxMiIgbWFya2VySGVpZ2h0PSIxMiIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNIDAgNSBMIDEwIDEwIEwgMTAgMCB6IiBjbGFzcz0iYXJyb3dNYXJrZXJQYXRoIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAxOyBzdHJva2UtZGFzaGFycmF5OiAxLCAwOyIvPjwvbWFya2VyPjxtYXJrZXIgaWQ9Im15LXN2Z19mbG93Y2hhcnQtY2lyY2xlRW5kIiBjbGFzcz0ibWFya2VyIGZsb3djaGFydCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSIxMSIgcmVmWT0iNSIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBtYXJrZXJXaWR0aD0iMTEiIG1hcmtlckhlaWdodD0iMTEiIG9yaWVudD0iYXV0byI+PGNpcmNsZSBjeD0iNSIgY3k9IjUiIHI9IjUiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDE7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1jaXJjbGVTdGFydCIgY2xhc3M9Im1hcmtlciBmbG93Y2hhcnQiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iLTEiIHJlZlk9IjUiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgbWFya2VyV2lkdGg9IjExIiBtYXJrZXJIZWlnaHQ9IjExIiBvcmllbnQ9ImF1dG8iPjxjaXJjbGUgY3g9IjUiIGN5PSI1IiByPSI1IiBjbGFzcz0iYXJyb3dNYXJrZXJQYXRoIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAxOyBzdHJva2UtZGFzaGFycmF5OiAxLCAwOyIvPjwvbWFya2VyPjxtYXJrZXIgaWQ9Im15LXN2Z19mbG93Y2hhcnQtY3Jvc3NFbmQiIGNsYXNzPSJtYXJrZXIgY3Jvc3MgZmxvd2NoYXJ0IiB2aWV3Qm94PSIwIDAgMTEgMTEiIHJlZlg9IjEyIiByZWZZPSI1LjIiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgbWFya2VyV2lkdGg9IjExIiBtYXJrZXJIZWlnaHQ9IjExIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0gMSwxIGwgOSw5IE0gMTAsMSBsIC05LDkiIGNsYXNzPSJhcnJvd01hcmtlclBhdGgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDI7IHN0cm9rZS1kYXNoYXJyYXk6IDEsIDA7Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibXktc3ZnX2Zsb3djaGFydC1jcm9zc1N0YXJ0IiBjbGFzcz0ibWFya2VyIGNyb3NzIGZsb3djaGFydCIgdmlld0JveD0iMCAwIDExIDExIiByZWZYPSItMSIgcmVmWT0iNS4yIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG1hcmtlcldpZHRoPSIxMSIgbWFya2VySGVpZ2h0PSIxMSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNIDEsMSBsIDksOSBNIDEwLDEgbCAtOSw5IiBjbGFzcz0iYXJyb3dNYXJrZXJQYXRoIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAyOyBzdHJva2UtZGFzaGFycmF5OiAxLCAwOyIvPjwvbWFya2VyPjxnIGNsYXNzPSJyb290Ij48ZyBjbGFzcz0iY2x1c3RlcnMiLz48ZyBjbGFzcz0iZWRnZVBhdGhzIj48cGF0aCBkPSJNMzUxLjMwMSw2OUwzNTEuMzAxLDczLjU4M0MzNTEuMzAxLDc4LjE2NywzNTEuMzAxLDg3LjMzMywzNTEuMzAxLDk1LjYxN0MzNTEuMzAxLDEwMy45LDM1MS4zMDEsMTExLjMsMzUxLjMwMSwxMTVMMzUxLjMwMSwxMTguNyIgaWQ9IkwtY2FwdHVyZS1oYXNoU3RlcC0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1jYXB0dXJlIExFLWhhc2hTdGVwIiBzdHlsZT0iZmlsbDpub25lOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjxwYXRoIGQ9Ik0yOTkuMDE4LDE1OUwyODUuMzI1LDE2My41ODNDMjcxLjYzMiwxNjguMTY3LDI0NC4yNDYsMTc3LjMzMywyMzAuNTUyLDE4NS42MTdDMjE2Ljg1OSwxOTMuOSwyMTYuODU5LDIwMS4zLDIxNi44NTksMjA1TDIxNi44NTksMjA4LjciIGlkPSJMLWhhc2hTdGVwLW1hbmlmZXN0LTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLWhhc2hTdGVwIExFLW1hbmlmZXN0IiBzdHlsZT0iZmlsbDpub25lOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjxwYXRoIGQ9Ik00MDMuNTg0LDE1OUw0MTcuMjc3LDE2My41ODNDNDMwLjk3LDE2OC4xNjcsNDU4LjM1NiwxNzcuMzMzLDQ3Mi4wNDksMTg1LjYxN0M0ODUuNzQyLDE5My45LDQ4NS43NDIsMjAxLjMsNDg1Ljc0MiwyMDVMNDg1Ljc0MiwyMDguNyIgaWQ9IkwtaGFzaFN0ZXAtbmV0TWFuaWZlc3QtMCIgY2xhc3M9ImVkZ2UtdGhpY2tuZXNzLW5vcm1hbCBlZGdlLXBhdHRlcm4tc29saWQgZmxvd2NoYXJ0LWxpbmsgTFMtaGFzaFN0ZXAgTEUtbmV0TWFuaWZlc3QiIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTIxNi44NTksMjY2TDIxNi44NTksMjcwLjU4M0MyMTYuODU5LDI3NS4xNjcsMjE2Ljg1OSwyODQuMzMzLDIyNy41NTYsMjkzLjE3M0MyMzguMjUzLDMwMi4wMTMsMjU5LjY0NywzMTAuNTI3LDI3MC4zNDQsMzE0Ljc4NEwyODEuMDQsMzE5LjA0IiBpZD0iTC1tYW5pZmVzdC1yZXBvVHJlZS0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1tYW5pZmVzdCBMRS1yZXBvVHJlZSIgc3R5bGU9ImZpbGw6bm9uZTsiIG1hcmtlci1lbmQ9InVybCgjbXktc3ZnX2Zsb3djaGFydC1wb2ludEVuZCkiLz48cGF0aCBkPSJNNDg1Ljc0MiwyNjZMNDg1Ljc0MiwyNzAuNTgzQzQ4NS43NDIsMjc1LjE2Nyw0ODUuNzQyLDI4NC4zMzMsNDc1LjA0NSwyOTMuMTczQzQ2NC4zNDksMzAyLjAxMyw0NDIuOTU1LDMxMC41MjcsNDMyLjI1OCwzMTQuNzg0TDQyMS41NjEsMzE5LjA0IiBpZD0iTC1uZXRNYW5pZmVzdC1yZXBvVHJlZS0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1uZXRNYW5pZmVzdCBMRS1yZXBvVHJlZSIgc3R5bGU9ImZpbGw6bm9uZTsiIG1hcmtlci1lbmQ9InVybCgjbXktc3ZnX2Zsb3djaGFydC1wb2ludEVuZCkiLz48cGF0aCBkPSJNMjUzLjA2NiwzNjguMDc5TDIyNy44ODUsMzczLjQ4M0MyMDIuNzAzLDM3OC44ODYsMTUyLjM0LDM4OS42OTMsMTI3LjE1OCwzOTguNzk3QzEwMS45NzcsNDA3LjksMTAxLjk3Nyw0MTUuMywxMDEuOTc3LDQxOUwxMDEuOTc3LDQyMi43IiBpZD0iTC1yZXBvVHJlZS1jaUNoZWNrLTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLXJlcG9UcmVlIExFLWNpQ2hlY2siIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTEwMS45NzcsNDk3TDEwMS45NzcsNTAxLjU4M0MxMDEuOTc3LDUwNi4xNjcsMTAxLjk3Nyw1MTUuMzMzLDEwMS45NzcsNTIzLjYxN0MxMDEuOTc3LDUzMS45LDEwMS45NzcsNTM5LjMsMTAxLjk3Nyw1NDNMMTAxLjk3Nyw1NDYuNyIgaWQ9IkwtY2lDaGVjay1mYWlsQ2xvc2VkLTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLWNpQ2hlY2sgTEUtZmFpbENsb3NlZCIgc3R5bGU9ImZpbGw6bm9uZTsiIG1hcmtlci1lbmQ9InVybCgjbXktc3ZnX2Zsb3djaGFydC1wb2ludEVuZCkiLz48cGF0aCBkPSJNNDE4LjM3MiwzNzNMNDMwLjE5NSwzNzcuNTgzQzQ0Mi4wMTksMzgyLjE2Nyw0NjUuNjY2LDM5MS4zMzMsNDc3LjQ4OSwzOTkuNjE3QzQ4OS4zMTMsNDA3LjksNDg5LjMxMyw0MTUuMyw0ODkuMzEzLDQxOUw0ODkuMzEzLDQyMi43IiBpZD0iTC1yZXBvVHJlZS1vZmZzaXRlLTAiIGNsYXNzPSJlZGdlLXRoaWNrbmVzcy1ub3JtYWwgZWRnZS1wYXR0ZXJuLXNvbGlkIGZsb3djaGFydC1saW5rIExTLXJlcG9UcmVlIExFLW9mZnNpdGUiIHN0eWxlPSJmaWxsOm5vbmU7IiBtYXJrZXItZW5kPSJ1cmwoI215LXN2Z19mbG93Y2hhcnQtcG9pbnRFbmQpIi8+PHBhdGggZD0iTTQxNy4zNTIsNDk3TDQwNy43OTIsNTAxLjU4M0MzOTguMjMyLDUwNi4xNjcsMzc5LjExMiw1MTUuMzMzLDM2OS41NTIsNTI1LjAzM0MzNTkuOTkyLDUzNC43MzMsMzU5Ljk5Miw1NDQuOTY3LDM1OS45OTIsNTUwLjA4M0wzNTkuOTkyLDU1NS4yIiBpZD0iTC1vZmZzaXRlLXdlZWtseS0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1zb2xpZCBmbG93Y2hhcnQtbGluayBMUy1vZmZzaXRlIExFLXdlZWtseSIgc3R5bGU9ImZpbGw6bm9uZTsiIG1hcmtlci1lbmQ9InVybCgjbXktc3ZnX2Zsb3djaGFydC1wb2ludEVuZCkiLz48cGF0aCBkPSJNNTYxLjI3Myw0OTdMNTcwLjgzMyw1MDEuNTgzQzU4MC4zOTMsNTA2LjE2Nyw1OTkuNTEzLDUxNS4zMzMsNjA5LjA3Myw1MjUuMDMzQzYxOC42MzMsNTM0LjczMyw2MTguNjMzLDU0NC45NjcsNjE4LjYzMyw1NTAuMDgzTDYxOC42MzMsNTU1LjIiIGlkPSJMLW9mZnNpdGUta2V5Umlzay0wIiBjbGFzcz0iZWRnZS10aGlja25lc3Mtbm9ybWFsIGVkZ2UtcGF0dGVybi1kb3R0ZWQgZmxvd2NoYXJ0LWxpbmsgTFMtb2Zmc2l0ZSBMRS1rZXlSaXNrIiBzdHlsZT0iZmlsbDpub25lO3N0cm9rZS13aWR0aDoycHg7c3Ryb2tlLWRhc2hhcnJheTozOyIgbWFya2VyLWVuZD0idXJsKCNteS1zdmdfZmxvd2NoYXJ0LXBvaW50RW5kKSIvPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVscyI+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIGNsYXNzPSJsYWJlbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIGNsYXNzPSJsYWJlbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0iZWRnZUxhYmVsIj48ZyBjbGFzcz0ibGFiZWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMCIgaGVpZ2h0PSIwIj48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9ImVkZ2VMYWJlbCI+PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJlZGdlTGFiZWwiPjxnIGNsYXNzPSJsYWJlbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjAiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0iZWRnZUxhYmVsIj48L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9ImVkZ2VMYWJlbCI+PGcgY2xhc3M9ImxhYmVsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjAiIGhlaWdodD0iMCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJlZGdlTGFiZWwiPjwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48L2c+PGcgY2xhc3M9Im5vZGVzIj48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IGV2aWRlbmNlQXJ0IGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC1jYXB0dXJlLTAiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0iY2FwdHVyZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzUxLjMwMDc4MTI1LCAzNC41KSI+PHJlY3QgY2xhc3M9ImJhc2ljIGxhYmVsLWNvbnRhaW5lciIgc3R5bGU9IiIgcng9IjAiIHJ5PSIwIiB4PSItMTA1LjcxODc1IiB5PSItMzQuNSIgd2lkdGg9IjIxMS40Mzc1IiBoZWlnaHQ9IjY5Ii8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtOTYuNzE4NzUsIC0yNS41KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIxOTMuNDM3NSIgaGVpZ2h0PSI1MSI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPkNhcHR1cmU8YnIgLz5wdWJsaWMgcGFnZXMsIHNjcmVlbnNob3RzLDxiciAvPnBsYXRmb3JtIHRyYW5zcGFyZW5jeSBwYW5lbHM8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCBldmlkZW5jZUFydCBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQtaGFzaFN0ZXAtMSIgZGF0YS1ub2RlPSJ0cnVlIiBkYXRhLWlkPSJoYXNoU3RlcCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzUxLjMwMDc4MTI1LCAxNDEuNSkiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTEwNi41NjI1IiB5PSItMTcuNSIgd2lkdGg9IjIxMy4xMjUiIGhlaWdodD0iMzUiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05Ny41NjI1LCAtOC41KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIxOTUuMTI1IiBoZWlnaHQ9IjE3Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+U0hBLTI1NiByZWNvcmRlZCBhdCBjYXB0dXJlPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgZXZpZGVuY2VBcnQgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LW1hbmlmZXN0LTIiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0ibWFuaWZlc3QiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIxNi44NTkzNzUsIDI0MCkiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTg1LjI4MTI1IiB5PSItMjYiIHdpZHRoPSIxNzAuNTYyNSIgaGVpZ2h0PSI1MiIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTc2LjI4MTI1LCAtMTcpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjE1Mi41NjI1IiBoZWlnaHQ9IjM0Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+TUFOSUZFU1QuY3N2PGJyIC8+dGhlIG1hbmlmZXN0IENJIHZlcmlmaWVzPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgZXZpZGVuY2VBcnQgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LW5ldE1hbmlmZXN0LTMiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0ibmV0TWFuaWZlc3QiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ4NS43NDIxODc1LCAyNDApIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii0xMzguNjAxNTYyNSIgeT0iLTI2IiB3aWR0aD0iMjc3LjIwMzEyNSIgaGVpZ2h0PSI1MiIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEyOS42MDE1NjI1LCAtMTcpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjI1OS4yMDMxMjUiIGhlaWdodD0iMzQiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5ORVRXT1JLX0NBUFRVUkVfTUFOSUZFU1QudHh0PGJyIC8+c2l0ZSBjYXB0dXJlczwvc3Bhbj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PC9nPjwvZz48ZyBjbGFzcz0ibm9kZSBkZWZhdWx0IGV2aWRlbmNlQXJ0IGZsb3djaGFydC1sYWJlbCIgaWQ9ImZsb3djaGFydC1yZXBvVHJlZS00IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9InJlcG9UcmVlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNTEuMzAwNzgxMjUsIDM0NykiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTk4LjIzNDM3NSIgeT0iLTI2IiB3aWR0aD0iMTk2LjQ2ODc1IiBoZWlnaHQ9IjUyIi8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtODkuMjM0Mzc1LCAtMTcpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjE3OC40Njg3NSIgaGVpZ2h0PSIzNCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPkFwcGVuZC1vbmx5IGV2aWRlbmNlIHRyZWU8YnIgLz4zMDUgdmVyc2lvbi1jb250cm9sbGVkIGZpbGVzPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgZXZpZGVuY2VBcnQgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LWNpQ2hlY2stNSIgZGF0YS1ub2RlPSJ0cnVlIiBkYXRhLWlkPSJjaUNoZWNrIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMDEuOTc2NTYyNSwgNDYyLjUpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii0xMDEuOTc2NTYyNSIgeT0iLTM0LjUiIHdpZHRoPSIyMDMuOTUzMTI1IiBoZWlnaHQ9IjY5Ii8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtOTIuOTc2NTYyNSwgLTI1LjUpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjE4NS45NTMxMjUiIGhlaWdodD0iNTEiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij48c3BhbiBjbGFzcz0ibm9kZUxhYmVsIj5ldmlkZW5jZS1pbnRlZ3JpdHkueW1sPGJyIC8+cnVucyBvbiBldmVyeSBwdXNoIGFuZCBQUiw8YnIgLz5wbHVzIGEgd2Vla2x5IGRyaWZ0IGNoZWNrPC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjxnIGNsYXNzPSJub2RlIGRlZmF1bHQgZXZpZGVuY2VBcnQgZmxvd2NoYXJ0LWxhYmVsIiBpZD0iZmxvd2NoYXJ0LWZhaWxDbG9zZWQtNiIgZGF0YS1ub2RlPSJ0cnVlIiBkYXRhLWlkPSJmYWlsQ2xvc2VkIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMDEuOTc2NTYyNSwgNTg2LjUpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii05NS4yODkwNjI1IiB5PSItMzQuNSIgd2lkdGg9IjE5MC41NzgxMjUiIGhlaWdodD0iNjkiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC04Ni4yODkwNjI1LCAtMjUuNSkiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMTcyLjU3ODEyNSIgaGVpZ2h0PSI1MSI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPkZhaWxzIGNsb3NlZDxiciAvPm1pc3NpbmcgZmlsZSwgYWx0ZXJlZCBieXRlcyw8YnIgLz5vciBhbiB1bmxpc3RlZCBleGVtcHRpb248L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCBldmlkZW5jZUFydCBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQtb2Zmc2l0ZS03IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9Im9mZnNpdGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ4OS4zMTI1LCA0NjIuNSkiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTEyOS4wNDY4NzUiIHk9Ii0zNC41IiB3aWR0aD0iMjU4LjA5Mzc1IiBoZWlnaHQ9IjY5Ii8+PGcgY2xhc3M9ImxhYmVsIiBzdHlsZT0iIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTIwLjA0Njg3NSwgLTI1LjUpIj48cmVjdC8+PGZvcmVpZ25PYmplY3Qgd2lkdGg9IjI0MC4wOTM3NSIgaGVpZ2h0PSI1MSI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPkJhY2tibGF6ZSBCMiwgYWdlLWVuY3J5cHRlZDxiciAvPk9iamVjdCBMb2NrIGluIENPTVBMSUFOQ0UgbW9kZTxiciAvPnJldGFpbmVkIHRvIDIwMjctMDgtMjU8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCBldmlkZW5jZUFydCBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQtd2Vla2x5LTgiIGRhdGEtbm9kZT0idHJ1ZSIgZGF0YS1pZD0id2Vla2x5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNTkuOTkyMTg3NSwgNTg2LjUpIj48cmVjdCBjbGFzcz0iYmFzaWMgbGFiZWwtY29udGFpbmVyIiBzdHlsZT0iIiByeD0iMCIgcnk9IjAiIHg9Ii05OS43MTg3NSIgeT0iLTI2IiB3aWR0aD0iMTk5LjQzNzUiIGhlaWdodD0iNTIiLz48ZyBjbGFzcz0ibGFiZWwiIHN0eWxlPSIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05MC43MTg3NSwgLTE3KSI+PHJlY3QvPjxmb3JlaWduT2JqZWN0IHdpZHRoPSIxODEuNDM3NSIgaGVpZ2h0PSIzNCI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPjxzcGFuIGNsYXNzPSJub2RlTGFiZWwiPldlZWtseSB3b3JrZmxvdyByZS12ZXJpZmllczxiciAvPmV2ZXJ5IHN0b3JlZCBvYmplY3Q8L3NwYW4+PC9kaXY+PC9mb3JlaWduT2JqZWN0PjwvZz48L2c+PGcgY2xhc3M9Im5vZGUgZGVmYXVsdCBleGNsdWRlZCBmbG93Y2hhcnQtbGFiZWwiIGlkPSJmbG93Y2hhcnQta2V5Umlzay05IiBkYXRhLW5vZGU9InRydWUiIGRhdGEtaWQ9ImtleVJpc2siIHRyYW5zZm9ybT0idHJhbnNsYXRlKDYxOC42MzI4MTI1LCA1ODYuNSkiPjxyZWN0IGNsYXNzPSJiYXNpYyBsYWJlbC1jb250YWluZXIiIHN0eWxlPSIiIHJ4PSIwIiByeT0iMCIgeD0iLTExMy45MjE4NzUiIHk9Ii0yNiIgd2lkdGg9IjIyNy44NDM3NSIgaGVpZ2h0PSI1MiIvPjxnIGNsYXNzPSJsYWJlbCIgc3R5bGU9IiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEwNC45MjE4NzUsIC0xNykiPjxyZWN0Lz48Zm9yZWlnbk9iamVjdCB3aWR0aD0iMjA5Ljg0Mzc1IiBoZWlnaHQ9IjM0Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+PHNwYW4gY2xhc3M9Im5vZGVMYWJlbCI+T1BFTiBERVBFTkRFTkNZPGJyIC8+b2ZmbGluZSBlc2Nyb3cgb2YgdGhlIHByaXZhdGUga2V5PC9zcGFuPjwvZGl2PjwvZm9yZWlnbk9iamVjdD48L2c+PC9nPjwvZz48L2c+PC9nPjwvc3ZnPg==" alt="diagram" /></p>
+<p><strong>The specifics.</strong></p>
+<ul>
+<li><strong>305 files</strong> are under version control in the evidence
+tree. <code>MANIFEST.csv</code> carries the SHA-256 and byte count for
+the collected corpus; site captures are hashed separately in
+<code>NETWORK_CAPTURE_MANIFEST.txt</code>.</li>
+<li><strong>The tree is append-only.</strong> Captured artifacts, site
+captures, images, session logs, and message exports are never edited and
+never renamed. When a filename arrived untidy it was kept as it arrived,
+because renaming it to look neater is the kind of silent alteration the
+rule exists to prevent (Z-29).</li>
+<li><strong>CI verifies the manifest on every push</strong> and on every
+pull request touching the evidence tree, plus a weekly scheduled drift
+check. It fails closed. A manifest entry with no file on disk is an
+integrity failure unless it appears in a hardcoded allowlist, and that
+allowlist is deliberately not derived from the ignore rules, since
+deriving it would let a change authorize its own exemption.</li>
+<li><strong>The most recent full verification run</strong> reported 141
+files verified exact, 1 expected-absent, 0 missing, 0 mismatched,
+replicated locally before commit (Z-27). Two source artifacts previously
+hashed only in a point-in-time snapshot were brought under continuous
+verification then (Z-27), and the solicitation screenshot followed
+(Z-29).</li>
+<li><strong>Off-site duplication is done.</strong> The full corpus plus
+three large originals that exceed practical repository size live in
+Backblaze B2, age-encrypted, under <strong>Object Lock in COMPLIANCE
+mode retained until 2027-08-25</strong>. Compliance mode cannot be
+bypassed by any credential, including the account owner and the
+provider&#39;s own support. The upload key deliberately lacks delete,
+bypass, and retention-write capabilities; a delete attempt against the
+stored archive returns 401 unauthorized. A scheduled workflow
+re-verifies every stored object weekly (HANDOFF AMENDMENT 1 A3 item
+19).</li>
+<li><strong>The honest weakness.</strong> The archive&#39;s private key
+currently exists in two online locations controlled by one person.
+Offline escrow is an open dependency and is recorded as one (HANDOFF
+AMENDMENT 1 A3 item 19).</li>
+<li><strong>One integrity nuance, stated plainly.</strong> Two large
+session logs were hashed at one moment and kept appending afterward, so
+their whole-file hashes no longer match the values recorded earlier.
+Those hashes still match the files&#39; byte prefixes exactly, verified at
+archive time: the growth is pure append and nothing was modified in
+place (HANDOFF section 8).</li>
+</ul>
+<hr />
+<h2 id="10-contamination-controls-and-one-disclosure-we-would-rather-make-than-have-you-find">10.
+Contamination controls, and one disclosure we would rather make than
+have you find</h2>
+<p><strong>Standing procedure since 8/24</strong> (HANDOFF section 2c):
+no form population, no cart creation, no checkout interaction, no login
+attempt, and no message sending against any surface in this case.
+Retrieval is limited to reading publicly served pages. The published
+demo credentials at <code>safepup-delivery.com</code> <strong>were not
+used and must not be</strong>; accessing that panel would be
+unauthorized access regardless of how the credentials were obtained
+(T-1). Every contact with an operation surface is logged, dated, and
+classified, and the classification set separates what the investigation
+sent <strong>to</strong> the operation from what the operation sent
+<strong>to</strong> the investigator. Those are opposite things
+evidentially: the first is investigator conduct a defence can attack,
+the second is operator conduct that supports the case (INTERACTION_LOG
+Amendment 2.1).</p>
+<p><strong>The disclosure.</strong> One interaction cannot be cleanly
+classified, and rather than leave a self-contradiction in the record it
+is classified conservatively and stated openly (HANDOFF AMENDMENT 1
+A4):</p>
+<blockquote>
+<p>The <code>banbestmk.click</code> checkout interaction of
+approximately 8/24 is classified <strong>ACTIVE-OUT</strong>. A form was
+populated with placeholder identity data and a cart API was contacted.
+<strong>Whether this was performed manually by the investigator, by
+browser autofill, or by an automation tool was not recorded and is not
+recoverable.</strong> No payment instrument was entered and no order was
+placed. The conservative classification is used because the evidence
+does not support the narrower one.</p>
+</blockquote>
+<p>The canonical class token is <code>ACTIVE-OUT</code>; an earlier
+descriptive phrase, &quot;ACTIVE SUBMISSION&quot;, is prose and not a class
+(Z-25). This wording should travel with any filing that relies on the
+checkout material, because it is materially better to disclose an
+unrecorded mechanism than to have opposing counsel discover the
+contradiction unaided (HANDOFF AMENDMENT 1 A4).</p>
+<p><strong>Six of nine interaction-log entries are marked
+UNRESOLVED.</strong> That is an uncomfortable number and it is the
+honest one, reflecting that the log was reconstructed after the fact
+rather than kept contemporaneously (INTERACTION_LOG Amendment 3.1). The
+governing rule: an unresolved fact must be <strong>reviewed</strong>
+before filing, never necessarily <strong>completed</strong>. Where it is
+recoverable, record it; where it is not, the honest answer is final and
+ships as-is, because guessing to close a field damages the record
+(INTERACTION_LOG Amendment 3.4).</p>
+<p><strong>One further disclosure, recorded because it belongs on the
+record.</strong> A payment to the solicited account was
+<strong>contemplated and not made</strong>. The investigator considered
+remitting funds to create a traceable transaction and did not do it,
+logged so that any later reader finding the account details in the
+private file can establish that no investigator funds entered that
+account (INTERACTION_LOG Amendment 1).</p>
+<hr />
+<h2 id="11-required-disclosure-the-investigator-is-not-a-neutral-third-party">11.
+Required disclosure: the investigator is not a neutral third party</h2>
+<p><strong>The compiler of this file is personally acquainted with one
+of the named complainants, who forwarded the initial material. Which
+complainant is not stated here and is not derivable from anything
+published in this corpus. All infrastructure findings are independently
+verifiable from the captures and hashes provided (Y-2).</strong></p>
+<p>This is stated early and plainly because concealing it would be the
+problem, not the relationship itself. Fraud referrals routinely
+originate from someone connected to a victim, and an analyst who
+discovers an undisclosed relationship discounts everything around it
+(Y-2). It also explains why a forensic file of this size exists over a
+puppy deposit, which is otherwise the first question an analyst asks
+(Y-2). The mapping between Complainant A, B, and C and their real
+identities is held only in the private law-enforcement package, and no
+public document in this corpus attaches the forwarding to a letter
+(REDACTION_CONTRACT sections 3 and 3a).</p>
+<p><strong>On the complainants generally.</strong> All three consented
+to public attribution (Y-6), and version 1 of this public corpus does
+not use their names anyway. The reasoning is recorded: consent given in
+the first flush of anger about losing money is real, but it is given
+without much sense of what it feels like to be a searchable result
+attached to &quot;puppy scam victim&quot; for years. Pseudonymity is reversible on
+their say-so; publication is not (Y-6, REDACTION_CONTRACT section 3).
+Whether two of the three represent one household or two separate loss
+events is an open intake question, and it changes the count (Y-1). The
+referral package that goes to IC3 and to the platforms is
+<strong>unredacted</strong>; consent was never the constraint there
+(Y-6b).</p>
+<hr />
+<h2 id="12-what-we-are-asking-you-to-do-ranked-time-critical-first">12.
+What we are asking you to do, ranked, time-critical first</h2>
+<h3 id="tier-1-clocks-are-already-running">Tier 1: clocks are already
+running</h3>
+<ol type="1">
+<li><p><strong>Get the transfer dates from each complainant.</strong>
+This is the single most urgent missing field in the entire case (Z-5,
+Z-6, Z-17). It determines whether the FBI Recovery Asset Team can
+attempt a freeze through the Financial Fraud Kill Chain, which is
+strongly time-dependent and works best within roughly 72 hours of the
+transfer (Z-5). Without dates this is purely evidentiary. The Recovery
+Asset Team pathway applies to qualifying domestic transfers and wire
+recalls and is <strong>not</strong> a universal remedy across app-based
+rails (Z-20).</p></li>
+<li><p><strong>Tell each complainant to contact their own bank or
+payment provider now, ahead of everything else.</strong> This is the
+fastest lever a victim personally controls, it runs on the sending
+institution&#39;s clock rather than on IC3&#39;s, and the sending institution
+acts on its own customer&#39;s instruction without needing legal process
+(Z-16). It is rail-specific (Z-20):</p>
+<table>
+<thead>
+<tr class="header">
+<th>Rail</th>
+<th>First action by the victim</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ACH or wire</td>
+<td>Originating bank fraud team, request recall or reversal</td>
+</tr>
+<tr class="even">
+<td>Zelle, Cash App, Apple Pay, Chime</td>
+<td>The provider&#39;s fraud team; ask <strong>which</strong> recovery
+process applies, as dispute rights differ sharply and several are not
+reversible</td>
+</tr>
+<tr class="odd">
+<td>Card</td>
+<td>Issuer chargeback</td>
+</tr>
+<tr class="even">
+<td>Gift card</td>
+<td>The card issuer&#39;s fraud line immediately; some balances can be
+frozen if unspent</td>
+</tr>
+<tr class="odd">
+<td>Cryptocurrency</td>
+<td>The exchange or wallet provider; report the receiving address</td>
+</tr>
+</tbody>
+</table>
+<p>In every case, ask which process applies and <strong>record the
+provider&#39;s reference or case number</strong>. It is useful supporting
+detail, not an IC3 requirement (Z-20).</p></li>
+<li><p><strong>Serve or contact Lead Bank.</strong> As the chartered
+institution it can freeze, can file a SAR, and can identify which of its
+programs holds the account (Z-5). Ask one narrow, answerable question
+alongside the report: <strong>which fintech program sponsored this
+account?</strong> That identifies the platform that onboarded the holder
+and holds the KYC documents (Z-5). A civilian report to the bank
+requires no standing; a subscriber-record request requires you.</p></li>
+<li><p><strong>Meta preservation, which requires law enforcement
+process.</strong> Privacy settings do not delete underlying records
+(HANDOFF section 5, item 6). Preservation is requested on page
+<strong>1179239581941044</strong> (the soliciting page, N-1, Z-7),
+profile <strong>100022087874969</strong>, and the suspected successor
+account (HANDOFF section 5, items 4 and 6). The network is
+<strong>actively hardening</strong>: friend and group lists were locked
+down during this investigation, and the solicitation gives the operators
+a fresh reason to clean up (X-2, Z-11). <strong>TikTok
+preservation</strong> likewise requires your process, on handles
+<code>@meyouqpbokz</code> and <code>@herman.walker90</code>; a third
+account in the same set has already been removed (HANDOFF section 5,
+item 5).</p></li>
+<li><p><strong>The Meta &quot;Download Your Information&quot; export of the
+solicitation thread.</strong> It is materially stronger than the
+screenshot because it carries Meta&#39;s own timestamps and message IDs
+rather than a rendering of them (Z-15). Until it lands, the
+operational-tempo findings in section 5 remain <span class="tok tok-provisional">PROVISIONAL</span> (Z-14, Z-29).
+Each complainant should likewise export their own thread today; if the
+operator blocks or deletes, the payment instructions in the operator&#39;s
+own words are gone permanently (Y-3).</p></li>
+</ol>
+<h3 id="tier-2-high-yield-no-clock-but-no-reason-to-wait">Tier 2: high
+yield, no clock but no reason to wait</h3>
+<ol start="6" type="1">
+<li><p><strong>Shopify.</strong> Report shop ID
+<strong>77509984484</strong> with the storefront-to-checkout redirect as
+evidence. Payment processors retain historical merchant-to-domain
+mappings, so this can potentially enumerate <strong>every storefront
+funnelling into that account</strong> (A3g). One terminology note your
+analysts will want: a Shopify shop ID is not a Merchant ID. It
+identifies the store account receiving funds, where a MID would identify
+the acquiring relationship, and only the shop ID has been recovered
+(A3g).</p></li>
+<li><p><strong>Each complainant files their own IC3 complaint and
+records the number.</strong> Third-party reports triage down.
+Victim-filed complaints receive a number and IC3 clusters related
+numbers on its own side. <strong>Three linked complaint numbers plus
+this file is a materially different submission from one civilian report
+about three people</strong> (Y-3).</p></li>
+<li><p><strong>Obtain the live-chat provider&#39;s written retention
+statement.</strong> Property <code>6a68d4d16e813a1d4d6629ee</code> was
+reported and the account preserved and terminated. Termination ends the
+live channel; <strong>what was retained from before termination is
+unknown</strong> and must be established in writing. Ask what data was
+preserved, covering what date range, under what retention policy, and
+for how long it will be held (HANDOFF AMENDMENT 1 A3 item 10, AMENDMENT
+2 B1). Victim chat transcripts would be in it.</p></li>
+<li><p><strong>Hostinger abuse</strong>, one registrar and host covering
+an entire cluster of these domains, a single desk with unusual reach
+(HANDOFF section 7, R-1). <strong>German authorities</strong>, on the
+missing Impressum and the false EU-establishment claim, a standalone
+violation requiring no proof of fraud, plus a separate German-language
+victim surface (T-5, S-4). <strong>FDA</strong>, on the peptide
+vertical, independent of the pet fraud (HANDOFF section 7,
+V-3).</p></li>
+</ol>
+<h3 id="tier-3-what-would-strengthen-the-file-most">Tier 3: what would
+strengthen the file most</h3>
+<ol start="10" type="1">
+<li><p><strong>Which victim sent money to which account.</strong> If a
+complainant&#39;s records show payment to the solicited account, that is
+materially stronger than either fact alone, because it links the
+solicitation channel to completed money movement (Z-12). If they show
+payment elsewhere, that is also a finding: a second receiving account
+would establish a <strong>mule network</strong> rather than a single
+receiver (Z-6).</p></li>
+<li><p><strong>The operator&#39;s own message directing a victim to an
+account.</strong> The account details alone show where funds went; the
+operator&#39;s instruction is what ties the account to the fraud (Z-6).
+Preserve that message before anything else.</p></li>
+<li><p><strong>A file-hash comparison</strong> between the profile image
+now on page <code>1179239581941044</code> and the image captured on
+8/24. If they match, the page carried the same stolen photograph from 13
+August through the solicitation. <strong>This is a hash comparison
+against an existing capture, not a comparison of faces</strong>; face
+matching is forbidden under this investigation&#39;s standing rules (Z-8,
+HANDOFF section 2b).</p></li>
+</ol>
+<hr />
+<h2 id="13-how-to-disprove-this">13. How to disprove this</h2>
+<p>Every finding in section 6 is independently reproducible from the
+captures and hashes provided, and each has a stated failure
+condition.</p>
+<ul>
+<li>If the demo credential string is absent from the captured file,
+finding 1 fails. It survives in the capture even if the live page is
+fixed (T-1).</li>
+<li>If the stolen-photo upload paths decode to timestamps after the
+domain registration, finding 3 fails. They do not (U-4, R-1).</li>
+<li>If the persona names do not recur across the domains named, finding
+5 fails. They recur four times across three domains on two hosting
+stacks (Q-5, S-3).</li>
+<li>If RDAP returns registration dates inconsistent with the timeline,
+finding 8 fails. RDAP and DNS are registry-attested, not user-editable
+narrative (R-1).</li>
+</ul>
+<p>And the standing caution, restated once because it is the sentence
+most likely to be dropped in a summary: <strong>it is not established
+that any victim paid the account described in section 1</strong> (Z-12,
+Z-18).</p>
+<p><strong>If you take one thing from this brief.</strong> The parts of
+this case that survived scrutiny are the parts already captured and
+hashed on disk, and they do not depend on any account staying visible.
+The parts that kept failing are the ones that tried to link operators
+through shared infrastructure (HANDOFF section 9). Open-source
+collection has reached its ceiling: <strong>who controls the accounts,
+who receives the money, and whose numbers these are were never
+answerable from outside</strong> (HANDOFF section 9). Those questions
+are answerable with subscriber records, bank process, and platform
+preservation, and every one of those requires you. The door that was
+open is closing, and three domains named in this file are already gone
+from the registry (R-2).</p>
+</body>
+</html>
