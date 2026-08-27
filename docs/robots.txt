@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://legioncodeinc.github.io/wiener-gate-public/sitemap.xml

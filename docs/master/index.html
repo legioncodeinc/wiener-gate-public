@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>MASTER BRIEF</title>
+  <title>The master brief | Wiener Gate</title>
   <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,6 +101,17 @@ margin: 20mm 18mm 22mm 18mm;
 --evidence: #264653;
 --money: #e9c46a;
 --sand: #f4f1de;
+--verified: #3ddc97;
+
+--page: #ffffff;
+--surface: #fcfcfd;
+--stripe: #fafbfc;
+--code-bg: #f1f3f5;
+--code-ink: #922b21;
+--pre-bg: #f8f9fa;
+--quote-bg: #fff8e6;
+--quote-ink: #4a4030;
+--strong-ink: #0f1112;
 }
 html { font-size: 11pt; }
 body {
@@ -110,7 +121,7 @@ line-height: 1.55;
 max-width: 44rem;
 margin: 0 auto;
 padding: 2rem 1.25rem 4rem;
-background: #fff;
+background: var(--page);
 -webkit-font-smoothing: antialiased;
 }
 
@@ -143,7 +154,7 @@ height: auto;
 figure {
 margin: 1.9em 0;
 padding: 1.1em;
-background: #fcfcfd;
+background: var(--surface);
 border: 1px solid var(--rule);
 border-radius: 6px;
 text-align: center;
@@ -157,7 +168,7 @@ font-style: italic; text-align: center;
 p:has(> img:only-child) {
 break-inside: avoid; page-break-inside: avoid;
 text-align: center; margin: 1.9em 0; padding: 1.1em;
-background: #fcfcfd; border: 1px solid var(--rule); border-radius: 6px;
+background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
 }
 
 table {
@@ -172,15 +183,15 @@ padding: .55em .7em; font-weight: 600; font-size: .84rem;
 letter-spacing: .012em;
 }
 td { padding: .5em .7em; border-bottom: 1px solid var(--rule); vertical-align: top; }
-tbody tr:nth-child(even) { background: #fafbfc; }
+tbody tr:nth-child(even) { background: var(--stripe); }
 
 code {
 font-family: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
-font-size: .87em; background: #f1f3f5; padding: .13em .38em;
-border-radius: 3px; color: #922b21;
+font-size: .87em; background: var(--code-bg); padding: .13em .38em;
+border-radius: 3px; color: var(--code-ink);
 }
 pre {
-background: #f8f9fa; border: 1px solid var(--rule); border-left: 4px solid var(--evidence);
+background: var(--pre-bg); border: 1px solid var(--rule); border-left: 4px solid var(--evidence);
 border-radius: 4px; padding: .9em 1.1em; overflow-x: auto;
 font-size: .82rem; line-height: 1.45; break-inside: avoid;
 }
@@ -188,11 +199,11 @@ pre code { background: none; padding: 0; color: var(--ink); }
 
 blockquote {
 margin: 1.4em 0; padding: .8em 1.1em;
-background: #fff8e6; border-left: 4px solid var(--money);
-border-radius: 0 4px 4px 0; color: #4a4030; break-inside: avoid;
+background: var(--quote-bg); border-left: 4px solid var(--money);
+border-radius: 0 4px 4px 0; color: var(--quote-ink); break-inside: avoid;
 }
 blockquote p:last-child { margin-bottom: 0; }
-strong { font-weight: 660; color: #0f1112; }
+strong { font-weight: 660; color: var(--strong-ink); }
 a { color: var(--evidence); text-decoration-color: var(--rule); }
 hr { border: 0; border-top: 1px solid var(--rule); margin: 2.4em 0; }
 ul, ol { padding-left: 1.35em; }
@@ -205,7 +216,98 @@ padding: .1em .45em; border-radius: 3px; white-space: nowrap; }
 .tok-hypothesis { background: #fff3cd; color: #7a5c00; border: 1px solid #ffe69c; }
 .tok-provisional { background: #e7f1ff; color: #1c4f8a; border: 1px solid #b6d4fe; }
 .tok-assessed { background: #e6f4f1; color: #1d6f63; border: 1px solid #b8e0d8; }
+
+
+
+
+
+
+
+
+
+
+
+@media screen {
+html { font-size: 16px; }
+body { padding-top: 1rem; }
+
+.site-header {
+display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1.1rem;
+max-width: 44rem; margin: 0 auto 2.2rem; padding: .7rem 0 .8rem;
+border-bottom: 1px solid var(--rule);
+font-size: .87rem;
+}
+.site-home {
+display: inline-flex; align-items: center; gap: .45rem;
+font-weight: 680; text-decoration: none; color: var(--ink);
+letter-spacing: -0.01em;
+}
+.site-mark {
+width: .78rem; height: .78rem; border-radius: 2px;
+background: var(--evidence);
+box-shadow: inset -.26rem .26rem 0 0 var(--verified);
+}
+.site-nav { display: flex; flex-wrap: wrap; gap: .15rem .9rem; margin-left: auto; }
+.site-nav a { color: var(--muted); text-decoration: none; white-space: nowrap; }
+.site-nav a:hover { color: var(--evidence); text-decoration: underline; }
+.site-nav a.here { color: var(--ink); font-weight: 640; }
+
+.site-footer {
+max-width: 44rem; margin: 4rem auto 0; padding: 1.4rem 0 0;
+border-top: 1px solid var(--rule);
+font-size: .85rem; color: var(--muted);
+}
+.site-footer p { margin: 0 0 .6rem; }
+.site-footer strong { color: var(--scam); }
+
+
+table { display: block; overflow-x: auto; white-space: normal; }
+pre { overflow-x: auto; }
+
+nav#TOC {
+background: var(--surface); border: 1px solid var(--rule);
+border-radius: 6px; padding: .9rem 1.1rem; margin: 0 0 2.2rem;
+font-size: .92rem;
+}
+nav#TOC ul { margin: 0; padding-left: 1.1rem; }
+nav#TOC > ul { padding-left: 0; list-style: none; }
+nav#TOC > ul > li > a { font-weight: 640; }
+a:hover { text-decoration-color: currentcolor; }
+}
+
+
+@media screen and (prefers-color-scheme: dark) {
+:root {
+--ink: #e8eaed;
+--muted: #9aa3ab;
+
+--scam: #ff9d94;
+--rule: #343b41;
+--evidence: #7fb3c8;
+--sand: #23282c;
+--page: #131619;
+--surface: #1b1f23;
+--stripe: #191d21;
+--code-bg: #23282c;
+--code-ink: #ff9d94;
+--pre-bg: #1b1f23;
+--quote-bg: #241f14;
+--quote-ink: #e3d9c2;
+--strong-ink: #f3f5f7;
+}
+th { background: #223038; }
+figure img, p:has(> img:only-child) img {
+
+background: #f4f1de; border-radius: 4px; padding: .5rem;
+}
+.tok-unverified { background: #3a1f1d; color: #ff9d94; border-color: #5c2f2b; }
+.tok-hypothesis { background: #3a3117; color: #ffd970; border-color: #5c4c22; }
+.tok-provisional { background: #16283d; color: #8ec2ff; border-color: #23415f; }
+.tok-assessed { background: #14302b; color: #7fd8c6; border-color: #205347; }
+}
 @media print {
+
+.site-header, .site-footer { display: none !important; }
 body { max-width: none; padding: 0; }
 a { color: var(--ink); text-decoration: none; }
 a[href^="http"]::after {
@@ -214,10 +316,22 @@ word-break: break-all;
 }
 }
 </style>
+  <meta name="description" content="Every brief and the full wiki reference layer compiled into one document.">
+  <link rel="canonical" href="https://legioncodeinc.github.io/wiener-gate-public/master/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23264653'/%3E%3Crect x='8' y='7' width='5' height='18' fill='%23F5F6F7'/%3E%3Crect x='8' y='20' width='16' height='5' fill='%23F5F6F7'/%3E%3Crect x='19' y='7' width='5' height='5' fill='%233DDC97'/%3E%3C/svg%3E">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Wiener Gate: public evidence corpus">
+  <meta property="og:title" content="The master brief | Wiener Gate">
+  <meta property="og:description" content="Every brief and the full wiki reference layer compiled into one document.">
+  <meta property="og:url" content="https://legioncodeinc.github.io/wiener-gate-public/master/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The master brief | Wiener Gate">
+  <meta name="twitter:description" content="Every brief and the full wiki reference layer compiled into one document.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Report", "headline": "The master brief", "description": "Every brief and the full wiki reference layer compiled into one document.", "url": "https://legioncodeinc.github.io/wiener-gate-public/master/", "inLanguage": "en", "datePublished": "2026-08-27", "isPartOf": {"@type": "CreativeWorkSeries", "name": "Wiener Gate: public evidence corpus", "url": "https://legioncodeinc.github.io/wiener-gate-public/"}, "publisher": {"@type": "Organization", "name": "Legion Code Inc.", "url": "https://github.com/legioncodeinc"}}</script>
 </head>
 <body>
+<header class="site-header"><a class="site-home" href="../"><span class="site-mark"></span>Wiener Gate</a><nav class="site-nav"><a href="../law-enforcement/">Law enforcement</a><a href="../victims/">Victims</a><a href="../technical-analysts/">Analysts</a><a href="../intelligence/">Intelligence</a><a href="../media-public/">Public</a><a href="../contributors/">Help</a><a href="../master/" class="here">Everything</a></nav></header>
 <header id="title-block-header">
-<h1 class="title">MASTER BRIEF</h1>
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -253,7 +367,7 @@ this document</a></li>
 </nav>
 <h1 id="wiener-gate-master-brief">Wiener-Gate: Master Brief</h1>
 <blockquote>
-<p>Category: Public Brief | Version: 1.0 | Date: 2026-08-26 | Status:
+<p>Category: Public Brief | Version: 1.0 | Date: 2026-08-27 | Status:
 Active</p>
 </blockquote>
 <p>The complete public record of the Wiener-Gate investigation: a
@@ -349,7 +463,7 @@ help</a></li>
 <li><a href="#for-law-enforcement">For law enforcement</a></li>
 <li><a href="#for-technical-analysts">For technical analysts</a></li>
 <li><a href="#analytic-assessment">The intelligence picture</a></li>
-<li><a href="REDACTION_CONTRACT.md">Redaction contract</a></li>
+<li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/REDACTION_CONTRACT.md">Redaction contract</a></li>
 </ul>
 <hr />
 <h3 id="the-short-version">The short version</h3>
@@ -841,9 +955,9 @@ the version written for investigators and filing desks</li>
 the full technical evidence, for readers who want to check the work</li>
 <li><a href="#analytic-assessment"><code>BRIEF-04-intelligence.md</code></a>,
 analysis and assessment, labelled as such</li>
-<li><a href="REDACTION_CONTRACT.md"><code>../REDACTION_CONTRACT.md</code></a>,
+<li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/REDACTION_CONTRACT.md"><code>../REDACTION_CONTRACT.md</code></a>,
 the rules governing what this corpus will and will not publish</li>
-<li><a href="../README.md"><code>../README.md</code></a></li>
+<li><a href="../">The corpus</a></li>
 </ul>
 <p>If you only have the energy for one more page after this one, make it
 BRIEF-06. It is the shortest and the most actionable.</p>
@@ -1597,7 +1711,7 @@ seconds whether this file is worth opening: it is, because a US
 chartered bank holds the account the operators asked us to wire money
 to.</p>
 <ul>
-<li><a href="REDACTION_CONTRACT.md"><code>../REDACTION_CONTRACT.md</code></a>,
+<li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/REDACTION_CONTRACT.md"><code>../REDACTION_CONTRACT.md</code></a>,
 binding on this document</li>
 <li><a href="#if-you-have-been-targeted"><code>BRIEF-02-victims.md</code></a>,
 the same case for the people it happened to</li>
@@ -4262,9 +4376,9 @@ contract, and several of them forbid claims the corpus could not support
 anyway.</p>
 </blockquote>
 <ul>
-<li><a href="REDACTION_CONTRACT.md"><code>../REDACTION_CONTRACT.md</code></a>,
+<li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/REDACTION_CONTRACT.md"><code>../REDACTION_CONTRACT.md</code></a>,
 the binding publication contract this brief was written against</li>
-<li><a href="../README.md"><code>../README.md</code></a>, the scope rule
+<li><a href="../">The corpus</a>, the scope rule
 for the public knowledge tier</li>
 </ul>
 <p>Companion briefs for the victim-facing, technical, and
@@ -5751,7 +5865,7 @@ oversight.</td>
 <li><a href="#domain-roster"><code>../wiki/domain-roster.md</code></a></li>
 <li><a href="#who-is-not-a-suspect"><code>../wiki/who-is-not-a-suspect.md</code></a></li>
 <li><a href="#changelog"><code>../wiki/changelog.md</code></a></li>
-<li><a href="REDACTION_CONTRACT.md"><code>../REDACTION_CONTRACT.md</code></a></li>
+<li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/REDACTION_CONTRACT.md"><code>../REDACTION_CONTRACT.md</code></a></li>
 </ul>
 <hr />
 <h3 id="required-disclosure-1">Required disclosure</h3>
@@ -6574,8 +6688,7 @@ useful actions.</p>
 <td><strong>You think you recognise a face</strong></td>
 <td>Nothing publicly. If you believe it is material, send it privately
 to law enforcement through <a href="#for-law-enforcement"><code>BRIEF-01-law-enforcement.md</code></a>,
-or use the reporting route in <a href="../../../SECURITY.md"><code>../SECURITY.md</code></a>. Do not post
-it</td>
+or use the reporting route in <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/SECURITY.md">The security policy</a>. Do not post it</td>
 </tr>
 <tr class="even">
 <td><strong>You think you recognise a stolen photograph as your
@@ -6621,9 +6734,9 @@ identifying a person, that is what it does.</p>
 <p>If you believe anything on this page is inaccurate, or you want your
 status stated differently, that is a correction this project will make
 and log. See <a href="#changelog"><code>changelog.md</code></a> for how
-corrections are handled, and <a href="../../../SECURITY.md"><code>../SECURITY.md</code></a> for the
-private reporting route. Nothing here is more important than getting
-this part right.</p>
+corrections are handled, and <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/SECURITY.md">The security policy</a> for the private
+reporting route. Nothing here is more important than getting this part
+right.</p>
 <hr />
 <h1 id="the-network-at-a-glance">The Network At A Glance</h1>
 <p>The entity map: which brands, domains, social pages, handles, and
@@ -8869,8 +8982,8 @@ have not been reconciled (D12)</td>
 <p>Corrections and gaps go through the repository&#39;s issue tracker.
 <strong>Do not report sensitive-data exposure publicly</strong>: a
 redaction miss, a leaked identity, or an exposed credential goes through
-the private route in <a href="../../../SECURITY.md"><code>../../../../SECURITY.md</code></a>. A
-redaction miss is not a bug fixed in the next release; it is permanent
+the private route in <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/SECURITY.md">The security policy</a>.
+A redaction miss is not a bug fixed in the next release; it is permanent
 the moment it is public (contract section 6).</p>
 <h3 id="8-the-rules-the-record-runs-under">8. The rules the record runs
 under</h3>
@@ -9311,7 +9424,7 @@ Z-7). Anything written here describes a moving target.</p>
 <p><strong>This public corpus is a point-in-time snapshot synced from a
 private working repository.</strong> The private record is the
 evidentiary source; these pages are derived from it, filtered through a
-binding <a href="REDACTION_CONTRACT.md">redaction contract</a>, and
+binding <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/REDACTION_CONTRACT.md">redaction contract</a>, and
 republished when the source changes materially. <strong>The public pages
 will therefore lag the private record</strong>, sometimes by days.</p>
 <p><strong>Findings labelled <code>PROVISIONAL</code>,
@@ -9737,8 +9850,8 @@ collection, and the section 4 table is the evidence for that.</p>
 <td><strong>A redaction miss</strong>: an identity, a minor, an
 unconfirmed suspect, a credential, or any sensitive data that should not
 be public</td>
-<td><strong>The private route in <a href="../../../SECURITY.md"><code>../../../../SECURITY.md</code></a>.
-Never a public issue</strong></td>
+<td><strong>The private route in <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/SECURITY.md">The security policy</a>. Never a public
+issue</strong></td>
 </tr>
 <tr class="odd">
 <td>A finding you believe is unsupported</td>
@@ -9764,10 +9877,11 @@ permanent the moment it is public</strong> (contract section 6), and the
 only honest response is to fix it fast and say so.</p>
 <hr />
 <h2 id="about-this-document">About this document</h2>
-<p>Compiled by <code>scripts/compile-master.sh</code> on 2026-08-26 from
+<p>Compiled by <code>scripts/compile-master.sh</code> on 2026-08-27 from
 the sources in <code>library/knowledge/public/</code>. Do not edit this
 file directly; edit the source briefs and rebuild.</p>
 <p>Every public artifact in this repository has passed
-<code>scripts/redaction-check.sh</code> against <a href="REDACTION_CONTRACT.md">REDACTION_CONTRACT.md</a>.</p>
+<code>scripts/redaction-check.sh</code> against <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/REDACTION_CONTRACT.md">The redaction contract</a>.</p>
+<footer class="site-footer"><p><strong>Before acting on anything here:</strong> several people whose names and faces appear in this material are victims of identity and image theft, not participants. Read <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/who-is-not-a-suspect.md">Who is NOT a suspect</a>.</p><p><a href="../">All briefs</a> &middot; <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/index.md">The wiki</a> &middot; <a href="https://github.com/legioncodeinc/wiener-gate-public">Repository</a> &middot; Compiled under Legion Code Inc.</p></footer>
 </body>
 </html>

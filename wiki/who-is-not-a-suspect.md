@@ -199,7 +199,7 @@ If you think you have identified someone, here is the whole list of useful actio
 
 | Situation | Do this |
 |---|---|
-| **You think you recognise a face** | Nothing publicly. If you believe it is material, send it privately to law enforcement through [`BRIEF-01-law-enforcement.md`](../briefs/BRIEF-01-law-enforcement.md), or use the reporting route in [`../SECURITY.md`](../../../../SECURITY.md). Do not post it |
+| **You think you recognise a face** | Nothing publicly. If you believe it is material, send it privately to law enforcement through [`BRIEF-01-law-enforcement.md`](../briefs/BRIEF-01-law-enforcement.md), or use the reporting route in [`SECURITY.md`](../SECURITY.md). Do not post it |
 | **You think you recognise a stolen photograph as your own** | You are an image-theft victim with standing nobody else has. You can file takedowns directly. Get in touch through the contribution route in [`BRIEF-06-how-to-help.md`](../briefs/BRIEF-06-how-to-help.md) |
 | **You think you were scammed by this network** | Go to [`BRIEF-02-victims.md`](../briefs/BRIEF-02-victims.md). File your own complaint under your own name. A victim-filed complaint is treated very differently from a third-party report |
 | **You found a new domain, page, or handle** | That is genuinely useful. Report the **infrastructure**, not a person. See [`indicators.md`](indicators.md) for the format and [`BRIEF-06-how-to-help.md`](../briefs/BRIEF-06-how-to-help.md) for where to send it |
@@ -214,4 +214,4 @@ You are here because the record says you were **wronged, cleared, or genuinely u
 
 You are not named. Where the record can describe a role without identifying a person, that is what it does.
 
-If you believe anything on this page is inaccurate, or you want your status stated differently, that is a correction this project will make and log. See [`changelog.md`](changelog.md) for how corrections are handled, and [`../SECURITY.md`](../../../../SECURITY.md) for the private reporting route. Nothing here is more important than getting this part right.
+If you believe anything on this page is inaccurate, or you want your status stated differently, that is a correction this project will make and log. See [`changelog.md`](changelog.md) for how corrections are handled, and [`SECURITY.md`](../SECURITY.md) for the private reporting route. Nothing here is more important than getting this part right.
