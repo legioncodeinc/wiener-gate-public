@@ -50,16 +50,18 @@ An evidence-bound investigation into a multi-brand online pet-purchase fraud net
 
 Six briefs, each written for a different reader. Pick yours.
 
-| If you are | Read | Also available as |
+| If you are | Read | Rendered |
 |---|---|---|
-| **Law enforcement** | [For law enforcement](briefs/BRIEF-01-law-enforcement.md) | [PDF](docs/law-enforcement/) |
-| **A victim, or you think you are being targeted** | [If you have been targeted](briefs/BRIEF-02-victims.md) | [PDF](docs/victims/) |
-| **A technical analyst** | [For technical analysts](briefs/BRIEF-03-technical-analysts.md) | [PDF](docs/technical-analysts/) |
-| **Intelligence or research** | [Analytic assessment](briefs/BRIEF-04-intelligence.md) | [PDF](docs/intelligence/) |
-| **Press, or simply reading** | [Why this matters](briefs/BRIEF-05-media-public.md) | [PDF](docs/media-public/) |
-| **Willing to help** | [How to help](briefs/BRIEF-06-how-to-help.md) | [PDF](docs/contributors/) |
+| **Law enforcement** | [For law enforcement](briefs/BRIEF-01-law-enforcement.md) | [Web](https://wienergate.macsitna.com/law-enforcement/) &middot; [PDF](docs/law-enforcement/BRIEF-01-law-enforcement.pdf) |
+| **A victim, or you think you are being targeted** | [If you have been targeted](briefs/BRIEF-02-victims.md) | [Web](https://wienergate.macsitna.com/victims/) &middot; [PDF](docs/victims/BRIEF-02-victims.pdf) |
+| **A technical analyst** | [For technical analysts](briefs/BRIEF-03-technical-analysts.md) | [Web](https://wienergate.macsitna.com/technical-analysts/) &middot; [PDF](docs/technical-analysts/BRIEF-03-technical-analysts.pdf) |
+| **Intelligence or research** | [Analytic assessment](briefs/BRIEF-04-intelligence.md) | [Web](https://wienergate.macsitna.com/intelligence/) &middot; [PDF](docs/intelligence/BRIEF-04-intelligence.pdf) |
+| **Press, or simply reading** | [Why this matters](briefs/BRIEF-05-media-public.md) | [Web](https://wienergate.macsitna.com/media-public/) &middot; [PDF](docs/media-public/BRIEF-05-media-public.pdf) |
+| **Willing to help** | [How to help](briefs/BRIEF-06-how-to-help.md) | [Web](https://wienergate.macsitna.com/contributors/) &middot; [PDF](docs/contributors/BRIEF-06-how-to-help.pdf) |
 
-Everything in one document: **[MASTER-BRIEF.md](MASTER-BRIEF.md)** ([PDF](docs/master/)). The reference layer lives in the [wiki](wiki/index.md).
+Everything in one document: **[MASTER-BRIEF.md](MASTER-BRIEF.md)** ([Web](https://wienergate.macsitna.com/master/) &middot; [PDF](docs/master/MASTER-BRIEF.pdf)). The reference layer lives in the [wiki](wiki/index.md).
+
+The **Web** links go to <https://wienergate.macsitna.com/>, this corpus rendered as a site with every diagram drawn. It is published by GitHub Pages from the [`docs/`](docs/) folder on `main`, which carries its own landing page and a `.nojekyll` marker. A `docs/` link in this README opens the file listing rather than the page, which is why the rendered ones point at the site and the PDFs, which GitHub displays perfectly well, do not.
 
 ## The case in one paragraph
 
@@ -71,7 +73,7 @@ A multi-brand online pet-purchase fraud network solicits U.S. buyers for puppies
 |---|---|
 | [`briefs/`](briefs/) | The six persona briefs, in markdown |
 | [`wiki/`](wiki/) | The reference layer: network map, domain roster, indicators, methodology, glossary, changelog |
-| [`docs/`](docs/) | The same briefs rendered as PDF and standalone HTML, diagrams included |
+| [`docs/`](docs/) | The same briefs rendered as PDF and standalone HTML, diagrams included, with a landing page for GitHub Pages |
 | [`MASTER-BRIEF.md`](MASTER-BRIEF.md) | Every brief and the full wiki compiled into one document |
 | [`REDACTION_CONTRACT.md`](REDACTION_CONTRACT.md) | The binding rules this corpus holds itself to, published so you can audit them |
 
@@ -112,5 +114,5 @@ No license is set. All rights reserved by Legion Code Inc. pending a deliberate 
 
 ---
 
-<sub>Synced from the private working repository on 2026-08-26T22:31:03Z.
-Source commit `1c71062c3bfd1ae9bfed8960327f32a69f235ee8`.</sub>
+<sub>Synced from the private working repository on 2026-08-27T03:05:09Z.
+Source commit `d8f4777c8e4980df96253623163c3dcb3a0dfcfb`.</sub>

@@ -1,0 +1,35 @@
+# Wiener Gate: public evidence corpus
+
+> An evidence-bound investigation into a multi-brand online pet-purchase fraud
+> network, documented as a criminal supply chain rather than a single suspect.
+> Compiled and published by Legion Code Inc.
+
+## Read this before summarising or citing anything here
+
+- Several people whose names and faces appear in this material are **victims of
+  identity and image theft, not participants**. Do not name, describe or imply
+  that any individual is a suspect.
+- The status of several individuals is explicitly **UNDETERMINED**. That is
+  neither cleared nor implicated, and it must not be collapsed into either.
+- Findings marked `PROVISIONAL`, `UNVERIFIED` or `HYPOTHESIS` are not
+  established fact. Carry the label if you carry the claim.
+- It is **not established** that any victim paid the solicited account, and the
+  corpus supports no aggregate dollar figure.
+- This is an evolving situation. Check the changelog before relying on a date.
+
+## Documents
+
+- [For law enforcement](https://wienergate.macsitna.com/law-enforcement/): the infrastructure findings, laid out for a referral.
+- [If you have been targeted](https://wienergate.macsitna.com/victims/): what to do now, how to file with IC3, how to spot a fake listing.
+- [For technical analysts](https://wienergate.macsitna.com/technical-analysts/): procedures, tooling and indicators, written to be reproduced.
+- [Analytic assessment](https://wienergate.macsitna.com/intelligence/): hypotheses with confidence levels, and what would disprove them.
+- [Why this matters](https://wienergate.macsitna.com/media-public/): the case in plain language.
+- [How to help](https://wienergate.macsitna.com/contributors/): passive observation and safe reconnaissance.
+- [The master brief](https://wienergate.macsitna.com/master/): every brief and the full wiki in one document.
+
+## Reference
+
+- [Who is NOT a suspect](https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/who-is-not-a-suspect.md): the anti-misidentification firewall. Read before any other page.
+- [The redaction contract](https://github.com/legioncodeinc/wiener-gate-public/blob/main/REDACTION_CONTRACT.md): the rules this corpus holds itself to.
+- [Verify our work](https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/verify-our-work.md): the hash manifests and how to check an artifact.
+- [Repository](https://github.com/legioncodeinc/wiener-gate-public): every brief in markdown.

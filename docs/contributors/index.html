@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>BRIEF 06 how to help</title>
+  <title>How to help | Wiener Gate</title>
   <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -37,6 +37,17 @@ margin: 20mm 18mm 22mm 18mm;
 --evidence: #264653;
 --money: #e9c46a;
 --sand: #f4f1de;
+--verified: #3ddc97;
+
+--page: #ffffff;
+--surface: #fcfcfd;
+--stripe: #fafbfc;
+--code-bg: #f1f3f5;
+--code-ink: #922b21;
+--pre-bg: #f8f9fa;
+--quote-bg: #fff8e6;
+--quote-ink: #4a4030;
+--strong-ink: #0f1112;
 }
 html { font-size: 11pt; }
 body {
@@ -46,7 +57,7 @@ line-height: 1.55;
 max-width: 44rem;
 margin: 0 auto;
 padding: 2rem 1.25rem 4rem;
-background: #fff;
+background: var(--page);
 -webkit-font-smoothing: antialiased;
 }
 
@@ -79,7 +90,7 @@ height: auto;
 figure {
 margin: 1.9em 0;
 padding: 1.1em;
-background: #fcfcfd;
+background: var(--surface);
 border: 1px solid var(--rule);
 border-radius: 6px;
 text-align: center;
@@ -93,7 +104,7 @@ font-style: italic; text-align: center;
 p:has(> img:only-child) {
 break-inside: avoid; page-break-inside: avoid;
 text-align: center; margin: 1.9em 0; padding: 1.1em;
-background: #fcfcfd; border: 1px solid var(--rule); border-radius: 6px;
+background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
 }
 
 table {
@@ -108,15 +119,15 @@ padding: .55em .7em; font-weight: 600; font-size: .84rem;
 letter-spacing: .012em;
 }
 td { padding: .5em .7em; border-bottom: 1px solid var(--rule); vertical-align: top; }
-tbody tr:nth-child(even) { background: #fafbfc; }
+tbody tr:nth-child(even) { background: var(--stripe); }
 
 code {
 font-family: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
-font-size: .87em; background: #f1f3f5; padding: .13em .38em;
-border-radius: 3px; color: #922b21;
+font-size: .87em; background: var(--code-bg); padding: .13em .38em;
+border-radius: 3px; color: var(--code-ink);
 }
 pre {
-background: #f8f9fa; border: 1px solid var(--rule); border-left: 4px solid var(--evidence);
+background: var(--pre-bg); border: 1px solid var(--rule); border-left: 4px solid var(--evidence);
 border-radius: 4px; padding: .9em 1.1em; overflow-x: auto;
 font-size: .82rem; line-height: 1.45; break-inside: avoid;
 }
@@ -124,11 +135,11 @@ pre code { background: none; padding: 0; color: var(--ink); }
 
 blockquote {
 margin: 1.4em 0; padding: .8em 1.1em;
-background: #fff8e6; border-left: 4px solid var(--money);
-border-radius: 0 4px 4px 0; color: #4a4030; break-inside: avoid;
+background: var(--quote-bg); border-left: 4px solid var(--money);
+border-radius: 0 4px 4px 0; color: var(--quote-ink); break-inside: avoid;
 }
 blockquote p:last-child { margin-bottom: 0; }
-strong { font-weight: 660; color: #0f1112; }
+strong { font-weight: 660; color: var(--strong-ink); }
 a { color: var(--evidence); text-decoration-color: var(--rule); }
 hr { border: 0; border-top: 1px solid var(--rule); margin: 2.4em 0; }
 ul, ol { padding-left: 1.35em; }
@@ -141,7 +152,98 @@ padding: .1em .45em; border-radius: 3px; white-space: nowrap; }
 .tok-hypothesis { background: #fff3cd; color: #7a5c00; border: 1px solid #ffe69c; }
 .tok-provisional { background: #e7f1ff; color: #1c4f8a; border: 1px solid #b6d4fe; }
 .tok-assessed { background: #e6f4f1; color: #1d6f63; border: 1px solid #b8e0d8; }
+
+
+
+
+
+
+
+
+
+
+
+@media screen {
+html { font-size: 16px; }
+body { padding-top: 1rem; }
+
+.site-header {
+display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1.1rem;
+max-width: 44rem; margin: 0 auto 2.2rem; padding: .7rem 0 .8rem;
+border-bottom: 1px solid var(--rule);
+font-size: .87rem;
+}
+.site-home {
+display: inline-flex; align-items: center; gap: .45rem;
+font-weight: 680; text-decoration: none; color: var(--ink);
+letter-spacing: -0.01em;
+}
+.site-mark {
+width: .78rem; height: .78rem; border-radius: 2px;
+background: var(--evidence);
+box-shadow: inset -.26rem .26rem 0 0 var(--verified);
+}
+.site-nav { display: flex; flex-wrap: wrap; gap: .15rem .9rem; margin-left: auto; }
+.site-nav a { color: var(--muted); text-decoration: none; white-space: nowrap; }
+.site-nav a:hover { color: var(--evidence); text-decoration: underline; }
+.site-nav a.here { color: var(--ink); font-weight: 640; }
+
+.site-footer {
+max-width: 44rem; margin: 4rem auto 0; padding: 1.4rem 0 0;
+border-top: 1px solid var(--rule);
+font-size: .85rem; color: var(--muted);
+}
+.site-footer p { margin: 0 0 .6rem; }
+.site-footer strong { color: var(--scam); }
+
+
+table { display: block; overflow-x: auto; white-space: normal; }
+pre { overflow-x: auto; }
+
+nav#TOC {
+background: var(--surface); border: 1px solid var(--rule);
+border-radius: 6px; padding: .9rem 1.1rem; margin: 0 0 2.2rem;
+font-size: .92rem;
+}
+nav#TOC ul { margin: 0; padding-left: 1.1rem; }
+nav#TOC > ul { padding-left: 0; list-style: none; }
+nav#TOC > ul > li > a { font-weight: 640; }
+a:hover { text-decoration-color: currentcolor; }
+}
+
+
+@media screen and (prefers-color-scheme: dark) {
+:root {
+--ink: #e8eaed;
+--muted: #9aa3ab;
+
+--scam: #ff9d94;
+--rule: #343b41;
+--evidence: #7fb3c8;
+--sand: #23282c;
+--page: #131619;
+--surface: #1b1f23;
+--stripe: #191d21;
+--code-bg: #23282c;
+--code-ink: #ff9d94;
+--pre-bg: #1b1f23;
+--quote-bg: #241f14;
+--quote-ink: #e3d9c2;
+--strong-ink: #f3f5f7;
+}
+th { background: #223038; }
+figure img, p:has(> img:only-child) img {
+
+background: #f4f1de; border-radius: 4px; padding: .5rem;
+}
+.tok-unverified { background: #3a1f1d; color: #ff9d94; border-color: #5c2f2b; }
+.tok-hypothesis { background: #3a3117; color: #ffd970; border-color: #5c4c22; }
+.tok-provisional { background: #16283d; color: #8ec2ff; border-color: #23415f; }
+.tok-assessed { background: #14302b; color: #7fd8c6; border-color: #205347; }
+}
 @media print {
+
+.site-header, .site-footer { display: none !important; }
 body { max-width: none; padding: 0; }
 a { color: var(--ink); text-decoration: none; }
 a[href^="http"]::after {
@@ -150,10 +252,22 @@ word-break: break-all;
 }
 }
 </style>
+  <meta name="description" content="Passive observation, safe reconnaissance, and how to reach victims without harming them.">
+  <link rel="canonical" href="https://wienergate.macsitna.com/contributors/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23264653'/%3E%3Crect x='8' y='7' width='5' height='18' fill='%23F5F6F7'/%3E%3Crect x='8' y='20' width='16' height='5' fill='%23F5F6F7'/%3E%3Crect x='19' y='7' width='5' height='5' fill='%233DDC97'/%3E%3C/svg%3E">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Wiener Gate: public evidence corpus">
+  <meta property="og:title" content="How to help | Wiener Gate">
+  <meta property="og:description" content="Passive observation, safe reconnaissance, and how to reach victims without harming them.">
+  <meta property="og:url" content="https://wienergate.macsitna.com/contributors/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How to help | Wiener Gate">
+  <meta name="twitter:description" content="Passive observation, safe reconnaissance, and how to reach victims without harming them.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Report", "headline": "How to help", "description": "Passive observation, safe reconnaissance, and how to reach victims without harming them.", "url": "https://wienergate.macsitna.com/contributors/", "inLanguage": "en", "datePublished": "2026-08-27", "isPartOf": {"@type": "CreativeWorkSeries", "name": "Wiener Gate: public evidence corpus", "url": "https://wienergate.macsitna.com/"}, "publisher": {"@type": "Organization", "name": "Legion Code Inc.", "url": "https://github.com/legioncodeinc"}}</script>
 </head>
 <body>
+<header class="site-header"><a class="site-home" href="../"><span class="site-mark"></span>Wiener Gate</a><nav class="site-nav"><a href="../law-enforcement/">Law enforcement</a><a href="../victims/">Victims</a><a href="../technical-analysts/">Analysts</a><a href="../intelligence/">Intelligence</a><a href="../media-public/">Public</a><a href="../contributors/" class="here">Help</a><a href="../master/">Everything</a></nav></header>
 <header id="title-block-header">
-<h1 class="title">BRIEF 06 how to help</h1>
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -223,14 +337,14 @@ oversight.</td>
 </table>
 <p><strong>Related:</strong></p>
 <ul>
-<li><a href="BRIEF-02-victims.md"><code>BRIEF-02-victims.md</code></a></li>
-<li><a href="BRIEF-03-technical-analysts.md"><code>BRIEF-03-technical-analysts.md</code></a></li>
-<li><a href="BRIEF-05-media-public.md"><code>BRIEF-05-media-public.md</code></a></li>
-<li><a href="../wiki/verify-our-work.md"><code>../wiki/verify-our-work.md</code></a></li>
-<li><a href="../wiki/domain-roster.md"><code>../wiki/domain-roster.md</code></a></li>
-<li><a href="../wiki/who-is-not-a-suspect.md"><code>../wiki/who-is-not-a-suspect.md</code></a></li>
-<li><a href="../wiki/changelog.md"><code>../wiki/changelog.md</code></a></li>
-<li><a href="../REDACTION_CONTRACT.md"><code>../REDACTION_CONTRACT.md</code></a></li>
+<li><a href="../victims/">If you have been targeted</a></li>
+<li><a href="../technical-analysts/">For technical analysts</a></li>
+<li><a href="../media-public/">Why this matters</a></li>
+<li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/verify-our-work.md">Verify our work</a></li>
+<li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/domain-roster.md">Domain roster</a></li>
+<li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/who-is-not-a-suspect.md">Who is NOT a suspect</a></li>
+<li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/changelog.md">Changelog</a></li>
+<li><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/REDACTION_CONTRACT.md">The redaction contract</a></li>
 </ul>
 <hr />
 <h2 id="required-disclosure">Required disclosure</h2>
@@ -322,7 +436,7 @@ album belonging to a real person who never consented to any of it.</p>
 specific failure mode: it is confident, it is fast, and when it is wrong
 the cost lands on somebody innocent who then spends years explaining
 themselves. We are not going to be the reason that happens to someone.
-See <a href="../wiki/who-is-not-a-suspect.md"><code>../wiki/who-is-not-a-suspect.md</code></a>
+See <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/who-is-not-a-suspect.md">Who is NOT a suspect</a>
 for how that firewall is maintained.</p>
 <hr />
 <h2 id="3-where-the-boundary-sits-exactly">3. Where the boundary sits,
@@ -354,7 +468,7 @@ credentials were not used and must not be, by anyone, ever.</li>
 </ul>
 <hr />
 <h2 id="4-if-you-are-a-victim">4. If you are a victim</h2>
-<p>Stop reading this brief and go to <a href="BRIEF-02-victims.md"><code>BRIEF-02-victims.md</code></a>.</p>
+<p>Stop reading this brief and go to <a href="../victims/">If you have been targeted</a>.</p>
 <p>That is not a brush-off. Your own first-hand report, with your own
 dates and amounts, is worth more to this case than every volunteer task
 on this page combined. BRIEF-02 tells you where to file it and what to
@@ -373,7 +487,7 @@ domains named in the earlier evidence are already deregistered and their
 content is gone. Anything not archived before the next rotation is
 simply lost.</p>
 <h3 id="how">How</h3>
-<p>For each URL published in <a href="../wiki/domain-roster.md"><code>../wiki/domain-roster.md</code></a>
+<p>For each URL published in <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/domain-roster.md">Domain roster</a>
 or in the technical brief:</p>
 <ol type="1">
 <li>Open the Wayback Machine save form at
@@ -418,7 +532,7 @@ languages.</li>
 and it is an open invitation.</strong></p>
 <p>We would much rather find out from you that something does not
 reconcile than find out from opposing counsel.</p>
-<p><a href="../wiki/verify-our-work.md"><code>../wiki/verify-our-work.md</code></a>
+<p><a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/verify-our-work.md">Verify our work</a>
 is the step-by-step page and it is the one to follow. What belongs here
 is why it is worth your time and what specifically to attack.</p>
 <h3 id="the-manifests">The manifests</h3>
@@ -531,8 +645,8 @@ is the lowest evidentiary bar anywhere in this matter.</td>
 </tr>
 </tbody>
 </table>
-<p>The identifiers themselves are published in <a href="BRIEF-03-technical-analysts.md"><code>BRIEF-03-technical-analysts.md</code></a>
-and <a href="../wiki/indicators.md"><code>../wiki/indicators.md</code></a>.
+<p>The identifiers themselves are published in <a href="../technical-analysts/">For technical analysts</a>
+and <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/indicators.md">Indicator reference</a>.
 Copy them from there rather than gathering them yourself.</p>
 <p><strong>One thing to leave alone: do not file a report with the FBI&#39;s
 IC3 about someone else&#39;s loss.</strong> IC3 wants the person who lost
@@ -615,7 +729,7 @@ than there is time to reach them.</p>
 <li>Pass this corpus to breed-specific clubs, rescue networks, and
 breeder associations, and let them circulate it internally.</li>
 <li>If you moderate or belong to a buyer-facing group, pin the warning
-signs from <a href="BRIEF-05-media-public.md"><code>BRIEF-05-media-public.md</code></a>.
+signs from <a href="../media-public/">Why this matters</a>.
 The productization pattern is the useful part: the same purchased
 website template, the same recycled testimonial personas, the same
 escalation into transport, crate, and insurance fees through a courier
@@ -699,7 +813,7 @@ permanently rather than being quietly removed. If you are building on
 something, check its label first, and do not repeat a provisional claim
 in a stronger form than we stated it.</p>
 <p><strong>The changelog is the place to watch.</strong> Every
-substantive change to this corpus lands there with its reasoning, at <a href="../wiki/changelog.md"><code>../wiki/changelog.md</code></a>. If
+substantive change to this corpus lands there with its reasoning, at <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/changelog.md">Changelog</a>. If
 you want to track the case, track the changelog rather than re-reading
 the briefs.</p>
 <p><strong>Automated collection is continuing under the investigator&#39;s
@@ -726,5 +840,6 @@ contact victims.</li>
 <p>If you have read this far, you are already treating this material
 more carefully than most people would. That care is the contribution.
 Thank you.</p>
+<footer class="site-footer"><p><strong>Before acting on anything here:</strong> several people whose names and faces appear in this material are victims of identity and image theft, not participants. Read <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/who-is-not-a-suspect.md">Who is NOT a suspect</a>.</p><p><a href="../">All briefs</a> &middot; <a href="https://github.com/legioncodeinc/wiener-gate-public/blob/main/wiki/index.md">The wiki</a> &middot; <a href="https://github.com/legioncodeinc/wiener-gate-public">Repository</a> &middot; Compiled under Legion Code Inc.</p></footer>
 </body>
 </html>
