@@ -1,0 +1,19 @@
+# The whole repository is stored with LF, which is what the sync delivers and
+# what the runner needs. This file pins that for the CI paths rather than
+# leaving it to whatever core.autocrlf each contributor happens to have.
+#
+# It matters most for the workflows and their scripts. A CRLF committed into a
+# shell script that runs on an Ubuntu runner is a syntax error: bash reads the
+# carriage return as part of the command, and a heredoc terminator written as
+# `PY` never matches the `PY\r` in the file. A Windows editor writing CRLF, or
+# core.autocrlf left off, produces exactly that, silently.
+.github/** text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+SECURITY.md text eol=lf
+
+# The corpus is deliberately not listed. briefs/, wiki/, MASTER-BRIEF.md,
+# README.md and REDACTION_CONTRACT.md arrive from the private repository and
+# are already LF; adding rules for them here would put a second, local opinion
+# in front of files this repository does not author. If their normalisation is
+# ever wrong, it is wrong at the source and gets fixed there.
