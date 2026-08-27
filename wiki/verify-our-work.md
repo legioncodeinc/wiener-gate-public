@@ -217,7 +217,7 @@ If you are looking for the weak points, here is where the investigators think th
 
 ### How to report a defect
 
-Corrections and gaps go through the repository's issue tracker. **Do not report sensitive-data exposure publicly**: a redaction miss, a leaked identity, or an exposed credential goes through the private route in [`../../../../SECURITY.md`](../../../../SECURITY.md). A redaction miss is not a bug fixed in the next release; it is permanent the moment it is public (contract section 6).
+Corrections and gaps go through the repository's issue tracker. **Do not report sensitive-data exposure publicly**: a redaction miss, a leaked identity, or an exposed credential goes through the private route in [`SECURITY.md`](../SECURITY.md). A redaction miss is not a bug fixed in the next release; it is permanent the moment it is public (contract section 6).
 
 ## 8. The rules the record runs under
 
