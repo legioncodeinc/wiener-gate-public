@@ -203,7 +203,13 @@ jobs:
             "$VERSION" dist RELEASE_NOTES.md "$PREVIOUS"
 
       - name: Tag the snapshot
-        if: steps.gate.outputs.proceed == 'true' && steps.version.outputs.tag_exists == 'false'
+        # A draft run is a rehearsal, so it must not consume the CalVer slot.
+        # Recovering from that needs a manual tag deletion. On a push event
+        # inputs.draft is null, which is not true, so tagging still happens.
+        if: >-
+          steps.gate.outputs.proceed == 'true'
+          && steps.version.outputs.tag_exists == 'false'
+          && inputs.draft != true
         env:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
@@ -223,7 +229,7 @@ jobs:
           set -euo pipefail
           ARGS=()
           if [ "${DRAFT}" = "true" ]; then
-            ARGS+=(--draft)
+              ARGS+=(--draft --target "${GITHUB_SHA}")
           fi
           gh release create "${VERSION}" \
             --title "Corpus snapshot ${VERSION}" \
