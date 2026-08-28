@@ -1,0 +1,237 @@
+# Bundles the corpus into a versioned, citable GitHub release.
+#
+# This repository is a point-in-time snapshot synced from a private working
+# repository, and readers are asked to cite a version. Every merge into main is
+# therefore a new snapshot and gets its own release, tagged CalVer as
+# vYYYY.MM.DD (with .1, .2 and so on for repeat syncs in a single day).
+#
+# Assets produced:
+#   wiener-gate-public-<version>-full.zip       every tracked file
+#   wiener-gate-public-<version>-pdf.zip        rendered PDFs only
+#   wiener-gate-public-<version>-html.zip       rendered HTML only
+#   wiener-gate-public-<version>-markdown.zip   markdown sources only
+#   BRIEF-0*.md and MASTER-BRIEF.md             loose, one file per brief
+#   SHA256SUMS.txt                              checksums for all of the above
+#
+# Escape hatch: put [skip release] in the commit subject to merge without
+# cutting a release. Push a tag by hand, or run this workflow manually with a
+# version input, to release out of band.
+name: Release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag to cut, for example v2026.08.26. Leave blank for today CalVer.'
+        required: false
+        type: string
+      draft:
+        description: 'Create the release as a draft rather than publishing it.'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+# Serialise releases: two runs racing would fight over the same CalVer tag.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Bundle and publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository with full history
+        # Pinned to a commit SHA (supply-chain hardening): tag v4.4.0
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          # Release notes diff against the previous tag, so shallow will not do.
+          fetch-depth: 0
+
+      - name: Decide whether to release
+        id: gate
+        env:
+          SUBJECT: ${{ github.event.head_commit.message }}
+        run: |
+          set -euo pipefail
+          if [ "${GITHUB_EVENT_NAME}" = "push" ] && [ "${GITHUB_REF_TYPE}" = "branch" ] \
+            && printf '%s' "${SUBJECT}" | head -n 1 | grep -qiF '[skip release]'; then
+            echo "Commit subject carries [skip release]. Stopping here."
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Resolve the version
+        id: version
+        if: steps.gate.outputs.proceed == 'true'
+        env:
+          REQUESTED: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            VERSION="${GITHUB_REF_NAME}"
+            TAG_EXISTS=true
+          elif [ -n "${REQUESTED}" ]; then
+            VERSION="${REQUESTED}"
+            TAG_EXISTS=false
+          else
+            BASE="v$(date -u +%Y.%m.%d)"
+            VERSION="${BASE}"
+            N=1
+            while git rev-parse -q --verify "refs/tags/${VERSION}" >/dev/null; do
+              VERSION="${BASE}.${N}"
+              N=$((N + 1))
+            done
+            TAG_EXISTS=false
+          fi
+
+          if [ "${TAG_EXISTS}" = "false" ] && git rev-parse -q --verify "refs/tags/${VERSION}" >/dev/null; then
+            echo "::error::Tag ${VERSION} already exists. Pick a different version."
+            exit 1
+          fi
+
+          # Newest tag that is an ancestor of HEAD, excluding the one being cut.
+          # The last --sort key is the primary one, so this is newest-first with
+          # the version name breaking ties between tags cut in the same second.
+          PREVIOUS="$(git tag --list 'v*' --merged HEAD \
+            --sort=-v:refname --sort=-creatordate \
+            | grep -vFx "${VERSION}" | head -n 1 || true)"
+
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "previous=${PREVIOUS}" >> "$GITHUB_OUTPUT"
+          echo "tag_exists=${TAG_EXISTS}" >> "$GITHUB_OUTPUT"
+          echo "Releasing ${VERSION} (previous: ${PREVIOUS:-none})."
+
+      - name: Build the bundles
+        if: steps.gate.outputs.proceed == 'true'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          NAME="wiener-gate-public-${VERSION}"
+          mkdir -p dist
+
+          # Every bundle comes out of git archive against the committed tree, so
+          # the contents are exactly what is under version control: no untracked
+          # scratch files, no .git, no build-host state. Subset bundles keep the
+          # repository layout, so docs/victims/BRIEF-02-victims.pdf stays where a
+          # reader expects to find it. A pathspec that matches nothing makes git
+          # archive fail, which is the guard against publishing an empty bundle.
+          bundle () {
+            kind="$1"
+            shift
+            git archive --format=zip --prefix="${NAME}/" \
+              -o "dist/${NAME}-${kind}.zip" HEAD "$@"
+          }
+          bundle full
+          bundle pdf -- '*.pdf'
+          bundle html -- '*.html'
+          bundle markdown -- '*.md'
+
+          # Individual briefs, loose, so one audience can be linked on its own.
+          cp briefs/BRIEF-*.md dist/
+          cp MASTER-BRIEF.md dist/
+
+          # Written outside dist first, so the sums file never hashes itself.
+          ( cd dist && sha256sum -- * > ../SHA256SUMS.txt && mv ../SHA256SUMS.txt . )
+          ls -lh dist
+
+      - name: Check the bundles before publishing
+        if: steps.gate.outputs.proceed == 'true'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          python3 - "${VERSION}" <<'PY'
+          import sys, zipfile
+          from pathlib import Path
+
+          name = f"wiener-gate-public-{sys.argv[1]}"
+          # Bundle suffix to a file that must be inside it. A corrupt or empty
+          # archive of an evidence corpus is worse than a failed release.
+          expected = {
+              "full": f"{name}/README.md",
+              "pdf": f"{name}/docs/master/MASTER-BRIEF.pdf",
+              "html": f"{name}/docs/master/index.html",
+              "markdown": f"{name}/wiki/index.md",
+          }
+          failures = []
+          for kind, must_contain in expected.items():
+              path = Path("dist") / f"{name}-{kind}.zip"
+              if not path.is_file():
+                  failures.append(f"{path} was not built")
+                  continue
+              with zipfile.ZipFile(path) as archive:
+                  if archive.testzip() is not None:
+                      failures.append(f"{path} is corrupt")
+                      continue
+                  names = archive.namelist()
+                  if must_contain not in names:
+                      failures.append(f"{path} is missing {must_contain}")
+                  else:
+                      files = sum(1 for n in names if not n.endswith("/"))
+                      print(f"ok: {path.name} ({files} files)")
+
+          for brief in [f"BRIEF-0{n}" for n in range(1, 7)]:
+              if not list(Path("dist").glob(f"{brief}-*.md")):
+                  failures.append(f"{brief} markdown is missing from dist/")
+          if not (Path("dist") / "MASTER-BRIEF.md").is_file():
+              failures.append("MASTER-BRIEF.md is missing from dist/")
+
+          for failure in failures:
+              print(f"::error::{failure}")
+          sys.exit(1 if failures else 0)
+          PY
+
+      - name: Compose the release notes
+        if: steps.gate.outputs.proceed == 'true'
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+          VERSION: ${{ steps.version.outputs.version }}
+          PREVIOUS: ${{ steps.version.outputs.previous }}
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/release_notes.py \
+            "$VERSION" dist RELEASE_NOTES.md "$PREVIOUS"
+
+      - name: Tag the snapshot
+        if: steps.gate.outputs.proceed == 'true' && steps.version.outputs.tag_exists == 'false'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "${VERSION}" -m "Corpus snapshot ${VERSION}"
+          git push origin "refs/tags/${VERSION}"
+
+      - name: Publish the release
+        if: steps.gate.outputs.proceed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
+          DRAFT: ${{ inputs.draft }}
+        run: |
+          set -euo pipefail
+          ARGS=()
+          if [ "${DRAFT}" = "true" ]; then
+            ARGS+=(--draft)
+          fi
+          gh release create "${VERSION}" \
+            --title "Corpus snapshot ${VERSION}" \
+            --notes-file RELEASE_NOTES.md \
+            "${ARGS[@]}" \
+            dist/*
+          {
+            echo "## Released ${VERSION}"
+            echo
+            echo "https://github.com/${GITHUB_REPOSITORY}/releases/tag/${VERSION}"
+          } >> "$GITHUB_STEP_SUMMARY"
