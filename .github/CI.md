@@ -1,11 +1,26 @@
 # CI in this repository
 
-Two workflows, both driven by merges into `main`.
+Two workflows. Both run on merges into `main`, and both can also be started by
+hand, which matters when a run has to be repeated without inventing a commit.
 
 | Workflow | Fires on | Does |
 |---|---|---|
-| [`publish-wiki.yml`](workflows/publish-wiki.yml) | A merge into `main` that touches `wiki/**` | Publishes `wiki/` to this repository's GitHub wiki |
-| [`release.yml`](workflows/release.yml) | Every merge into `main` | Cuts a versioned release with the corpus bundled five ways |
+| [`publish-wiki.yml`](workflows/publish-wiki.yml) | A push to `main` touching `wiki/**`, `.github/workflows/publish-wiki.yml`, or `.github/scripts/build_wiki.py`; or `workflow_dispatch` | Publishes `wiki/` to this repository's GitHub wiki |
+| [`release.yml`](workflows/release.yml) | Any push to `main`; a pushed tag matching `v*`; or `workflow_dispatch` | Cuts a versioned release with the corpus bundled five ways |
+
+Two details in that table are easy to miss and both change what a run does.
+
+The wiki path filter covers the builder as well as the content. A change to
+`build_wiki.py` alters every published page without touching `wiki/`, so a
+filter that watched only `wiki/**` would leave the wiki built by the old script
+until the next unrelated content edit.
+
+`release.yml` answers to tags as well as to `main`. Pushing `v2026.08.26` cuts
+that release directly, which is the path a release takes when it is being
+published deliberately rather than as a consequence of a merge.
+`workflow_dispatch` takes two inputs: `version`, a tag such as `v2026.08.26`,
+defaulting to today's CalVer when left blank, and `draft`, which stops the run
+at a draft release instead of publishing it.
 
 Neither uses a third-party action. The only action referenced is `actions/checkout`; everything else is `git`, `python3`, and the `gh` CLI already present on the runner. For a repository whose whole claim is that the material can be verified, the build should not depend on code nobody here reviewed.
 

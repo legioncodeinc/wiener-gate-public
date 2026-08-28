@@ -45,6 +45,10 @@ EXTERNAL_RE = re.compile(r"^[a-zA-Z][a-zA-Z0-9+.-]*:")
 HEADING_RE = re.compile(r"^#\s+(.+?)\s*$", re.MULTILINE)
 
 
+# Written by this script, so a source page may not claim either name.
+GENERATED_PAGES = frozenset({"_Sidebar", "_Footer"})
+
+
 def page_slug(stem: str) -> str:
     """Map a source filename stem to its wiki page name."""
     return "Home" if stem == "index" else stem
@@ -126,7 +130,32 @@ def main() -> int:
         print(f"error: no markdown pages found in {source}", file=sys.stderr)
         return 1
 
-    pages = {page_slug(p.stem) for p in sources}
+    # A set would hide a collision rather than report it. Two sources can map
+    # to one page name (index.md and Home.md both become Home), and the write
+    # loop below would then silently publish whichever ran last. The generated
+    # _Sidebar and _Footer pages overwrite an authored page of the same name
+    # for the same reason. Both are wrong quietly, which is the worst way for a
+    # corpus that claims completeness to lose a page.
+    by_slug: dict[str, list[str]] = {}
+    for p in sources:
+        by_slug.setdefault(page_slug(p.stem), []).append(p.name)
+
+    problems = []
+    for slug in sorted(by_slug):
+        if len(by_slug[slug]) > 1:
+            problems.append(
+                f"{' and '.join(sorted(by_slug[slug]))} both map to {slug}.md"
+            )
+        if slug in GENERATED_PAGES:
+            problems.append(
+                f"{by_slug[slug][0]} maps to {slug}.md, which is generated"
+            )
+    if problems:
+        for problem in problems:
+            print(f"error: {problem}", file=sys.stderr)
+        return 1
+
+    pages = set(by_slug)
 
     # Full sync: the wiki/ folder is the source of truth, so a page deleted
     # upstream must disappear from the wiki rather than linger.
