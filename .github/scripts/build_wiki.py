@@ -157,6 +157,11 @@ def main() -> int:
 
     pages = set(by_slug)
 
+    # The sync below lists this directory, so it has to exist first. In CI the
+    # wiki clone creates it, which is why this never surfaced there; the
+    # standalone command in CI.md points at a fresh path and stopped on it.
+    output.mkdir(parents=True, exist_ok=True)
+
     # Full sync: the wiki/ folder is the source of truth, so a page deleted
     # upstream must disappear from the wiki rather than linger.
     for existing in output.iterdir():
