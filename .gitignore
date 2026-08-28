@@ -1,0 +1,5 @@
+# Release build output. Produced by .github/workflows/release.yml in CI, and by
+# anyone rehearsing that workflow locally. A stray 4 MB bundle committed into an
+# evidence corpus is noise at best and a provenance question at worst.
+dist/
+RELEASE_NOTES.md

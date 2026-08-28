@@ -1,0 +1,96 @@
+# Publishes the repository's wiki/ folder to the GitHub wiki on every merge into
+# main. The wiki/ folder is the single source of truth: this workflow performs a
+# full sync, so a page deleted from wiki/ disappears from the published wiki.
+#
+# No manual setup. A wiki that has never been initialised cannot be cloned, so
+# the checkout step falls back to creating a fresh repository and pushing it,
+# which is enough to bring the wiki into existence. The only requirement is that
+# the Wiki feature is enabled in repository settings, which the workflow checks
+# and says so plainly if it is not.
+name: Publish wiki
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'wiki/**'
+      - '.github/workflows/publish-wiki.yml'
+      - '.github/scripts/build_wiki.py'
+      # The wiki links out to these, 34 times, and those links are pinned to the
+      # built revision below. Without them here a corrected brief would stay
+      # invisible behind a link frozen at whatever commit last touched wiki/.
+      - 'briefs/**'
+      - 'SECURITY.md'
+      - 'REDACTION_CONTRACT.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Two syncs racing each other would fight over the same wiki branch.
+concurrency:
+  group: publish-wiki
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Sync wiki/ to the GitHub wiki
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        # Pinned to a commit SHA (supply-chain hardening): tag v4.4.0
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Clone the wiki
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          REMOTE="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git"
+
+          if git clone "${REMOTE}" wiki-checkout 2>/dev/null; then
+            echo "Cloned the existing wiki."
+            exit 0
+          fi
+
+          # A wiki that has never been written to does not exist as a git
+          # repository, and answers a clone with "Repository not found". So does
+          # a repository with the Wiki feature switched off. There is no API to
+          # create a wiki, and pushing to one that does not exist fails the same
+          # way, so the two cases have to be told apart and reported honestly
+          # rather than papered over with a retry.
+          if [ "$(gh api "repos/${GITHUB_REPOSITORY}" --jq '.has_wiki')" != "true" ]; then
+            echo "::error::The Wiki feature is disabled on ${GITHUB_REPOSITORY}. Turn it on in Settings > General > Features > Wikis, create the first page as described below, then re-run."
+            exit 1
+          fi
+          echo "::error::${GITHUB_REPOSITORY} has no wiki yet. GitHub offers no API to create one and will not accept a push to a wiki that does not exist, so this first page has to be made by hand, once: open https://github.com/${GITHUB_REPOSITORY}/wiki/_new, save any page with any content, then re-run this workflow. The next sync overwrites whatever you saved."
+          exit 1
+
+      - name: Build the wiki pages
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+          # The revision actually rendered, not whatever main has become since.
+          # A wiki page is a citation, so its links have to resolve to the text
+          # it was built from. The path filter above is what keeps that honest.
+          WIKI_SOURCE_REF: ${{ github.sha }}
+        run: python3 .github/scripts/build_wiki.py wiki wiki-checkout
+
+      - name: Commit and push
+        working-directory: wiki-checkout
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Wiki is already in sync with ${GITHUB_SHA}. Nothing to push."
+            exit 0
+          fi
+          git commit -m "Sync wiki from ${GITHUB_SHA:0:7}
+
+          Published by .github/workflows/publish-wiki.yml from wiki/ at
+          ${GITHUB_REPOSITORY}@${GITHUB_SHA}. Do not edit pages in the wiki
+          directly: the next sync overwrites them."
+          git push origin HEAD
+          echo "Pushed wiki update from ${GITHUB_SHA:0:7}." >> "$GITHUB_STEP_SUMMARY"
