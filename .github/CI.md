@@ -5,15 +5,25 @@ hand, which matters when a run has to be repeated without inventing a commit.
 
 | Workflow | Fires on | Does |
 |---|---|---|
-| [`publish-wiki.yml`](workflows/publish-wiki.yml) | A push to `main` touching `wiki/**`, `.github/workflows/publish-wiki.yml`, or `.github/scripts/build_wiki.py`; or `workflow_dispatch` | Publishes `wiki/` to this repository's GitHub wiki |
+| [`publish-wiki.yml`](workflows/publish-wiki.yml) | A push to `main` touching `wiki/**`, `briefs/**`, `SECURITY.md`, `REDACTION_CONTRACT.md`, `.github/workflows/publish-wiki.yml`, or `.github/scripts/build_wiki.py`; or `workflow_dispatch` | Publishes `wiki/` to this repository's GitHub wiki |
 | [`release.yml`](workflows/release.yml) | Any push to `main`; a pushed tag matching `v*`; or `workflow_dispatch` | Cuts a versioned release with the corpus bundled five ways |
 
 Two details in that table are easy to miss and both change what a run does.
 
-The wiki path filter covers the builder as well as the content. A change to
-`build_wiki.py` alters every published page without touching `wiki/`, so a
-filter that watched only `wiki/**` would leave the wiki built by the old script
-until the next unrelated content edit.
+The wiki path filter is wider than `wiki/` on purpose, for two reasons.
+
+It covers the builder. A change to `build_wiki.py` alters every published page
+without touching `wiki/`, so a filter watching only content would leave the wiki
+built by the old script until the next unrelated edit.
+
+It also covers the corpus the wiki links into: `briefs/**`, `SECURITY.md`, and
+`REDACTION_CONTRACT.md`. Wiki pages link outward 34 times, and those links are
+pinned to the commit the pages were built from rather than to `main`, so that a
+page cites the text it was actually written against. Pinning is only safe while
+the filter is this wide. Narrow it, and a corrected brief would sit behind a
+link frozen at whatever commit last happened to touch `wiki/`, showing a reader
+a superseded version with nothing to indicate it. If you add a path that wiki
+pages link to, add it here too.
 
 `release.yml` answers to tags as well as to `main`. Pushing `v2026.08.26` cuts
 that release directly, which is the path a release takes when it is being
