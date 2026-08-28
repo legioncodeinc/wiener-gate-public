@@ -158,7 +158,7 @@ jobs:
           expected = {
               "full": f"{name}/README.md",
               "pdf": f"{name}/docs/master/MASTER-BRIEF.pdf",
-              "html": f"{name}/docs/master/MASTER-BRIEF.html",
+              "html": f"{name}/docs/master/index.html",
               "markdown": f"{name}/wiki/index.md",
           }
           failures = []
@@ -194,11 +194,12 @@ jobs:
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_SHA: ${{ github.sha }}
+          VERSION: ${{ steps.version.outputs.version }}
+          PREVIOUS: ${{ steps.version.outputs.previous }}
         run: |
           set -euo pipefail
           python3 .github/scripts/release_notes.py \
-            "${{ steps.version.outputs.version }}" dist RELEASE_NOTES.md \
-            "${{ steps.version.outputs.previous }}"
+            "$VERSION" dist RELEASE_NOTES.md "$PREVIOUS"
 
       - name: Tag the snapshot
         if: steps.gate.outputs.proceed == 'true' && steps.version.outputs.tag_exists == 'false'
