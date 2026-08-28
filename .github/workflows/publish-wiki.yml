@@ -16,6 +16,12 @@ on:
       - 'wiki/**'
       - '.github/workflows/publish-wiki.yml'
       - '.github/scripts/build_wiki.py'
+      # The wiki links out to these, 34 times, and those links are pinned to the
+      # built revision below. Without them here a corrected brief would stay
+      # invisible behind a link frozen at whatever commit last touched wiki/.
+      - 'briefs/**'
+      - 'SECURITY.md'
+      - 'REDACTION_CONTRACT.md'
   workflow_dispatch:
 
 permissions:
@@ -64,7 +70,10 @@ jobs:
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_SHA: ${{ github.sha }}
-          WIKI_SOURCE_REF: main
+          # The revision actually rendered, not whatever main has become since.
+          # A wiki page is a citation, so its links have to resolve to the text
+          # it was built from. The path filter above is what keeps that honest.
+          WIKI_SOURCE_REF: ${{ github.sha }}
         run: python3 .github/scripts/build_wiki.py wiki wiki-checkout
 
       - name: Commit and push
